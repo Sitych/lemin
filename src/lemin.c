@@ -6,7 +6,7 @@
 /*   By: qjosmyn <qjosmyn@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 16:54:04 by erodd             #+#    #+#             */
-/*   Updated: 2020/03/14 22:47:15 by qjosmyn          ###   ########.fr       */
+/*   Updated: 2020/03/14 23:37:35 by qjosmyn          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int		main(void)
 	
 	split = NULL;
 	room = NULL;
+	g_nbr = 0;
 	split = ft_file_parse(split);
 	ft_putstr("split\n");
 	// i = 0;
@@ -57,27 +58,6 @@ int		main(void)
 	// }
 
 	ft_file_checker(split, &room);
-	t_r_list *ptr;
-	size_t	i;
-
-	i = 0;
-	ptr = room;
-	g_hash_table = (t_hash_table**)malloc(sizeof(t_hash_table*) * (g_hash_table_size + 1));
-	ft_printf("111\n");
-	while (i < g_hash_table_size)
-	{
-		g_hash_table[i] = (t_hash_table*)malloc(sizeof(t_hash_table));
-		g_hash_table[i]->rooms = ft_crtrm();
-		ft_bzero((void*)g_hash_table[i]->rooms, sizeof(g_hash_table[i]->rooms));
-		i++;
-	}
-	ft_printf("111111111\n");
-	while (ptr)
-	{
-		ft_printf("name = %s x = %d y = %d flag = %d\n", ptr->name, ptr->x, ptr->y, ptr->flag);
-		g_hash_table[ft_hash(ptr->name)] = ft_insert_data(ptr);
-		ptr = ptr->next;
-	}
 	// ft_print(room);
 	ft_putstr("check\n");
 	//CRT DBLLNKD LST RM

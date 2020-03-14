@@ -6,7 +6,7 @@
 /*   By: qjosmyn <qjosmyn@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 21:25:03 by qjosmyn           #+#    #+#             */
-/*   Updated: 2020/03/14 22:08:27 by qjosmyn          ###   ########.fr       */
+/*   Updated: 2020/03/14 23:58:09 by qjosmyn          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,13 @@ int		ft_val_room(char **split, t_r_list **start)
 {
 	size_t		i;
 	int			room_num;
-	t_r_list	*tmp;
+	// t_r_list	*tmp;
 
 	i = 1;
 	room_num = 0;
-	tmp = ft_crtrm("0 0 0", -2);
-	*start = tmp;
+	// tmp = ft_crtrm("0 0 0", -2);
+	// *start = tmp;
+	start = NULL;
 	ft_putstr("init\n");
 	while ((ft_word_counter(split[i], ' ') != 1 && ft_word_counter(split[i], '-') != 2) || split[i][0] == '#') 
 	{
@@ -93,7 +94,7 @@ int		ft_val_room(char **split, t_r_list **start)
 			else
 			{
 				// room is ok
-				tmp = ft_add_push_back(tmp, split, i);
+				// tmp = ft_add_push_back(tmp, split, i);
 				i++;
 				room_num++;
 			}
@@ -101,10 +102,11 @@ int		ft_val_room(char **split, t_r_list **start)
 		else 
 			ft_exit("ERROR: SHITTY ROOM INPUT");
 	}
-	g_hash_table_size = i;
-	*start = ft_roomdel(start);
-	// work
-	ft_check_name_coord(*start);
+
+	// *start = ft_roomdel(start);
+	// // work
+	// ft_check_name_coord(*start);
+	ft_create_htable(split, i);
 	ft_putnbr(room_num);
 	ft_putchar('\n');
 	ft_val_links(split, i); //TO MOVE TO FT_FILE_CHECKER FUNC (MAYBE)

@@ -23,11 +23,11 @@ typedef struct s_r_list
 	struct s_r_list	*next;
 }					t_r_list;
 
-typedef struct	s_hash_table
+typedef struct	s_htable
 {
 	t_r_list			*rooms;
-	struct s_hash_table	*next;
-}				t_hash_table;
+	struct s_htable	*next;
+}				t_htable;
 
 typedef struct		s_dbl_room
 {
@@ -60,8 +60,9 @@ typedef struct s_lemin {
 	t_room		*rooms; //arrays of rooms
 } t_lemin;
 
-t_hash_table	**g_hash_table;
-size_t			g_hash_table_size;
+t_htable	**g_htable;
+size_t		g_htsize;
+size_t		g_nbr;
 
 //init functions
 int		lem_init(t_lemin *lem);
@@ -95,7 +96,9 @@ void			ft_print(t_r_list *tmp);
 */
 
 size_t			ft_hash(char *data);
-t_hash_table	*ft_insert_data(t_r_list *room);
-t_hash_table	*ft_find_data(char *data);
+t_htable		*ft_insert_data(t_r_list *room);
+t_htable		*ft_find_data(char *data);
+void			ft_create_htable(size_t len);
+void			ft_set_htable(char **split, size_t len);
 
 #endif
