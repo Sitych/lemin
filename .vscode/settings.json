@@ -1,0 +1,8 @@
+{
+	"files.associations": {
+		"libft.h": "c",
+		"libftprintf.h": "c",
+		"header_double.h": "c",
+		"inttypes.h": "c"
+	}
+}
