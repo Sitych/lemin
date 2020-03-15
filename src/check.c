@@ -6,7 +6,7 @@
 /*   By: qjosmyn <qjosmyn@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 21:25:03 by qjosmyn           #+#    #+#             */
-/*   Updated: 2020/03/14 23:58:09 by qjosmyn          ###   ########.fr       */
+/*   Updated: 2020/03/15 18:42:45 by qjosmyn          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,11 +102,10 @@ int		ft_val_room(char **split, t_r_list **start)
 		else 
 			ft_exit("ERROR: SHITTY ROOM INPUT");
 	}
-
 	// *start = ft_roomdel(start);
 	// // work
 	// ft_check_name_coord(*start);
-	ft_create_htable(split, i);
+	ft_set_htable(split, i);
 	ft_putnbr(room_num);
 	ft_putchar('\n');
 	ft_val_links(split, i); //TO MOVE TO FT_FILE_CHECKER FUNC (MAYBE)

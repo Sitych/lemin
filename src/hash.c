@@ -6,7 +6,7 @@
 /*   By: qjosmyn <qjosmyn@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 18:20:09 by qjosmyn           #+#    #+#             */
-/*   Updated: 2020/03/15 00:04:10 by qjosmyn          ###   ########.fr       */
+/*   Updated: 2020/03/15 18:39:10 by qjosmyn          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,14 +68,16 @@ void			ft_set_htable(char **split, size_t len)
 	int			flag;
 
 	i = 0;
+	g_nbr = len;
 	ft_create_htable(len);
-	while (i++ < g_htsize)
+	while (++i < g_htsize)
 	{
 		flag = (i > 0 && ft_strstr(split[i - 1], "##start")) ? 0 :\
 						(i > 0 && ft_strstr(split[i - 1], "##end")) ? 1 : -1;
 		if (ft_strstr(split[i], "##") != 0 && flag == -1)
 			continue ;
 		room = ft_crtrm(split[i], flag);
+		// ft_printf("name = %s x = %d y = %d flag = %d\n", room->name, room->x, room->y, room->flag);
 		g_htable[ft_hash(room->name)]->rooms = room;
 	}
 }

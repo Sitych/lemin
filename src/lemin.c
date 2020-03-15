@@ -6,7 +6,7 @@
 /*   By: qjosmyn <qjosmyn@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 16:54:04 by erodd             #+#    #+#             */
-/*   Updated: 2020/03/14 23:37:35 by qjosmyn          ###   ########.fr       */
+/*   Updated: 2020/03/15 18:40:15 by qjosmyn          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int		main(void)
 	// }
 
 	ft_file_checker(split, &room);
+	ft_printf("%s\n", g_htable[ft_hash("988")]->rooms->name);
 	// ft_print(room);
 	ft_putstr("check\n");
 	//CRT DBLLNKD LST RM

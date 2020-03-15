@@ -25,7 +25,7 @@ typedef struct s_r_list
 
 typedef struct	s_htable
 {
-	t_r_list			*rooms;
+	t_r_list		*rooms;
 	struct s_htable	*next;
 }				t_htable;
 
