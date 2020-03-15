@@ -6,7 +6,7 @@
 /*   By: qjosmyn <qjosmyn@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 21:27:41 by qjosmyn           #+#    #+#             */
-/*   Updated: 2020/03/14 22:46:19 by qjosmyn          ###   ########.fr       */
+/*   Updated: 2020/03/15 20:18:59 by qjosmyn          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,54 +40,50 @@ t_r_list	*ft_crtrm(char *str, int flag)
 	return (tmp);
 }
 
-t_r_list	*ft_add_push_back(t_r_list *tmp, char **split, int i)
-{
-	int flag;
+// t_r_list	*ft_add_push_back(t_r_list *tmp, char **split, int i)
+// {
+// 	int flag;
 
-	if (ft_strstr(split[i], "##") != 0)
-		return (tmp);
-	flag = -1;
-	if (i > 0 && ft_strstr(split[i - 1], "##start"))
-		flag = 0;
-	else if (i > 0 && ft_strstr(split[i - 1], "##end"))
-		flag = 1;
-	tmp->next = ft_crtrm(split[i], flag);
-	tmp = tmp->next;
-	return (tmp);
-}
+// 	if (ft_strstr(split[i], "##") != 0)
+// 		return (tmp);
+// 	flag = -1;
+// 	if (i > 0 && ft_strstr(split[i - 1], "##start"))
+// 		flag = 0;
+// 	else if (i > 0 && ft_strstr(split[i - 1], "##end"))
+// 		flag = 1;
+// 	tmp->next = ft_crtrm(split[i], flag);
+// 	tmp = tmp->next;
+// 	return (tmp);
+// }
 
-t_r_list	*ft_roomdel(t_r_list **ptr)
-{
-	t_r_list *tmp;
+// t_r_list	*ft_roomdel(t_r_list **ptr)
+// {
+// 	t_r_list *tmp;
 
-	tmp = (*ptr)->next;
-	free((*ptr)->name);
-	free(*ptr);
-	return (tmp);
-}
+// 	tmp = (*ptr)->next;
+// 	free((*ptr)->name);
+// 	free(*ptr);
+// 	return (tmp);
+// }
 
-void		ft_check_name_coord(t_r_list *ptr)
-{
-	t_r_list	*tmp;
+// void		ft_check_name_coord(t_r_list *ptr)
+// {
+// 	t_r_list	*tmp;
 
-	while (ptr != NULL)
-	{
-		tmp = ptr->next;
-		while (tmp != NULL)
-		{
-			if (ft_strstr(ptr->name, tmp->name) || (ptr->x == tmp->x && ptr->y == tmp->y))
-				ft_exit("EROROR: SAME ROOM NAMES OR SAME ROOM COORDS");
-			tmp = tmp->next;
-		}
-		ptr = ptr->next;
-	}
-}
+// 	while (ptr != NULL)
+// 	{
+// 		tmp = ptr->next;
+// 		while (tmp != NULL)
+// 		{
+// 			if (ft_strstr(ptr->name, tmp->name) || (ptr->x == tmp->x && ptr->y == tmp->y))
+// 				ft_exit("EROROR: SAME ROOM NAMES OR SAME ROOM COORDS");
+// 			tmp = tmp->next;
+// 		}
+// 		ptr = ptr->next;
+// 	}
+// }
 
 void		ft_print(t_r_list *tmp)
 {
-	while (tmp != NULL)
-	{
-		ft_printf("name = %s x = %d y = %d flag = %d\n", tmp->name, tmp->x, tmp->y, tmp->flag);
-		tmp = tmp->next;
-	}
+	ft_printf("name = %s x = %d y = %d flag = %d\n", tmp->name, tmp->x, tmp->y, tmp->flag);
 }

@@ -6,7 +6,7 @@
 /*   By: qjosmyn <qjosmyn@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 17:35:22 by erodd             #+#    #+#             */
-/*   Updated: 2020/03/11 23:01:49 by qjosmyn          ###   ########.fr       */
+/*   Updated: 2020/03/15 23:40:33 by qjosmyn          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ char	**ft_file_parse(char **split)
 
 	str = "";
 	str2 = "";
-	ft_memset(tmp, '\0', 4096);
 	while ((len = read(STDIN_FILENO, tmp, 4096)) > 0)
 	{
 		tmp[len] = '\0';

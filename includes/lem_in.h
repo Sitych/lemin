@@ -12,65 +12,33 @@
 **	define const value for hash func
 */
 
-# define P ((int)10) 
+# define P		(int)10
+# define HTSIZE (int)65536
 
-typedef struct s_r_list
+typedef struct			s_r_list
 {
-	char			*name;
-	size_t			x;
-	size_t			y;
-	int				flag;
-	struct s_r_list	*next;
-}					t_r_list;
+	char				*name;
+	size_t				x;
+	size_t				y;
+	int					flag;
+	struct s_r_list		**next;
+}						t_r_list;
 
-typedef struct	s_htable
+typedef struct			s_htable
 {
-	t_r_list		*rooms;
-	struct s_htable	*next;
-}				t_htable;
+	t_r_list			*rooms;
+	struct s_htable		*next;
+}						t_htable;
 
-typedef struct		s_dbl_room
-{
-	size_t				level;
-	struct s_dbl_room	**next;
-	struct s_dbl_room	**prev;
-}					t_dbl_room;
+typedef	unsigned short int t_thindex;
 
+t_htable				**g_htable;
+unsigned char 			g_rand8[256];
+// size_t					g_htsize;
+// size_t					g_nbr;
 
-typedef struct s_pipe {
-	char	*start;
-	char	*end;
-} t_pipe;
-
-typedef struct s_room {
-	unsigned short	busy;
-	int				level;
-	int				x;
-	int				y;
-	char 			*name;
-	struct t_room			*prev;
-	struct t_room			*next;
-} t_room;
-
-typedef struct s_lemin {
-	int			ants;
-	uint16_t	start;
-	uint16_t	end;
-	t_pipe		*pipes; //pipes between rooms
-	t_room		*rooms; //arrays of rooms
-} t_lemin;
-
-t_htable	**g_htable;
-size_t		g_htsize;
-size_t		g_nbr;
 
 //init functions
-int		lem_init(t_lemin *lem);
-t_dbl_room *create_dbl_room(char *str);
-
-//parse  functions
-int				ants_parse(t_lemin *lem);
-int				rooms_parse(t_lemin *lem);
 char			**ft_file_parse(char **split);
 int				ft_file_checker(char **split, t_r_list **start);
 int				ft_val_ant(char *split);
@@ -79,7 +47,8 @@ int				ft_val_room(char **split, t_r_list **start);
 int				ft_val_links(char **split, int i);
 int				ft_word_counter(char const *s, char c);
 void			ft_exit(char *str);
-void			ft_arrclr(char **arr);
+void			ft_prng(unsigned int seed);
+int				ft_check(char **split, size_t i);
 
 /*
 **	FUNC FOR LINKED LIST
