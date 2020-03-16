@@ -20,8 +20,8 @@ typedef struct			s_r_list
 	int					flag;
 	char				*name;
 	int					bfs_level;
-	int				x;
-	int				y;
+	int					x;
+	int					y;
 	char				**next;
 }						t_r_list;
 
@@ -70,7 +70,7 @@ void			ft_print(t_r_list *tmp);
 **	FUNC FOR HASH TABLE
 */
 
-int			ft_hash(char *data);
+int				ft_hash(char *data);
 t_htable		*ft_insert_room(t_r_list *room);
 t_htable		*ft_find_data(char *data);
 void			ft_create_htable(int len);
