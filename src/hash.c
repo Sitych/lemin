@@ -6,7 +6,7 @@
 /*   By: qjosmyn <qjosmyn@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 18:20:09 by qjosmyn           #+#    #+#             */
-/*   Updated: 2020/03/16 22:08:56 by qjosmyn          ###   ########.fr       */
+/*   Updated: 2020/03/16 22:51:10 by qjosmyn          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,11 @@ t_htable	*ft_find_data(char *data)
 
 	key = ft_hash(data);
 	p = g_htable[key];
-	while (ft_strcmp(p->rooms->name, data) && p->next)
-		p->next = p;
+	while (p->rooms != NULL)
+	{
+		if (!ft_strcmp(p->rooms->name, data))
+			return (p);
+		p = p->next;
+	}
 	return (p);
 }
