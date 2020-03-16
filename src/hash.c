@@ -6,7 +6,7 @@
 /*   By: qjosmyn <qjosmyn@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 18:20:09 by qjosmyn           #+#    #+#             */
-/*   Updated: 2020/03/16 22:56:48 by qjosmyn          ###   ########.fr       */
+/*   Updated: 2020/03/16 23:15:20 by qjosmyn          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,8 @@ void			ft_create_htable(int len)
 	if ((g_htable = (t_htable**)malloc(sizeof(t_htable*) * len)) == NULL)
 		ft_exit("ERROR: MALLOC ERROR");
 	while (i < len)
-	{
-		// if ((g_htable[i] = (t_htable*)malloc(sizeof(t_htable))) == NULL)
-		// 	ft_exit("ERROR: MALLOC ERROR");
-		// g_htable[i]->rooms = NULL;
-		// g_htable[i]->next = NULL;
-		g_htable[i] = NULL;
-		i++;
-	}
+		g_htable[i++] = NULL;
+	
 }
 
 t_htable	*ft_insert_room(t_r_list *room)

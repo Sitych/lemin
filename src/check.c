@@ -6,7 +6,7 @@
 /*   By: qjosmyn <qjosmyn@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 21:25:03 by qjosmyn           #+#    #+#             */
-/*   Updated: 2020/03/16 22:56:58 by qjosmyn          ###   ########.fr       */
+/*   Updated: 2020/03/16 23:04:54 by qjosmyn          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,11 +95,9 @@ int		ft_val_room(char **split)
 			continue ;
 		}
 		room_num++;
-		ft_printf("%d\n", i);
 		room = ft_crtrm(split[i], flag);
 		if ((ptr = ft_find_data(room->name)) != NULL)
 			ft_exit("EROROR: SAME ROOM NAMES");
-		ft_printf("%d\n", ft_hash(room->name));
 		ft_insert_room(room);
 		i++;
 	}
