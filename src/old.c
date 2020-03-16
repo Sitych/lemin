@@ -1,10 +1,10 @@
 #include "lem_in.h"
 
-void			ft_set_htable(char **split, size_t len)
+void			ft_set_htable(char **split, int len)
 {
 	t_r_list	*room;
-	size_t		i;
-	size_t		j;
+	int		i;
+	int		j;
 	int			flag;
 
 	i = 0;
@@ -60,9 +60,9 @@ t_thindex	ft_hash(char *data)
 	return (h % HTSIZE);
 }
 
-static int		ft_log(size_t a, size_t x)
+static int		ft_log(int a, int x)
 {
-	size_t	n;
+	int	n;
 
 	if (a < 1)
 		return (-1);

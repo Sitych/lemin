@@ -6,16 +6,16 @@
 /*   By: qjosmyn <qjosmyn@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 18:20:09 by qjosmyn           #+#    #+#             */
-/*   Updated: 2020/03/16 20:32:48 by qjosmyn          ###   ########.fr       */
+/*   Updated: 2020/03/16 21:49:28 by qjosmyn          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-size_t			ft_hash(char *data)
+int			ft_hash(char *data)
 {
-	size_t	key;
-	size_t	i;
+	int	key;
+	int	i;
 
 	key = 0;
 	i = 0;
@@ -27,9 +27,9 @@ size_t			ft_hash(char *data)
 	return (key % HTSIZE);
 }
 
-void			ft_create_htable(size_t len)
+void			ft_create_htable(int len)
 {
-	size_t i;
+	int i;
 
 	i = 0;
 	if ((g_htable = (t_htable**)malloc(sizeof(t_htable*) * len)) == NULL)
@@ -48,7 +48,7 @@ t_htable	*ft_insert_room(t_r_list *room)
 {
 	t_htable	*p;
 	t_htable	*p0;
-	size_t		key;
+	int		key;
 
 	key = ft_hash(room->name);
 	if ((p = (t_htable*)malloc(sizeof(t_htable))) == NULL)
@@ -60,17 +60,17 @@ t_htable	*ft_insert_room(t_r_list *room)
 	return (p);
 }
 
-t_htable	*ft_insert_link(char *data, t_r_list *link)
-{
-	t_htable	*p;
-	size_t		key;
+// t_htable	*ft_insert_link(char *data, t_r_list *link)
+// {
+// 	t_htable	*p;
+// 	int		key;
 
-	key = ft_hash(data);
-	// while lst != NULL
-	while (g_htable[key]->rooms->next != NULL)
-		g_htable[key]->rooms = g_htable[key]->rooms->next;
-	g_htable[key]->rooms->next;
-}
+// 	key = ft_hash(data);
+// 	// while lst != NULL
+// 	while (g_htable[key]->rooms->next != NULL)
+// 		g_htable[key]->rooms = g_htable[key]->rooms->next;
+// 	g_htable[key]->rooms->next;
+// }
 
 void		ft_thprint(void)
 {
@@ -88,7 +88,12 @@ void		ft_thprint(void)
 t_htable	*ft_find_data(char *data)
 {
 	t_htable	*p;
+	int			key;
 
-	p = g_htable[ft_hash(data)];
+	key = ft_hash(data);
+	p = g_htable[key];
+	while (p->next != NULL)
+		if (!ft_strcmp(p->rooms->name, data))
+			p->next = p;
 	return (p);
 }

@@ -6,7 +6,7 @@
 /*   By: qjosmyn <qjosmyn@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 21:27:41 by qjosmyn           #+#    #+#             */
-/*   Updated: 2020/03/16 18:26:53 by qjosmyn          ###   ########.fr       */
+/*   Updated: 2020/03/16 21:39:39 by qjosmyn          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,21 +40,21 @@ t_r_list	*ft_crtrm(char *str, int flag)
 	return (tmp);
 }
 
-t_r_list	*ft_add_push_back(t_r_list **data ,t_r_list *data)
-{
-	int flag;
+// t_r_list	*ft_add_push_back(t_r_list **data ,t_r_list *data)
+// {
+// 	int flag;
 
-	if (ft_strstr(split[i], "##") != 0)
-		return (tmp);
-	flag = -1;
-	if (i > 0 && ft_strstr(split[i - 1], "##start"))
-		flag = 0;
-	else if (i > 0 && ft_strstr(split[i - 1], "##end"))
-		flag = 1;
-	tmp->next = ft_crtrm(split[i], flag);
-	tmp = tmp->next;
-	return (tmp);
-}
+// 	if (ft_strstr(split[i], "##") != 0)
+// 		return (tmp);
+// 	flag = -1;
+// 	if (i > 0 && ft_strstr(split[i - 1], "##start"))
+// 		flag = 0;
+// 	else if (i > 0 && ft_strstr(split[i - 1], "##end"))
+// 		flag = 1;
+// 	tmp->next = ft_crtrm(split[i], flag);
+// 	tmp = tmp->next;
+// 	return (tmp);
+// }
 
 // t_r_list	*ft_roomdel(t_r_list **ptr)
 // {

@@ -6,7 +6,7 @@
 /*   By: qjosmyn <qjosmyn@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 21:25:03 by qjosmyn           #+#    #+#             */
-/*   Updated: 2020/03/16 20:18:46 by qjosmyn          ###   ########.fr       */
+/*   Updated: 2020/03/16 21:58:44 by qjosmyn          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int		ft_val_bond(char **split)
 	return (EXIT_SUCCESS);
 }
 
-int		ft_check_room(char **split, size_t i)
+int		ft_check_room(char **split, int i)
 {
 	int flag;
 
@@ -78,29 +78,27 @@ int		ft_check_room(char **split, size_t i)
 
 int		ft_val_room(char **split)
 {
-	size_t		i;
+	int			i;
 	int			room_num;
 	int			flag;
 	t_r_list	*room;
+	t_htable	*ptr;
 
 	i = 1;
 	room_num = 0;
 	ft_putstr("init\n");
 	while ((ft_word_counter(split[i], ' ') != 1 && ft_word_counter(split[i], '-') != 2) || split[i][0] == '#') 
 	{
-		if ((flag = ft_check(split, i)) == - 2)
+		if ((flag = ft_check_room(split, i)) == - 2)
 		{
 			i++;
 			continue ;
 		}
 		room_num++;
 		room = ft_crtrm(split[i], flag);
-		// while lst != NULL
-		if (g_htable[ft_hash(room->name)]->rooms != NULL\
-		&& !ft_strcmp(room->name, g_htable[ft_hash(room->name)]->rooms->name))
-				ft_exit("EROROR: SAME ROOM NAMES");
-		// if (g_htable[ft_hash(room->name)]->rooms != NULL)
-		// 	ft_printf("%d\n", ft_hash(room->name));
+		if ((ptr = ft_find_data(room->name)) != NULL)
+			ft_exit("EROROR: SAME ROOM NAMES");
+		ft_printf("%d\n", ft_hash(room->name));
 		ft_insert_room(room);
 		i++;
 	}
@@ -114,14 +112,15 @@ int		ft_val_links(char **links, int i)
 	char **split;
 
 	links_num = 0;
-	while (split[i])
+	split = NULL;
+	while (links[i])
 	{
 		if (ft_word_counter(links[i], ' ') == 1 && ft_word_counter(links[i], '-') == 2 && links[i][0] != '#')
 		{
 			// link is ok
-			if ((split = ft_strsplit(links, '-') == NULL))
+			if ((split = ft_strsplit(links[i], '-')) == NULL)
 				ft_exit("ERROR: SPLIT ERROR");
-			g_htable[ft_hash(split[0])]->rooms;
+			// g_htable[ft_hash(split[0])]->rooms;
 			links_num++;
 			i++;
 		}

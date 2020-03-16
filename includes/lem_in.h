@@ -17,11 +17,11 @@
 
 typedef struct			s_r_list
 {
-	char				*name;
-	size_t				x;
-	size_t				y;
 	int					flag;
-	int					len;
+	char				*name;
+	int					bfs_level;
+	int				x;
+	int				y;
 	char				**next;
 }						t_r_list;
 
@@ -54,7 +54,7 @@ int				ft_val_links(char **split, int i);
 int				ft_word_counter(char const *s, char c);
 void			ft_exit(char *str);
 void			ft_prng(unsigned int seed);
-int				ft_check(char **split, size_t i);
+int				ft_check_room(char **split, int i);
 
 /*
 **	FUNC FOR LINKED LIST
@@ -70,11 +70,11 @@ void			ft_print(t_r_list *tmp);
 **	FUNC FOR HASH TABLE
 */
 
-size_t			ft_hash(char *data);
+int			ft_hash(char *data);
 t_htable		*ft_insert_room(t_r_list *room);
 t_htable		*ft_find_data(char *data);
-void			ft_create_htable(size_t len);
-void			ft_set_htable(char **split, size_t len);
+void			ft_create_htable(int len);
+void			ft_set_htable(char **split, int len);
 void			ft_thprint(void);
 
 #endif
