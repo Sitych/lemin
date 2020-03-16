@@ -6,20 +6,20 @@
 /*   By: qjosmyn <qjosmyn@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 21:25:03 by qjosmyn           #+#    #+#             */
-/*   Updated: 2020/03/16 00:26:04 by qjosmyn          ###   ########.fr       */
+/*   Updated: 2020/03/16 20:18:46 by qjosmyn          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int		ft_file_checker(char **split, t_r_list **start)
+int		ft_file_checker(char **split)
 {
 	ft_create_htable(HTSIZE);
 	ft_val_ant(split[0]);
 	ft_putstr("start\n");
 	ft_val_bond(split);
 	ft_putstr("bond\n");
-	ft_val_room(split, start);
+	ft_val_room(split);
 	ft_putstr("val_room\n");
 	return(0);
 }
@@ -62,11 +62,7 @@ int		ft_val_bond(char **split)
 	return (EXIT_SUCCESS);
 }
 
-/*
-**	проверка на то, что ## внутри строки
-*/
-
-int		ft_check(char **split, size_t i)
+int		ft_check_room(char **split, size_t i)
 {
 	int flag;
 
@@ -75,12 +71,12 @@ int		ft_check(char **split, size_t i)
 		ft_exit("ERROR: SHITTY ROOM INPUT");
 	flag = (ft_strstr(split[i - 1], "##start")) ? 0 :\
 						ft_strstr(split[i - 1], "##end") ? 1 : -1;
-	if (ft_strstr(split[i], "##") && flag == -1)
+	if (ft_strstr(split[i], "#") && flag == -1)
 		return (-2);
 	return (flag);
 }
 
-int		ft_val_room(char **split, t_r_list **start)
+int		ft_val_room(char **split)
 {
 	size_t		i;
 	int			room_num;
@@ -89,7 +85,6 @@ int		ft_val_room(char **split, t_r_list **start)
 
 	i = 1;
 	room_num = 0;
-	start = NULL;
 	ft_putstr("init\n");
 	while ((ft_word_counter(split[i], ' ') != 1 && ft_word_counter(split[i], '-') != 2) || split[i][0] == '#') 
 	{
@@ -98,57 +93,38 @@ int		ft_val_room(char **split, t_r_list **start)
 			i++;
 			continue ;
 		}
+		room_num++;
 		room = ft_crtrm(split[i], flag);
+		// while lst != NULL
 		if (g_htable[ft_hash(room->name)]->rooms != NULL\
-			&& !ft_strcmp(room->name, g_htable[ft_hash(room->name)]->rooms->name))
+		&& !ft_strcmp(room->name, g_htable[ft_hash(room->name)]->rooms->name))
 				ft_exit("EROROR: SAME ROOM NAMES");
-		if (g_htable[ft_hash(room->name)]->rooms != NULL)
-			ft_printf("%d\n", ft_hash(room->name));
-		ft_insert_data(room);
+		// if (g_htable[ft_hash(room->name)]->rooms != NULL)
+		// 	ft_printf("%d\n", ft_hash(room->name));
+		ft_insert_room(room);
 		i++;
 	}
-		// if ((ft_word_counter(split[i], ' ') == 3 || split[i][0] == '#') && split[i][0] != '\n')
-		// {
-		// 	if (split[i][0] == 'L')
-		// 		ft_exit("ERROR: SHITTY ROOM INPUT");
-		// 	else if (split[i][0] == '#')
-		// 		i++;
-		// 	else
-		// 	{
-		// 		// room is ok
-		// 		i++;
-		// 		room_num++;
-		// 	}
-		// }
-		// else 
-		// 	ft_exit("ERROR: SHITTY ROOM INPUT");
-	// }
-	// *start = ft_roomdel(start);
-	// // work
-	// ft_check_name_coord(*start);
-	// ft_set_htable(split, i);
-	ft_putnbr(room_num);
-	ft_putchar('\n');
 	ft_val_links(split, i); //TO MOVE TO FT_FILE_CHECKER FUNC (MAYBE)
 	return (room_num);
 }
 
-int		ft_val_links(char **split, int i)
+int		ft_val_links(char **links, int i)
 {
 	int	links_num;
+	char **split;
 
 	links_num = 0;
 	while (split[i])
 	{
-		if (ft_word_counter(split[i], ' ') == 1 && ft_word_counter(split[i], '-') == 2)
+		if (ft_word_counter(links[i], ' ') == 1 && ft_word_counter(links[i], '-') == 2 && links[i][0] != '#')
 		{
 			// link is ok
-			
+			if ((split = ft_strsplit(links, '-') == NULL))
+				ft_exit("ERROR: SPLIT ERROR");
+			g_htable[ft_hash(split[0])]->rooms;
 			links_num++;
 			i++;
 		}
-		else if (split[i][0] == '#')
-			i++;
 		else
 			ft_exit("ERROR: SHITTY LINK INPUT");
 	}

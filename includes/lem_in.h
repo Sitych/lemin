@@ -21,7 +21,8 @@ typedef struct			s_r_list
 	size_t				x;
 	size_t				y;
 	int					flag;
-	struct s_r_list		**next;
+	int					len;
+	char				**next;
 }						t_r_list;
 
 typedef struct			s_htable
@@ -30,20 +31,25 @@ typedef struct			s_htable
 	struct s_htable		*next;
 }						t_htable;
 
+typedef struct			s_ant
+{
+	int					id;
+	t_r_list			*room;
+	//ptr to link struct
+}						t_ant;
+
 typedef	unsigned short int t_thindex;
 
 t_htable				**g_htable;
-unsigned char 			g_rand8[256];
-// size_t					g_htsize;
-// size_t					g_nbr;
+// unsigned char 			g_rand8[256];
 
 
 //init functions
 char			**ft_file_parse(char **split);
-int				ft_file_checker(char **split, t_r_list **start);
+int				ft_file_checker(char **split);
 int				ft_val_ant(char *split);
 int				ft_val_bond(char **split);
-int				ft_val_room(char **split, t_r_list **start);
+int				ft_val_room(char **split);
 int				ft_val_links(char **split, int i);
 int				ft_word_counter(char const *s, char c);
 void			ft_exit(char *str);
@@ -65,9 +71,10 @@ void			ft_print(t_r_list *tmp);
 */
 
 size_t			ft_hash(char *data);
-t_htable		*ft_insert_data(t_r_list *room);
+t_htable		*ft_insert_room(t_r_list *room);
 t_htable		*ft_find_data(char *data);
 void			ft_create_htable(size_t len);
 void			ft_set_htable(char **split, size_t len);
+void			ft_thprint(void);
 
 #endif

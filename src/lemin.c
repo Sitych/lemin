@@ -6,7 +6,7 @@
 /*   By: qjosmyn <qjosmyn@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 16:54:04 by erodd             #+#    #+#             */
-/*   Updated: 2020/03/16 00:24:54 by qjosmyn          ###   ########.fr       */
+/*   Updated: 2020/03/16 16:58:06 by qjosmyn          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int		main(void)
 	
 	split = NULL;
 	room = NULL;
-	ft_prng(4215);
 	// g_nbr = 0;
 	split = ft_file_parse(split);
 	ft_putstr("split\n");
@@ -40,12 +39,12 @@ int		main(void)
 	// 	ft_putchar('\n');
 	// 	i++;
 	// }
-	// ft_file_checker(split, &room);
-	// while (g_htable[62322])
-	// {
-	// 	ft_printf("%s\n", g_htable[62322]->rooms->name);
-	// 	g_htable[62322] = g_htable[62322]->next;
-	// }
+	ft_file_checker(split);
+	while (g_htable[62322])
+	{
+		ft_printf("%s\n", g_htable[62322]->rooms->name);
+		g_htable[62322] = g_htable[62322]->next;
+	}
 	// ft_print(room);
 	ft_putstr("check\n");
 	//CRT DBLLNKD LST RM
