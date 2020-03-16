@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qjosmyn <qjosmyn@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rretta <rretta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 21:25:03 by qjosmyn           #+#    #+#             */
-/*   Updated: 2020/03/16 23:04:54 by qjosmyn          ###   ########.fr       */
+/*   Updated: 2020/03/16 23:43:17 by rretta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ int		ft_val_room(char **split)
 			continue ;
 		}
 		room_num++;
+		ft_val_coords(split, i);
 		room = ft_crtrm(split[i], flag);
 		if ((ptr = ft_find_data(room->name)) != NULL)
 			ft_exit("EROROR: SAME ROOM NAMES");
@@ -128,5 +129,29 @@ int		ft_val_links(char **links, int i)
 	}
 	ft_putnbr(links_num);
 	ft_putchar('\n');
+	return (0);
+}
+
+int		ft_val_coords(char **split, int i)
+{
+	int j;
+	char	**xy1;
+	char	**xy2;
+
+
+	j = 1;
+	xy2 = ft_strsplit(split[i], ' ');
+	while (j < i)
+	{
+		if (split[j][0] == '#')
+		{
+			j++;
+			continue ;
+		}
+		xy1 = ft_strsplit(split[j], ' ');
+		if (((ft_strcmp(xy1[1], xy2[1]) == 0)) && (ft_strcmp(xy1[2], xy2[2]) == 0))
+			ft_exit("ERROR: SAME ROOM COORDINATES");
+		j++;
+	}
 	return (0);
 }

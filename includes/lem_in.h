@@ -50,6 +50,7 @@ int				ft_file_checker(char **split);
 int				ft_val_ant(char *split);
 int				ft_val_bond(char **split);
 int				ft_val_room(char **split);
+int				ft_val_coords(char **split, int i);
 int				ft_val_links(char **split, int i);
 int				ft_word_counter(char const *s, char c);
 void			ft_exit(char *str);
