@@ -12,15 +12,16 @@
 
 #include "lem_in.h"
 
-t_r_list	*ft_crtrm(char *str, int flag)
+t_room	*ft_crtrm(char *str, int flag)
 {
-	t_r_list	*tmp;
+	t_room		*tmp;
 	char		**lines;
 	int			i;
 
 	tmp = NULL;
-	lines = ft_strsplit(str, ' ');
-	if ((tmp = (t_r_list*)malloc(sizeof(t_r_list))) == NULL)
+	if ((lines = ft_strsplit(str, ' ')) == NULL)
+		ft_exit("ERROR: SPLIT ERROR");
+	if ((tmp = (t_room*)malloc(sizeof(t_room))) == NULL)
 		ft_exit("ERROR: MALLOC ERROR");
 	if ((tmp->name = ft_strdup(lines[0])) == NULL)
 		ft_exit("ERROR: MALLOC ERROR");
@@ -36,11 +37,33 @@ t_r_list	*ft_crtrm(char *str, int flag)
 	tmp->y = ft_atoi(lines[2]);
 	ft_free((void**)lines, 3);
 	tmp->flag = flag;
-	tmp->next = NULL;
+	tmp->links = NULL;
 	return (tmp);
 }
 
-// t_r_list	*ft_add_push_back(t_r_list **data ,t_r_list *data)
+void		ft_del_room(t_room **ptr)
+{
+	size_t		i;
+	t_room	*room;
+
+	i = 0;
+	room = *ptr;
+	if (room != NULL)
+	{
+		ft_strdel(&(room->name));
+		if (room->links)
+		{
+			while (room->links[i])
+			{
+				ft_strdel(&(room->links[i]));
+				i++;
+			}
+			free(room->links);
+		}
+	}
+}
+
+// t_room	*ft_add_push_back(t_room **data ,t_room *data)
 // {
 // 	int flag;
 
@@ -56,9 +79,9 @@ t_r_list	*ft_crtrm(char *str, int flag)
 // 	return (tmp);
 // }
 
-// t_r_list	*ft_roomdel(t_r_list **ptr)
+// t_room	*ft_roomdel(t_room **ptr)
 // {
-// 	t_r_list *tmp;
+// 	t_room *tmp;
 
 // 	tmp = (*ptr)->next;
 // 	free((*ptr)->name);
@@ -66,9 +89,9 @@ t_r_list	*ft_crtrm(char *str, int flag)
 // 	return (tmp);
 // }
 
-// void		ft_check_name_coord(t_r_list *ptr)
+// void		ft_check_name_coord(t_room *ptr)
 // {
-// 	t_r_list	*tmp;
+// 	t_room	*tmp;
 
 // 	while (ptr != NULL)
 // 	{
@@ -83,7 +106,7 @@ t_r_list	*ft_crtrm(char *str, int flag)
 // 	}
 // }
 
-void		ft_print(t_r_list *tmp)
+void		ft_print(t_room *tmp)
 {
 	ft_printf("name = %s x = %d y = %d flag = %d\n", tmp->name, tmp->x, tmp->y, tmp->flag);
 }

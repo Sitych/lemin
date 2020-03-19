@@ -6,7 +6,7 @@
 /*   By: qjosmyn <qjosmyn@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/16 12:10:06 by qjosmyn           #+#    #+#             */
-/*   Updated: 2020/03/11 23:48:23 by qjosmyn          ###   ########.fr       */
+/*   Updated: 2020/02/18 20:14:14 by qjosmyn          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ char			**ft_strsplit(char const *s, char c)
 	new_arr = (char**)ft_memalloc(sizeof(char*) * (ft_lenarr((char*)s, c) + 1));
 	if (new_arr == NULL)
 		return (NULL);
-	while (s[j])
+	while (s[j] != 0)
 	{
 		if (s[j] == c)
 			j++;

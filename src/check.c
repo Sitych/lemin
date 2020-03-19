@@ -81,7 +81,7 @@ int		ft_val_room(char **split)
 	int			i;
 	int			room_num;
 	int			flag;
-	t_r_list	*room;
+	t_room	*room;
 	t_htable	*ptr;
 
 	i = 1;
@@ -95,8 +95,8 @@ int		ft_val_room(char **split)
 			continue ;
 		}
 		room_num++;
-		ft_val_coords(split, i);
 		room = ft_crtrm(split[i], flag);
+		ft_val_coords(split, i);
 		if ((ptr = ft_find_data(room->name)) != NULL)
 			ft_exit("EROROR: SAME ROOM NAMES");
 		ft_insert_room(room);
@@ -134,13 +134,13 @@ int		ft_val_links(char **links, int i)
 
 int		ft_val_coords(char **split, int i)
 {
-	int j;
+	int		j;
 	char	**xy1;
 	char	**xy2;
 
-
 	j = 1;
-	xy2 = ft_strsplit(split[i], ' ');
+	if ((xy2 = ft_strsplit(split[i], ' ')) == NULL)
+		ft_exit("ERROR: SPLIT ERROR");
 	while (j < i)
 	{
 		if (split[j][0] == '#')
@@ -148,10 +148,13 @@ int		ft_val_coords(char **split, int i)
 			j++;
 			continue ;
 		}
-		xy1 = ft_strsplit(split[j], ' ');
+		if ((xy1 = ft_strsplit(split[j], ' ')) == NULL)
+			ft_exit("ERROR: SPLIT ERROR");
 		if (((ft_strcmp(xy1[1], xy2[1]) == 0)) && (ft_strcmp(xy1[2], xy2[2]) == 0))
 			ft_exit("ERROR: SAME ROOM COORDINATES");
 		j++;
 	}
+	ft_free((void**)xy2, 3);
+	ft_free((void**)xy1, 3);
 	return (0);
 }

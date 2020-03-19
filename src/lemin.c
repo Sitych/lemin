@@ -22,13 +22,13 @@ void		ft_exit(char *str)
 int		main(void)
 {
 	char		**split;
-	t_r_list	*room;
+	// t_room	*room;
 	// int		i;
 
 	// lem->rooms = &room;
 	
 	split = NULL;
-	room = NULL;
+	// room = NULL;
 	// g_nbr = 0;
 	split = ft_file_parse(split);
 	ft_putstr("split\n");
@@ -40,6 +40,8 @@ int		main(void)
 	// 	i++;
 	// }
 	ft_file_checker(split);
+	// ft_del_htable();
+	// ft_thprint();
 	// while (g_htable[62322])
 	// {
 	// 	ft_printf("%s\n", g_htable[62322]->rooms->name);

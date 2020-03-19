@@ -39,7 +39,7 @@ void			ft_create_htable(int len)
 	
 }
 
-t_htable	*ft_insert_room(t_r_list *room)
+t_htable	*ft_insert_room(t_room *room)
 {
 	t_htable	*p;
 	t_htable	*p0;
@@ -55,7 +55,7 @@ t_htable	*ft_insert_room(t_r_list *room)
 	return (p);
 }
 
-// t_htable	*ft_insert_link(char *data, t_r_list *link)
+// t_htable	*ft_insert_link(char *data, t_room *link)
 // {
 // 	t_htable	*p;
 // 	int		key;
@@ -74,7 +74,7 @@ void		ft_thprint(void)
 	i = 0;
 	while (i < HTSIZE)
 	{
-		if (g_htable[i]->rooms != NULL)
+		if (g_htable[i] != NULL)
 			ft_print(g_htable[i]->rooms);
 		i++;
 	}
@@ -94,4 +94,22 @@ t_htable	*ft_find_data(char *data)
 		p = p->next;
 	}
 	return (p);
+}
+
+void		ft_del_htable(void)
+{
+	int 		i;
+	t_htable	*ptr;
+
+	i = 0;
+	while (i < HTSIZE)
+	{
+		ptr = g_htable[i];
+		while (ptr != NULL)
+		{
+			ft_del_room(&(ptr->rooms));
+			ptr = ptr->next;
+		}
+	}
+	free(g_htable);
 }

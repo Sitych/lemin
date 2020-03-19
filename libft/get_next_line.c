@@ -107,5 +107,5 @@ int			ft_intchr(char *str, char c, size_t len)
 	result = 0;
 	while (str[result] != c && str[result])
 		result++;
-	return (result == len ? -1 : result);
+	return (result == len ? -1 : (int)result);
 }

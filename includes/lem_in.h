@@ -15,26 +15,26 @@
 # define P		(int)10
 # define HTSIZE (int)65536
 
-typedef struct			s_r_list
+typedef struct			s_room
 {
 	int					flag;
 	char				*name;
 	int					bfs_level;
 	int					x;
 	int					y;
-	char				**next;
-}						t_r_list;
+	char				**links;
+}						t_room;
 
 typedef struct			s_htable
 {
-	t_r_list			*rooms;
+	t_room			*rooms;
 	struct s_htable		*next;
 }						t_htable;
 
 typedef struct			s_ant
 {
 	int					id;
-	t_r_list			*room;
+	t_room			*room;
 	//ptr to link struct
 }						t_ant;
 
@@ -61,21 +61,23 @@ int				ft_check_room(char **split, int i);
 **	FUNC FOR LINKED LIST
 */
 
-t_r_list		*ft_crtrm(char *str, int flag);
-t_r_list		*ft_add_push_back(t_r_list *tmp, char **split, int i);
-t_r_list		*ft_roomdel(t_r_list **ptr);
-void			ft_check_name_coord(t_r_list *ptr);
-void			ft_print(t_r_list *tmp);
+t_room		*ft_crtrm(char *str, int flag);
+t_room		*ft_add_push_back(t_room *tmp, char **split, int i);
+t_room		*ft_roomdel(t_room **ptr);
+void			ft_check_name_coord(t_room *ptr);
+void			ft_print(t_room *tmp);
+void		ft_del_room(t_room **ptr);
 
 /*
 **	FUNC FOR HASH TABLE
 */
 
 int				ft_hash(char *data);
-t_htable		*ft_insert_room(t_r_list *room);
+t_htable		*ft_insert_room(t_room *room);
 t_htable		*ft_find_data(char *data);
 void			ft_create_htable(int len);
 void			ft_set_htable(char **split, int len);
 void			ft_thprint(void);
+void		ft_del_htable(void);
 
 #endif

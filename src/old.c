@@ -2,7 +2,7 @@
 
 void			ft_set_htable(char **split, int len)
 {
-	t_r_list	*room;
+	t_room	*room;
 	int		i;
 	int		j;
 	int			flag;

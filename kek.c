@@ -23,12 +23,12 @@ HashIndexType Hash(char *str) {
     return h % HashTableSize;
 }
 
-int main()
+int main(int argc, char **argv)
 {
-    for (int i = 0; i < 256; i++)
-        Rand8[i] = i;
-    char str[] = "kek";
-    ft_putnbr(Hash(str));
+    char **split = ft_strsplit(argv[0], '/');
+    for (int i = 0; i < 2; i++)
+        ft_printf("%s\n", split[i]);
+    ft_free((void**)split, 2);
     // ft_putnbr(Hash("1"));
     // ft_putnbr(Hash("2"));
 }
