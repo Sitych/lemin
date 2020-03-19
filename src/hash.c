@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hash.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qjosmyn <qjosmyn@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rretta <rretta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 18:20:09 by qjosmyn           #+#    #+#             */
-/*   Updated: 2020/03/16 23:15:20 by qjosmyn          ###   ########.fr       */
+/*   Updated: 2020/03/19 16:46:19 by rretta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ t_htable	*ft_insert_room(t_room *room)
 t_htable	*ft_insert_link(char *room, char *link)
 {
 	t_htable	*p;
-	int			key;
+	//int			key;
 	int			i;
 
 	p = ft_find_data(room);
