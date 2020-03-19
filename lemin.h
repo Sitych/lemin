@@ -83,6 +83,8 @@ int		ft_val_bond(char **split);
 int		ft_val_room(char **split);
 int		ft_val_links(char **split, int i);
 int	    ft_word_counter(char const *s, char c);
+char	*ft_swap_links(char *str);
+int		ft_val_links_2(char	**links, int j, int i);
 
 
 void	ft_arrclr(char **arr);

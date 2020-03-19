@@ -120,6 +120,10 @@ int		ft_val_links(char **links, int i)
 			// link is ok
 			if ((split = ft_strsplit(links[i], '-')) == NULL)
 				ft_exit("ERROR: SPLIT ERROR");
+			//PASHA insert
+			links[i] = ft_swap_links(links[i]);
+			// VANYA insert
+			ft_val_links_2(links, j, i);
 			links_num++;
 			i++;
 		}
