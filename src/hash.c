@@ -57,7 +57,7 @@ t_htable	*ft_insert_room(t_room *room)
 t_htable	*ft_insert_link(char *room, char *link)
 {
 	t_htable	*p;
-	int			key;
+	//int			key;
 	int			i;
 
 	p = ft_find_data(room);

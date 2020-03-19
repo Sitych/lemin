@@ -99,7 +99,7 @@ int		ft_val_room(char **split)
 		room = ft_crtrm(split[i], flag);
 		if ((ptr = ft_find_data(room->name)) != NULL)
 			ft_exit("EROROR: SAME ROOM NAMES");
-		ft_insert_room(room);
+		//ft_insert_room(room);
 		i++;
 	}
 	ft_val_links(split, i); //TO MOVE TO FT_FILE_CHECKER FUNC (MAYBE)
