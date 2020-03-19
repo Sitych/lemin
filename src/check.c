@@ -95,8 +95,8 @@ int		ft_val_room(char **split)
 			continue ;
 		}
 		room_num++;
-		room = ft_crtrm(split[i], flag);
 		ft_val_coords(split, i);
+		room = ft_crtrm(split[i], flag);
 		if ((ptr = ft_find_data(room->name)) != NULL)
 			ft_exit("EROROR: SAME ROOM NAMES");
 		ft_insert_room(room);
@@ -153,8 +153,8 @@ int		ft_val_coords(char **split, int i)
 		if (((ft_strcmp(xy1[1], xy2[1]) == 0)) && (ft_strcmp(xy1[2], xy2[2]) == 0))
 			ft_exit("ERROR: SAME ROOM COORDINATES");
 		j++;
+		ft_free((void**)xy1, 3);
 	}
 	ft_free((void**)xy2, 3);
-	ft_free((void**)xy1, 3);
 	return (0);
 }
