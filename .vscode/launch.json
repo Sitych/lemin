@@ -5,7 +5,7 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
-			"name": "(lldb) Launch",
+			"name": "(gdb) Launch",
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceFolder}/a.out",
@@ -14,19 +14,14 @@
 			"cwd": "${workspaceFolder}",
 			"environment": [],
 			"externalConsole": true,
-			"MIMode": "lldb"
-		},
-		{
-			"name": "(lldb) Launch",
-			"type": "cppdbg",
-			"request": "launch",
-			"program": "enter program name, for example ${workspaceFolder}/a.out",
-			"args": [],
-			"stopAtEntry": false,
-			"cwd": "${workspaceFolder}",
-			"environment": [],
-			"externalConsole": false,
-			"MIMode": "lldb"
+			"MIMode": "gdb",
+			"setupCommands": [
+				{
+					"description": "Enable pretty-printing for gdb",
+					"text": "-enable-pretty-printing",
+					"ignoreFailures": true
+				}
+			]
 		}
 	]
 }

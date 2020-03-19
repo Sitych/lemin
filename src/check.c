@@ -96,7 +96,7 @@ int		ft_val_room(char **split)
 		}
 		room_num++;
 		room = ft_crtrm(split[i], flag);
-		ft_val_coords(split, i);
+		// ft_val_coords(split, i);
 		if ((ptr = ft_find_data(room->name)) != NULL)
 			ft_exit("EROROR: SAME ROOM NAMES");
 		ft_insert_room(room);
@@ -120,12 +120,12 @@ int		ft_val_links(char **links, int i)
 			// link is ok
 			if ((split = ft_strsplit(links[i], '-')) == NULL)
 				ft_exit("ERROR: SPLIT ERROR");
-			// g_htable[ft_hash(split[0])]->rooms;
 			links_num++;
 			i++;
 		}
 		else
 			ft_exit("ERROR: SHITTY LINK INPUT");
+		ft_free((void**)split, 3);
 	}
 	ft_putnbr(links_num);
 	ft_putchar('\n');

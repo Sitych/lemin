@@ -22,6 +22,7 @@ typedef struct			s_room
 	int					bfs_level;
 	int					x;
 	int					y;
+	int					num_links;
 	char				**links;
 }						t_room;
 
@@ -73,11 +74,11 @@ void		ft_del_room(t_room **ptr);
 */
 
 int				ft_hash(char *data);
-t_htable		*ft_insert_room(t_room *room);
+t_htable		*ft_insert_link(char *room, char *link);
 t_htable		*ft_find_data(char *data);
 void			ft_create_htable(int len);
 void			ft_set_htable(char **split, int len);
 void			ft_thprint(void);
-void		ft_del_htable(void);
+void			ft_del_htable(void);
 
 #endif

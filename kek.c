@@ -25,10 +25,9 @@ HashIndexType Hash(char *str) {
 
 int main(int argc, char **argv)
 {
-    char **split = ft_strsplit(argv[0], '/');
+    char **split = malloc(sizeof(char*) * 2);
     for (int i = 0; i < 2; i++)
-        ft_printf("%s\n", split[i]);
-    ft_free((void**)split, 2);
+        ft_printf("%s\n",split[i]);
     // ft_putnbr(Hash("1"));
     // ft_putnbr(Hash("2"));
 }

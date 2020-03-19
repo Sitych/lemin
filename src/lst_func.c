@@ -63,49 +63,6 @@ void		ft_del_room(t_room **ptr)
 	}
 }
 
-// t_room	*ft_add_push_back(t_room **data ,t_room *data)
-// {
-// 	int flag;
-
-// 	if (ft_strstr(split[i], "##") != 0)
-// 		return (tmp);
-// 	flag = -1;
-// 	if (i > 0 && ft_strstr(split[i - 1], "##start"))
-// 		flag = 0;
-// 	else if (i > 0 && ft_strstr(split[i - 1], "##end"))
-// 		flag = 1;
-// 	tmp->next = ft_crtrm(split[i], flag);
-// 	tmp = tmp->next;
-// 	return (tmp);
-// }
-
-// t_room	*ft_roomdel(t_room **ptr)
-// {
-// 	t_room *tmp;
-
-// 	tmp = (*ptr)->next;
-// 	free((*ptr)->name);
-// 	free(*ptr);
-// 	return (tmp);
-// }
-
-// void		ft_check_name_coord(t_room *ptr)
-// {
-// 	t_room	*tmp;
-
-// 	while (ptr != NULL)
-// 	{
-// 		tmp = ptr->next;
-// 		while (tmp != NULL)
-// 		{
-// 			if (ft_strstr(ptr->name, tmp->name) || (ptr->x == tmp->x && ptr->y == tmp->y))
-// 				ft_exit("EROROR: SAME ROOM NAMES OR SAME ROOM COORDS");
-// 			tmp = tmp->next;
-// 		}
-// 		ptr = ptr->next;
-// 	}
-// }
-
 void		ft_print(t_room *tmp)
 {
 	ft_printf("name = %s x = %d y = %d flag = %d\n", tmp->name, tmp->x, tmp->y, tmp->flag);

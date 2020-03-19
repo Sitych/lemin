@@ -40,7 +40,7 @@ int		main(void)
 	// 	i++;
 	// }
 	ft_file_checker(split);
-	// ft_del_htable();
+	ft_del_htable();
 	// ft_thprint();
 	// while (g_htable[62322])
 	// {
