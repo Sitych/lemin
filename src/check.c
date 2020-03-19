@@ -6,7 +6,7 @@
 /*   By: rretta <rretta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 21:25:03 by qjosmyn           #+#    #+#             */
-/*   Updated: 2020/03/16 23:43:17 by rretta           ###   ########.fr       */
+/*   Updated: 2020/03/19 17:19:51 by rretta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,9 +123,9 @@ int		ft_val_links(char **links, int i)
 			if ((split = ft_strsplit(links[i], '-')) == NULL)
 				ft_exit("ERROR: SPLIT ERROR");
 			//PASHA insert
-			links[i] = ft_swap_links(links[i]);
+			//links[i] = ft_swap_links(links[i]);
 			// VANYA insert
-			ft_val_links_2(links, j, i);
+			ft_val_links2(links, j, i);
 			links_num++;
 			i++;
 		}

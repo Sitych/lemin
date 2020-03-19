@@ -57,6 +57,7 @@ int				ft_word_counter(char const *s, char c);
 void			ft_exit(char *str);
 void			ft_prng(unsigned int seed);
 int				ft_check_room(char **split, int i);
+int				ft_val_links2(char **split, int j, int i);
 
 /*
 **	FUNC FOR LINKED LIST
@@ -69,11 +70,13 @@ void			ft_check_name_coord(t_room *ptr);
 void			ft_print(t_room *tmp);
 void		ft_del_room(t_room **ptr);
 
+
 /*
 **	FUNC FOR HASH TABLE
 */
 
 int				ft_hash(char *data);
+t_htable		*ft_insert_room(t_room *room);
 t_htable		*ft_insert_link(char *room, char *link);
 t_htable		*ft_find_data(char *data);
 void			ft_create_htable(int len);
