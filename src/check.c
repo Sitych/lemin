@@ -110,11 +110,11 @@ int		ft_val_links(char **links, int i)
 {
 	int	links_num;
 	char **split;
-	int		j;
+	//int		j;
 
 	links_num = 0;
 	split = NULL;
-	j = i;
+	//j = i;
 	while (links[i])
 	{
 		if (ft_word_counter(links[i], ' ') == 1 && ft_word_counter(links[i], '-') == 2 && links[i][0] != '#')
@@ -125,7 +125,7 @@ int		ft_val_links(char **links, int i)
 			//PASHA insert
 			links[i] = ft_swap_links(links[i]);
 			// VANYA insert
-			ft_val_links_2(links, j, i);
+			//ft_val_links_2(links, j, i);
 			links_num++;
 			i++;
 		}
