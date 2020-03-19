@@ -1,5 +1,5 @@
 ﻿.PHONY: all clean fclean re
-LST = lemin.c parse.c hash.c lst_func.c check.c rretta.c
+LST = lemin.c parse.c hash.c lst_func.c check.c rretta.c erodd.c
 SRCS = $(addprefix src/, $(LST))
 CC = gcc
 NAME = lem-in
