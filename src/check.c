@@ -110,9 +110,11 @@ int		ft_val_links(char **links, int i)
 {
 	int	links_num;
 	char **split;
+	int		j;
 
 	links_num = 0;
 	split = NULL;
+	j = i;
 	while (links[i])
 	{
 		if (ft_word_counter(links[i], ' ') == 1 && ft_word_counter(links[i], '-') == 2 && links[i][0] != '#')
