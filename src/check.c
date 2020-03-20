@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pavel <pavel@student.42.fr>                +#+  +:+       +#+        */
+/*   By: rretta <rretta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 21:25:03 by qjosmyn           #+#    #+#             */
-/*   Updated: 2020/03/20 20:51:35 by pavel            ###   ########.fr       */
+/*   Updated: 2020/03/20 22:16:23 by rretta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,19 +109,19 @@ int		ft_val_room(char **split)
 int		ft_val_links(char **links, int i)
 {
 	int	links_num;
-	char **split;
 	int		j;
 
 	links_num = 0;
-	split = NULL;
 	j = i;
 	while (links[i])
 	{
-		if (ft_word_counter(links[i], ' ') == 1 && ft_word_counter(links[i], '-') == 2 && links[i][0] != '#')
+		if (links[i][0] == '#')
 		{
-			// link is ok
-			if ((split = ft_strsplit(links[i], '-')) == NULL)
-				ft_exit("ERROR: SPLIT ERROR");
+			i++;
+			continue ;
+		}
+		if (ft_word_counter(links[i], ' ') == 1 && ft_word_counter(links[i], '-') == 2)
+		{
 			//PASHA insert
 			ft_swap_links(&links[i]);
 			// VANYA insert
@@ -131,7 +131,6 @@ int		ft_val_links(char **links, int i)
 		}
 		else
 			ft_exit("ERROR: SHITTY LINK INPUT");
-		ft_free((void**)split, 3);
 	}
 	ft_putnbr(links_num);
 	ft_putchar('\n');

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rretta.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pavel <pavel@student.42.fr>                +#+  +:+       +#+        */
+/*   By: rretta <rretta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/19 16:17:14 by rretta            #+#    #+#             */
-/*   Updated: 2020/03/20 18:24:28 by pavel            ###   ########.fr       */
+/*   Updated: 2020/03/20 22:26:26 by rretta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int		ft_val_links2(char **split, int j, int i)
 
 	while (j <= i)
 	{
-
 		if (split[j][0] == '#')
 		{
 			j++;
@@ -31,9 +30,12 @@ int		ft_val_links2(char **split, int j, int i)
 		if (ft_strcmp(links[0], links[1]) == 0)
 			ft_exit("ERROR: LINK IS LINKED TO ITSELF");
 		if (j != i)
-		{
 			if (ft_strcmp(split[j], split[i]) == 0)
 				ft_exit("ERROR: LINK IS REPEATED");
+		if (j == i)
+		{
+			ft_find_data(links[0])->rooms->num_links++;
+			ft_find_data(links[1])->rooms->num_links++;
 		}
 		j++;
 		ft_free((void**)links, 2);

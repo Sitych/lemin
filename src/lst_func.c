@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lst_func.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qjosmyn <qjosmyn@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rretta <rretta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 21:27:41 by qjosmyn           #+#    #+#             */
-/*   Updated: 2020/03/16 21:39:39 by qjosmyn          ###   ########.fr       */
+/*   Updated: 2020/03/20 21:59:44 by rretta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ t_room	*ft_crtrm(char *str, int flag)
 	ft_free((void**)lines, 3);
 	tmp->flag = flag;
 	tmp->links = NULL;
+	tmp->num_links = 0;
 	return (tmp);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lemin.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qjosmyn <qjosmyn@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rretta <rretta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 16:54:04 by erodd             #+#    #+#             */
-/*   Updated: 2020/03/16 22:46:45 by qjosmyn          ###   ########.fr       */
+/*   Updated: 2020/03/20 22:12:18 by rretta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ int		main(void)
 	// 	i++;
 	// }
 	ft_file_checker(split);
+	ft_putnbr(ft_find_data("start")->rooms->num_links);
+	ft_putchar('\n');
 	ft_del_htable();
 	// ft_thprint();
 	// while (g_htable[62322])

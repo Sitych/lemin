@@ -1,7 +1,7 @@
 ﻿// add 42 header
 #include "lem_in.h"
 
-void ft_swap_links(char **str)
+void	ft_swap_links(char **str)
 {
 	char **smpl;
 	char *x;
@@ -29,6 +29,6 @@ void ft_swap_links(char **str)
 	}
 	free(tmp);
 	ft_free((void **)smpl, 3);
-	ft_putstr(*str);
-	ft_putchar('\n');
+//	ft_putstr(*str);
+//	ft_putchar('\n');
 }
