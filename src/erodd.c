@@ -1,26 +1,36 @@
 ﻿// add 42 header
 #include "lem_in.h"
 
-char	*ft_swap_links(char *str)
+void ft_swap_links(char **str)
 {
+	char **smpl;
 	char *x;
 	char *y;
+	char *tmp;
+	char delimeter;
 
-	if (ft_strcmp(ft_strsplit(str, '-')[0], ft_strsplit(str, '-')[1]) == 0)
+	delimeter = '-';
+	smpl = ft_strsplit(*str, '-');
+	y = smpl[0];
+	x = smpl[1];
+	if (ft_strcmp(x, y) == 0)
 		ft_exit("ERROR: INVALID COORDINATES");
-	else if (ft_strcmp(ft_strsplit(str, '-')[0], ft_strsplit(str, '-')[1]) < 0)
-		return (str);
+	else if (ft_strcmp(y, x) < 0)
+	{
+		ft_free((void **)smpl, 3);
+		return ;
+	}
 	else
 	{
-		x = ft_strsplit(str, '-')[1];
-		y = ft_strsplit(str, '-')[0];
-		if (!(str = (char *)malloc((sizeof(char) * (ft_strlen(x) + ft_strlen(y) + 2)))))
+		if (!(tmp = (char *)malloc(sizeof(char) * (ft_strlen(x) + ft_strlen(y) + 2))))
 			ft_exit("ERROR: MALLOC ERROR");
-		str = ft_strcpy(str, x);
-		str = ft_strcat(str, "-");
-		str = ft_strcat(str, y);
+		tmp = ft_strcpy(tmp, x);
+		tmp = ft_strncat(tmp, &delimeter, 1);
+		tmp = ft_strcat(tmp, y);
+		ft_strcpy(*str, tmp);
 	}
-	ft_putstr(str);
+	free(tmp);
+	ft_free((void **)smpl, 3);
+	ft_putstr(*str);
 	ft_putchar('\n');
-	return (str);
 }

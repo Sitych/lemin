@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rretta <rretta@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pavel <pavel@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 21:25:03 by qjosmyn           #+#    #+#             */
-/*   Updated: 2020/03/19 17:19:51 by rretta           ###   ########.fr       */
+/*   Updated: 2020/03/20 20:51:35 by pavel            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int		ft_val_room(char **split)
 		room = ft_crtrm(split[i], flag);
 		if ((ptr = ft_find_data(room->name)) != NULL)
 			ft_exit("EROROR: SAME ROOM NAMES");
-		//ft_insert_room(room);
+		ft_insert_room(room);
 		i++;
 	}
 	ft_val_links(split, i); //TO MOVE TO FT_FILE_CHECKER FUNC (MAYBE)
@@ -123,7 +123,7 @@ int		ft_val_links(char **links, int i)
 			if ((split = ft_strsplit(links[i], '-')) == NULL)
 				ft_exit("ERROR: SPLIT ERROR");
 			//PASHA insert
-			//links[i] = ft_swap_links(links[i]);
+			ft_swap_links(&links[i]);
 			// VANYA insert
 			ft_val_links2(links, j, i);
 			links_num++;
