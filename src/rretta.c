@@ -32,9 +32,6 @@ int		ft_val_links2(char **split, int j, int i)
 			ft_exit("ERROR: LINK IS LINKED TO ITSELF");
 		if (j != i)
 		{
-			/**
-			 * Не понял, зачем это
-			  */
 			if (ft_strcmp(split[j], split[i]) == 0)
 				ft_exit("ERROR: LINK IS REPEATED");
 		}
