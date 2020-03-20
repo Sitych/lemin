@@ -6,7 +6,7 @@
 /*   By: rretta <rretta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 21:25:03 by qjosmyn           #+#    #+#             */
-/*   Updated: 2020/03/19 19:14:38 by rretta           ###   ########.fr       */
+/*   Updated: 2020/03/20 22:16:23 by rretta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ int		ft_val_links(char **links, int i)
 		if (ft_word_counter(links[i], ' ') == 1 && ft_word_counter(links[i], '-') == 2)
 		{
 			//PASHA insert
-			//links[i] = ft_swap_links(links[i]);
+			ft_swap_links(&links[i]);
 			// VANYA insert
 			ft_val_links2(links, j, i);
 			links_num++;
