@@ -57,6 +57,7 @@ int				ft_word_counter(char const *s, char c);
 void			ft_exit(char *str);
 void			ft_prng(unsigned int seed);
 int				ft_check_room(char **split, int i);
+void			ft_swap_links(char **str);
 int				ft_val_links2(char **split, int j, int i);
 
 /*
@@ -83,7 +84,5 @@ void			ft_create_htable(int len);
 void			ft_set_htable(char **split, int len);
 void			ft_thprint(void);
 void			ft_del_htable(void);
-void			ft_swap_links(char **str);
-int				ft_val_links_2(char	**links, int j, int i);
 
 #endif
