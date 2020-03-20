@@ -26,12 +26,12 @@ t_room	*ft_crtrm(char *str, int flag)
 	if ((tmp->name = ft_strdup(lines[0])) == NULL)
 		ft_exit("ERROR: MALLOC ERROR");
 	i = -1;
-	while (lines[1][i++])
+	while (lines[1][++i])
 		if ((lines[1][i] < '0' || lines[1][i] > '9') && lines[1][i])
 			ft_exit("ERROR: NO DIGIT COORD");
 	tmp->x = ft_atoi(lines[1]);
 	i = -1;
-	while (lines[2][i++])
+	while (lines[2][++i])
 		if ((lines[2][i] < '0' || lines[2][i] > '9') && lines[2][i])
 			ft_exit("ERROR: NO DIGIT COORD");
 	tmp->y = ft_atoi(lines[2]);
@@ -62,6 +62,29 @@ void		ft_del_room(t_room **ptr)
 			free(room->links);
 		}
 	}
+}
+
+void		ft_set_links(char ***links, int i, int all)
+{
+	char		**link;
+	int			j;
+
+	j = 0;
+	while (j < all - i)
+	{
+		
+		if (links[j]== NULL)
+		{
+			j++;
+			continue ;
+		}
+		link = links[j];
+		ft_insert_link(link[0], link[1]);
+		ft_insert_link(link[1], link[0]);
+		ft_free((void**)links[j], 2);
+		j++;
+	}
+	free(links);
 }
 
 void		ft_print(t_room *tmp)

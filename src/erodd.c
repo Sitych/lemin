@@ -1,34 +1,22 @@
 ﻿// add 42 header
 #include "lem_in.h"
 
-void	ft_swap_links(char **str)
+char	**ft_swap_links(char **str, char **link)
 {
-	char **smpl;
-	char *x;
-	char *y;
-	char *tmp;
-	char delimeter;
+	char	delimeter;
+	char	*buf;
 
 	delimeter = '-';
-	smpl = ft_strsplit(*str, '-');
-	y = smpl[0];
-	x = smpl[1];
-	if (ft_strcmp(y, x) <= 0)
-	{
-		ft_free((void **)smpl, 3);
-		return ;
-	}
+	if (ft_strcmp(link[0], link[1]) <= 0)
+		return (link);
 	else
 	{
-		if (!(tmp = (char *)malloc(sizeof(char) * (ft_strlen(x) + ft_strlen(y) + 2))))
-			ft_exit("ERROR: MALLOC ERROR");
-		tmp = ft_strcpy(tmp, x);
-		tmp = ft_strncat(tmp, &delimeter, 1);
-		tmp = ft_strcat(tmp, y);
-		ft_strcpy(*str, tmp);
+		buf = link[0];
+		link[0] = link[1];
+		link[1] = buf;
+		ft_strcpy(*str, link[1]);
+		ft_strncat(*str, &delimeter, 1);
+		ft_strcat(*str, link[0]);
 	}
-	free(tmp);
-	ft_free((void **)smpl, 3);
-//	ft_putstr(*str);
-//	ft_putchar('\n');
+	return (link);
 }

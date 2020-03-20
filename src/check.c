@@ -12,15 +12,20 @@
 
 #include "lem_in.h"
 
-int		ft_file_checker(char **split)
+int		ft_file_checker(char **split, int all)
 {
+	int		i;
+	char	***links;
+
 	ft_create_htable(HTSIZE);
 	ft_val_ant(split[0]);
 	ft_putstr("start\n");
 	ft_val_bond(split);
 	ft_putstr("bond\n");
-	ft_val_room(split);
+	i = ft_val_room(split);
 	ft_putstr("val_room\n");
+	links = ft_val_links(split, i, all); //TO MOVE TO FT_FILE_CHECKER FUNC (MAYBE)
+	ft_set_links(links, i, all);
 	return(0);
 }
 
@@ -102,17 +107,19 @@ int		ft_val_room(char **split)
 		ft_insert_room(room);
 		i++;
 	}
-	ft_val_links(split, i); //TO MOVE TO FT_FILE_CHECKER FUNC (MAYBE)
-	return (room_num);
+	return (i);
 }
 
-int		ft_val_links(char **links, int i)
+char		***ft_val_links(char **links, int i, int all)
 {
 	int	links_num;
 	int		j;
+	char	***link;
 
 	links_num = 0;
 	j = i;
+	if ((link = (char***)ft_memalloc((sizeof(char**)) * (all - i + 1))) == NULL)
+		ft_exit("ERROR: MALLOC ERROR");
 	while (links[i])
 	{
 		if (links[i][0] == '#')
@@ -123,9 +130,11 @@ int		ft_val_links(char **links, int i)
 		if (ft_word_counter(links[i], ' ') == 1 && ft_word_counter(links[i], '-') == 2)
 		{
 			//PASHA insert
-			ft_swap_links(&links[i]);
+			if ((link[i - j] = ft_strsplit(links[i], '-')) == NULL)
+				ft_exit("ERROR: SPLIT ERROR");
+			link[i - j] = ft_swap_links(&links[i], link[i - j]);
 			// VANYA insert
-			ft_val_links2(links, j, i);
+			ft_val_links2(links, j, i, link[i - j]);
 			links_num++;
 			i++;
 		}
@@ -134,7 +143,7 @@ int		ft_val_links(char **links, int i)
 	}
 	ft_putnbr(links_num);
 	ft_putchar('\n');
-	return (0);
+	return (link);
 }
 
 int		ft_val_coords(char **split, int i)

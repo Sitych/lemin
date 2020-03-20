@@ -22,6 +22,7 @@ void		ft_exit(char *str)
 int		main(void)
 {
 	char		**split;
+	int			all;
 	// t_room	*room;
 	// int		i;
 
@@ -31,6 +32,9 @@ int		main(void)
 	// room = NULL;
 	// g_nbr = 0;
 	split = ft_file_parse(split);
+	all = 0;
+	while (split[all])
+		all++;
 	ft_putstr("split\n");
 	// i = 0;
 	// while (split[i] != 0)
@@ -39,23 +43,19 @@ int		main(void)
 	// 	ft_putchar('\n');
 	// 	i++;
 	// }
-	ft_file_checker(split);
-	ft_putnbr(ft_find_data("start")->rooms->num_links);
-	ft_putchar('\n');
-	ft_del_htable();
+	ft_file_checker(split, all);
+	// ft_printf("start link = ");
+	// ft_putnbr(ft_find_data("start")->rooms->num_links);
+	// ft_putchar('\n');
 	// ft_thprint();
-	// while (g_htable[62322])
-	// {
-	// 	ft_printf("%s\n", g_htable[62322]->rooms->name);
-	// 	g_htable[62322] = g_htable[62322]->next;
-	// }
-	// ft_print(room);
+	t_htable *ptr = ft_find_data("1");
+	ft_print(ptr->rooms);
+	int i = 0;
+	while (ptr->rooms->links[i])
+	{
+		ft_printf("%s\n", ptr->rooms->links[i++]);
+	}
+	// ft_del_htable();
 	ft_putstr("check\n");
-	//CRT DBLLNKD LST RM
-	// t_dbl_room *rm = create_dbl_room(split[i]);
-	//ft_putstr(split[0]);
-	// lem_init(&lem);
-	// ants_parse(&lem);
-	//perror("TUPO GAME OVER");
 	exit (0);
 }

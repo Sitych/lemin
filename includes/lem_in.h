@@ -47,18 +47,19 @@ t_htable				**g_htable;
 
 //init functions
 char			**ft_file_parse(char **split);
-int				ft_file_checker(char **split);
+int				ft_file_checker(char **split,int all);
 int				ft_val_ant(char *split);
 int				ft_val_bond(char **split);
 int				ft_val_room(char **split);
 int				ft_val_coords(char **split, int i);
-int				ft_val_links(char **split, int i);
+char			***ft_val_links(char **split, int i, int all);
 int				ft_word_counter(char const *s, char c);
 void			ft_exit(char *str);
 void			ft_prng(unsigned int seed);
 int				ft_check_room(char **split, int i);
-void			ft_swap_links(char **str);
-int				ft_val_links2(char **split, int j, int i);
+char			**ft_swap_links(char **str, char **link);
+int				ft_val_links2(char **split, int j, int i, char **links);
+void			ft_set_links(char ***links, int i, int all);
 
 /*
 **	FUNC FOR LINKED LIST
