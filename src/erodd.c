@@ -13,9 +13,7 @@ void ft_swap_links(char **str)
 	smpl = ft_strsplit(*str, '-');
 	y = smpl[0];
 	x = smpl[1];
-	if (ft_strcmp(x, y) == 0)
-		ft_exit("ERROR: INVALID COORDINATES");
-	else if (ft_strcmp(y, x) < 0)
+	if (ft_strcmp(y, x) <= 0)
 	{
 		ft_free((void **)smpl, 3);
 		return ;
