@@ -17,7 +17,6 @@
 
 typedef struct			s_room
 {
-	int					flag;
 	char				*name;
 	int					bfs_level;
 	int					x;

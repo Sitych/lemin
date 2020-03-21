@@ -75,7 +75,7 @@ int		ft_check_room(char **split, int i)
 					&& split[i][0] != '\n' && split[i][0] == 'L')
 		ft_exit("ERROR: SHITTY ROOM INPUT");
 	flag = (ft_strstr(split[i - 1], "##start")) ? 0 :\
-						ft_strstr(split[i - 1], "##end") ? 1 : -1;
+						ft_strstr(split[i - 1], "##end") ? INT64_MAX : -1;
 	if (ft_strstr(split[i], "#") && flag == -1)
 		return (-2);
 	return (flag);
@@ -85,7 +85,7 @@ int		ft_val_room(char **split)
 {
 	int			i;
 	int			room_num;
-	int			flag;
+	int			bfs_level;
 	t_room	*room;
 	t_htable	*ptr;
 
@@ -94,14 +94,14 @@ int		ft_val_room(char **split)
 	ft_putstr("init\n");
 	while ((ft_word_counter(split[i], ' ') != 1 && ft_word_counter(split[i], '-') != 2) || split[i][0] == '#') 
 	{
-		if ((flag = ft_check_room(split, i)) == - 2)
+		if ((bfs_level = ft_check_room(split, i)) == - 2)
 		{
 			i++;
 			continue ;
 		}
 		room_num++;
 		ft_val_coords(split, i);
-		room = ft_crtrm(split[i], flag);
+		room = ft_crtrm(split[i], bfs_level);
 		if ((ptr = ft_find_data(room->name)) != NULL)
 			ft_exit("EROROR: SAME ROOM NAMES");
 		ft_insert_room(room);

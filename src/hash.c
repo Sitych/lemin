@@ -44,6 +44,7 @@ t_htable	*ft_insert_room(t_room *room)
 	t_htable	*p0;
 	int			key;
 
+	// ft_print(room);
 	key = ft_hash(room->name);
 	if ((p = (t_htable*)malloc(sizeof(t_htable))) == NULL)
 		ft_exit("ERROR: MALLOC ERROR");
@@ -64,7 +65,7 @@ t_htable	*ft_insert_link(char *room, char *link)
 	if (p->rooms->links == NULL)
 	{
 		if ((p->rooms->links = (char**)ft_memalloc(sizeof(char*) *\
-											p->rooms->num_links + 1)) == NULL)
+											(p->rooms->num_links + 1))) == NULL)
 			ft_exit("ERROR: MALLOC ERROR");
 		while (i < p->rooms->num_links)
 			p->rooms->links[i++] = NULL;

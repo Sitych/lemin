@@ -38,25 +38,25 @@ int		ft_val_links2(char **split, int j, int i, char **links)
 	return (0);
 }
 
-void		ft_init_bfs_level(void)
-{
-	int i;
+// void		ft_init_bfs_level(void)
+// {
+// 	int i;
 
-	i = 0;
-	while (i < HTSIZE)
-	{
-		if (g_htable[i] != NULL)
-		{
-			if (g_htable[i]->rooms->flag == 0)
-				g_htable[i]->rooms->bfs_level = 0;
-			else if (g_htable[i]->rooms->flag == 1)
-				g_htable[i]->rooms->bfs_level = INT_MAX;
-			else
-				g_htable[i]->rooms->bfs_level = -1;
-		}
-		i++;
-	}
-}
+// 	i = 0;
+// 	while (i < HTSIZE)
+// 	{
+// 		if (g_htable[i] != NULL)
+// 		{
+// 			if (g_htable[i]->rooms->flag == 0)
+// 				g_htable[i]->rooms->bfs_level = 0;
+// 			else if (g_htable[i]->rooms->flag == 1)
+// 				g_htable[i]->rooms->bfs_level = INT_MAX;
+// 			else
+// 				g_htable[i]->rooms->bfs_level = -1;
+// 		}
+// 		i++;
+// 	}
+// }
 
 void		ft_bfs_level(int q)
 {

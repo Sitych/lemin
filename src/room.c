@@ -12,7 +12,7 @@
 
 #include "lem_in.h"
 
-t_room	*ft_crtrm(char *str, int flag)
+t_room	*ft_crtrm(char *str, int bfs_level)
 {
 	t_room		*tmp;
 	char		**lines;
@@ -36,7 +36,7 @@ t_room	*ft_crtrm(char *str, int flag)
 			ft_exit("ERROR: NO DIGIT COORD");
 	tmp->y = ft_atoi(lines[2]);
 	ft_free((void**)lines, 3);
-	tmp->flag = flag;
+	tmp->bfs_level = bfs_level;
 	tmp->links = NULL;
 	tmp->num_links = 0;
 	return (tmp);
@@ -89,5 +89,5 @@ void		ft_set_links(char ***links, int i, int all)
 
 void		ft_print(t_room *tmp)
 {
-	ft_printf("name = %s x = %d y = %d flag = %d\n", tmp->name, tmp->x, tmp->y, tmp->flag);
+	ft_printf("name = %s x = %d y = %d flag = %d\n", tmp->name, tmp->x, tmp->y, tmp->bfs_level);
 }
