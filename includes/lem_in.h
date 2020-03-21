@@ -86,4 +86,12 @@ void			ft_set_htable(char **split, int len);
 void			ft_thprint(void);
 void			ft_del_htable(void);
 
+/*
+** FUNCS FOR SOLUTION
+*/
+
+void		ft_init_bfs_level(void);
+void		ft_bfs_level(int q);
+void		ft_print_bfs(void);
+
 #endif

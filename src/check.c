@@ -6,7 +6,7 @@
 /*   By: rretta <rretta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 21:25:03 by qjosmyn           #+#    #+#             */
-/*   Updated: 2020/03/20 22:16:23 by rretta           ###   ########.fr       */
+/*   Updated: 2020/03/21 21:38:28 by rretta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		ft_file_checker(char **split, int all)
 	ft_putstr("val_room\n");
 	links = ft_val_links(split, i, all); //TO MOVE TO FT_FILE_CHECKER FUNC (MAYBE)
 	ft_set_links(links, i, all);
-	return(0);
+	return(i);
 }
 
 int		ft_val_ant(char *split)

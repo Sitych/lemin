@@ -6,7 +6,7 @@
 /*   By: rretta <rretta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 16:54:04 by erodd             #+#    #+#             */
-/*   Updated: 2020/03/20 22:12:18 by rretta           ###   ########.fr       */
+/*   Updated: 2020/03/21 21:43:59 by rretta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,19 +43,24 @@ int		main(void)
 	// 	ft_putchar('\n');
 	// 	i++;
 	// }
-	ft_file_checker(split, all);
+	int q = ft_file_checker(split, all);
 	// ft_printf("start link = ");
 	// ft_putnbr(ft_find_data("start")->rooms->num_links);
 	// ft_putchar('\n');
 	// ft_thprint();
-	t_htable *ptr = ft_find_data("1");
+	t_htable *ptr = ft_find_data("971");
 	ft_print(ptr->rooms);
 	int i = 0;
+	ptr->rooms->links[5] = NULL;
 	while (ptr->rooms->links[i])
 	{
 		ft_printf("%s\n", ptr->rooms->links[i++]);
 	}
 	// ft_del_htable();
 	ft_putstr("check\n");
+	ft_init_bfs_level();
+	//ft_putnbr(ft_find_data("start")->rooms->bfs_level);
+	ft_bfs_level(q);
+	ft_print_bfs();
 	exit (0);
 }
