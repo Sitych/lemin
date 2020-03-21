@@ -89,5 +89,5 @@ void		ft_set_links(char ***links, int i, int all)
 
 void		ft_print(t_room *tmp)
 {
-	ft_printf("name = %s x = %d y = %d flag = %d\n", tmp->name, tmp->x, tmp->y, tmp->bfs_level);
+	ft_printf("name = %s x = %d y = %d bfs_level = %d\n", tmp->name, tmp->x, tmp->y, tmp->bfs_level);
 }

@@ -75,7 +75,7 @@ int		ft_check_room(char **split, int i)
 					&& split[i][0] != '\n' && split[i][0] == 'L')
 		ft_exit("ERROR: SHITTY ROOM INPUT");
 	flag = (ft_strstr(split[i - 1], "##start")) ? 0 :\
-						ft_strstr(split[i - 1], "##end") ? INT64_MAX : -1;
+						ft_strstr(split[i - 1], "##end") ? INT_MAX : -1;
 	if (ft_strstr(split[i], "#") && flag == -1)
 		return (-2);
 	return (flag);
