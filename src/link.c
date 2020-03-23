@@ -68,3 +68,17 @@ void		ft_set_links(char ***links, int i, int all)
 	}
 	free(links);
 }
+
+void		ft_del_useless_links(char *data)
+{
+    int			i;
+    t_room		*room;
+
+    room = ft_find_data(data)->rooms;
+    i = 0;
+	while (room->links[i])
+	{
+		if (room->bfs_level == ft_find_data(room->links[i])->rooms)
+		i++;
+	}
+}
