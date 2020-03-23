@@ -69,16 +69,41 @@ void		ft_set_links(char ***links, int i, int all)
 	free(links);
 }
 
-// void		ft_del_useless_links(char *data)
-// {
-//     int			i;
-//     t_room		*room;
+t_room		*ft_insert_link(char *room, char *link)
+{
+	t_room	*p;
+	int		i;
 
-//     room = ft_find_data(data);
-//     i = 0;
-// 	while (room->links[i])
-// 	{
-// 		if (room->bfs_level == ft_find_data(room->links[i]))
-// 		i++;
-// 	}
-// }
+	p = ft_find_data(room);
+	i = 0;
+	if (p->links == NULL)
+	{
+		if ((p->links = (char**)ft_memalloc(sizeof(char*) *\
+											(p->num_links + 1))) == NULL)
+			ft_exit("ERROR: MALLOC ERROR");
+		while (i < p->num_links)
+			p->links[i++] = NULL;
+	}
+	i = 0;
+	while (p->links[i] != NULL)
+		i++;
+	p->links[i] = ft_strdup(link);
+	return (p);
+}
+
+void		ft_del_useless_links(char *data)
+{
+    int			i;
+    t_room		*room;
+	int			bfs_level;
+
+    room = ft_find_data(data);
+    i = 0;
+	while (room->links[i])
+	{
+		bfs_level = ft_find_data(room->links[i])->bfs_level;
+		if (room->bfs_level == bfs_level || bfs_level == -1)
+			ft_strdel(&(room->links[i]));
+		i++;
+	}
+}

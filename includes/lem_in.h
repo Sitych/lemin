@@ -84,6 +84,7 @@ void			ft_create_htable(int len);
 void			ft_set_htable(char **split, int len);
 void			ft_thprint(void);
 void			ft_del_htable(void);
+t_htable		*ft_find_start(void);
 
 /*
 ** FUNCS FOR SOLUTION

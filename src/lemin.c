@@ -48,8 +48,8 @@ int		main(void)
 	// ft_putnbr(ft_find_data("start")->rooms->num_links);
 	// ft_putchar('\n');
 	// ft_thprint();
-	// t_htable *ptr = ft_find_data("end");
-	// ft_print(ptr->rooms);
+	t_htable *ptr = ft_find_start();
+	ft_print(ptr->rooms);
 		// int i = 0;
 		// ptr->rooms->links[5] = NULL;
 		// while (ptr->rooms->links[i])
@@ -61,6 +61,6 @@ int		main(void)
 	// ft_init_bfs_level();
 	//ft_putnbr(ft_find_data("start")->rooms->bfs_level);
 	ft_bfs_level(q);
-	ft_print_bfs();
+	// ft_print_bfs();
 	exit (0);
 }

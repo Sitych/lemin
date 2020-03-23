@@ -42,6 +42,23 @@ t_room	*ft_crtrm(char *str, int bfs_level)
 	return (tmp);
 }
 
+t_htable	*ft_insert_room(t_room *room)
+{
+	t_htable	*p;
+	t_htable	*p0;
+	int			key;
+
+	// ft_print(room);
+	key = ft_hash(room->name);
+	if ((p = (t_htable*)malloc(sizeof(t_htable))) == NULL)
+		ft_exit("ERROR: MALLOC ERROR");
+	p0 = g_htable[key];
+	g_htable[key] = p;
+	p->next = p0;
+	p->rooms = room;
+	return (p);
+}
+
 void		ft_del_room(t_room **ptr)
 {
 	size_t		i;

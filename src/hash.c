@@ -38,45 +38,6 @@ void			ft_create_htable(int len)
 		g_htable[i++] = NULL;
 }
 
-t_htable	*ft_insert_room(t_room *room)
-{
-	t_htable	*p;
-	t_htable	*p0;
-	int			key;
-
-	// ft_print(room);
-	key = ft_hash(room->name);
-	if ((p = (t_htable*)malloc(sizeof(t_htable))) == NULL)
-		ft_exit("ERROR: MALLOC ERROR");
-	p0 = g_htable[key];
-	g_htable[key] = p;
-	p->next = p0;
-	p->rooms = room;
-	return (p);
-}
-
-t_room		*ft_insert_link(char *room, char *link)
-{
-	t_room	*p;
-	int		i;
-
-	p = ft_find_data(room);
-	i = 0;
-	if (p->links == NULL)
-	{
-		if ((p->links = (char**)ft_memalloc(sizeof(char*) *\
-											(p->num_links + 1))) == NULL)
-			ft_exit("ERROR: MALLOC ERROR");
-		while (i < p->num_links)
-			p->links[i++] = NULL;
-	}
-	i = 0;
-	while (p->links[i] != NULL)
-		i++;
-	p->links[i] = ft_strdup(link);
-	return (p);
-}
-
 void		ft_thprint(void)
 {
 	int i;
@@ -123,4 +84,21 @@ void		ft_del_htable(void)
 		i++;
 	}
 	free(g_htable);
+}
+
+t_htable	*ft_find_start(void)
+{
+	int			i;
+	t_htable	*ptr;
+
+	i = 0;
+	while (i < HTSIZE)
+	{
+		ptr = g_htable[i];
+		if (ptr != NULL)
+			if (ptr->rooms->bfs_level == 0)
+				return (ptr);
+		i++;
+	}
+	return (NULL);
 }
