@@ -6,7 +6,7 @@
 /*   By: rretta <rretta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/19 16:17:14 by rretta            #+#    #+#             */
-/*   Updated: 2020/03/21 21:40:39 by rretta           ###   ########.fr       */
+/*   Updated: 2020/03/23 14:26:13 by rretta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,6 @@ void		ft_bfs_level(int q)
 	int		j;
 	int		k;
 
-	ft_putchar('q');
-	ft_putnbr(q);
 	i = 0;
 	while (i <= q)
 	{
@@ -75,14 +73,17 @@ void		ft_bfs_level(int q)
 		{
 			// ft_printf("j = %d\n", j);
 			k = 0;
-			if (g_htable[j] != NULL && g_htable[j]->rooms->bfs_level == i)
+			if (g_htable[j] != NULL)
 			{
-				while (g_htable[j]->rooms->links[k] != NULL)
+				if (g_htable[j]->rooms->bfs_level == i)
 				{
-					// ft_printf("k = %d\n", k);
-					if (ft_find_data(g_htable[j]->rooms->links[k])->rooms->bfs_level == -1)
-						ft_find_data(g_htable[j]->rooms->links[k])->rooms->bfs_level = i + 1;
-					k++;
+					while (g_htable[j]->rooms->links[k] != NULL)
+					{
+						// ft_printf("k = %d\n", k);
+						if (ft_find_data(g_htable[j]->rooms->links[k])->rooms->bfs_level == -1)
+							ft_find_data(g_htable[j]->rooms->links[k])->rooms->bfs_level = i + 1;
+						k++;
+					}
 				}
 			}
 			j++;
