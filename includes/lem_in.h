@@ -88,13 +88,19 @@ t_room			*ft_find_start(void);
 t_room			*ft_find_end(void);
 
 /*
-** FUNCS FOR SOLUTION
+** FUNCS FOR BFS
 */
 
 void		ft_init_bfs_level(void);
 void		ft_bfs_level(int q);
 void		ft_print_bfs(void);
+
+/*
+** FUNCS FOR SET WAYS
+*/
+
 void		ft_del_useless_links(char *data);
 void        ft_del_align_links(char *data);
+int			ft_del_deadend(char *data);
 
 #endif
