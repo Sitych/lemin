@@ -83,5 +83,14 @@ void		ft_del_room(t_room **ptr)
 
 void		ft_print(t_room *tmp)
 {
+	int i;
+
+	i = 0;
 	ft_printf("name = %s x = %d y = %d bfs_level = %d\n", tmp->name, tmp->x, tmp->y, tmp->bfs_level);
+	while (i < tmp->num_links)
+	{
+		if (tmp->links[i] != NULL)
+			ft_printf("%s\n", tmp->links[i]);
+		i++;
+	}
 }

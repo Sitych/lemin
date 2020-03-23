@@ -84,7 +84,8 @@ void			ft_create_htable(int len);
 void			ft_set_htable(char **split, int len);
 void			ft_thprint(void);
 void			ft_del_htable(void);
-t_htable		*ft_find_start(void);
+t_room			*ft_find_start(void);
+t_room			*ft_find_end(void);
 
 /*
 ** FUNCS FOR SOLUTION
@@ -93,5 +94,7 @@ t_htable		*ft_find_start(void);
 void		ft_init_bfs_level(void);
 void		ft_bfs_level(int q);
 void		ft_print_bfs(void);
+void		ft_del_useless_links(char *data);
+void        ft_del_align_links(char *data);
 
 #endif

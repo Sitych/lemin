@@ -90,20 +90,3 @@ t_room		*ft_insert_link(char *room, char *link)
 	p->links[i] = ft_strdup(link);
 	return (p);
 }
-
-void		ft_del_useless_links(char *data)
-{
-    int			i;
-    t_room		*room;
-	int			bfs_level;
-
-    room = ft_find_data(data);
-    i = 0;
-	while (room->links[i])
-	{
-		bfs_level = ft_find_data(room->links[i])->bfs_level;
-		if (room->bfs_level == bfs_level || bfs_level == -1)
-			ft_strdel(&(room->links[i]));
-		i++;
-	}
-}

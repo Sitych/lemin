@@ -86,7 +86,7 @@ void		ft_del_htable(void)
 	free(g_htable);
 }
 
-t_htable	*ft_find_start(void)
+t_room	*ft_find_start(void)
 {
 	int			i;
 	t_htable	*ptr;
@@ -97,7 +97,24 @@ t_htable	*ft_find_start(void)
 		ptr = g_htable[i];
 		if (ptr != NULL)
 			if (ptr->rooms->bfs_level == 0)
-				return (ptr);
+				return (ptr->rooms);
+		i++;
+	}
+	return (NULL);
+}
+
+t_room	*ft_find_end(void)
+{
+	int			i;
+	t_htable	*ptr;
+
+	i = 0;
+	while (i < HTSIZE)
+	{
+		ptr = g_htable[i];
+		if (ptr != NULL)
+			if (ptr->rooms->bfs_level == INT_MAX)
+				return (ptr->rooms);
 		i++;
 	}
 	return (NULL);
