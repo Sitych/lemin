@@ -64,29 +64,6 @@ void		ft_del_room(t_room **ptr)
 	}
 }
 
-void		ft_set_links(char ***links, int i, int all)
-{
-	char		**link;
-	int			j;
-
-	j = 0;
-	while (j < all - i)
-	{
-		
-		if (links[j]== NULL)
-		{
-			j++;
-			continue ;
-		}
-		link = links[j];
-		ft_insert_link(link[0], link[1]);
-		ft_insert_link(link[1], link[0]);
-		ft_free((void**)links[j], 2);
-		j++;
-	}
-	free(links);
-}
-
 void		ft_print(t_room *tmp)
 {
 	ft_printf("name = %s x = %d y = %d bfs_level = %d\n", tmp->name, tmp->x, tmp->y, tmp->bfs_level);

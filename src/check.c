@@ -107,6 +107,8 @@ int		ft_val_room(char **split)
 		ft_insert_room(room);
 		i++;
 	}
+	if (room_num < 2)
+		ft_exit("ERROR: ROOM < 2");
 	return (i);
 }
 
@@ -141,6 +143,8 @@ char		***ft_val_links(char **links, int i, int all)
 		else
 			ft_exit("ERROR: SHITTY LINK INPUT");
 	}
+	if (i - j < 1)
+		ft_exit("ERROR: LINKS < 1");
 	ft_putnbr(links_num);
 	ft_putchar('\n');
 	return (link);
