@@ -18,8 +18,8 @@ int		ft_val_links2(char **split, int j, int i, char **links)
 				ft_exit("ERROR: LINK IS REPEATED");
 		if (j == i)
 		{
-			ft_find_data(links[0])->rooms->num_links++;
-			ft_find_data(links[1])->rooms->num_links++;
+			ft_find_data(links[0])->num_links++;
+			ft_find_data(links[1])->num_links++;
 		}
 		j++;
 	}
@@ -69,16 +69,16 @@ void		ft_set_links(char ***links, int i, int all)
 	free(links);
 }
 
-void		ft_del_useless_links(char *data)
-{
-    int			i;
-    t_room		*room;
+// void		ft_del_useless_links(char *data)
+// {
+//     int			i;
+//     t_room		*room;
 
-    room = ft_find_data(data)->rooms;
-    i = 0;
-	while (room->links[i])
-	{
-		if (room->bfs_level == ft_find_data(room->links[i])->rooms)
-		i++;
-	}
-}
+//     room = ft_find_data(data);
+//     i = 0;
+// 	while (room->links[i])
+// 	{
+// 		if (room->bfs_level == ft_find_data(room->links[i]))
+// 		i++;
+// 	}
+// }

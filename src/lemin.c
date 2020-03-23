@@ -48,8 +48,8 @@ int		main(void)
 	// ft_putnbr(ft_find_data("start")->rooms->num_links);
 	// ft_putchar('\n');
 	// ft_thprint();
-	t_htable *ptr = ft_find_data("end");
-	ft_print(ptr->rooms);
+	// t_htable *ptr = ft_find_data("end");
+	// ft_print(ptr->rooms);
 		// int i = 0;
 		// ptr->rooms->links[5] = NULL;
 		// while (ptr->rooms->links[i])

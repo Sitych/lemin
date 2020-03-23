@@ -87,7 +87,7 @@ int		ft_val_room(char **split)
 	int			room_num;
 	int			bfs_level;
 	t_room	*room;
-	t_htable	*ptr;
+	t_room	*ptr;
 
 	i = 1;
 	room_num = 0;

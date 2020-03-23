@@ -54,8 +54,8 @@ void		ft_bfs_level(int q)
 					while (g_htable[j]->rooms->links[k] != NULL)
 					{
 						// ft_printf("k = %d\n", k);
-						if (ft_find_data(g_htable[j]->rooms->links[k])->rooms->bfs_level == -1)
-							ft_find_data(g_htable[j]->rooms->links[k])->rooms->bfs_level = i + 1;
+						if (ft_find_data(g_htable[j]->rooms->links[k])->bfs_level == -1)
+							ft_find_data(g_htable[j]->rooms->links[k])->bfs_level = i + 1;
 						k++;
 					}
 				}

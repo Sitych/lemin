@@ -78,8 +78,8 @@ void		ft_del_room(t_room **ptr);
 
 int				ft_hash(char *data);
 t_htable		*ft_insert_room(t_room *room);
-t_htable		*ft_insert_link(char *room, char *link);
-t_htable		*ft_find_data(char *data);
+t_room			*ft_insert_link(char *room, char *link);
+t_room			*ft_find_data(char *data);
 void			ft_create_htable(int len);
 void			ft_set_htable(char **split, int len);
 void			ft_thprint(void);
