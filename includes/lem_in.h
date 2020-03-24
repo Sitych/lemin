@@ -102,8 +102,8 @@ void		ft_print_bfs(void);
 */
 
 void		ft_del_useless_links(char *data);
-int			ft_del_align_links(char *data);
-int			ft_output_fork(char *data);
-int			ft_input_fork(char *data);
+int			ft_manage_way(char *data);
+int			ft_count_output(char *data);
+int			ft_count_input(char *data);
 
 #endif

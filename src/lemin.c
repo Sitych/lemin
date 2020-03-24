@@ -62,7 +62,7 @@ int		main(void)
 	ft_bfs_level(q);
 	// ft_print(ft_find_data("start"));
 	// ft_thprint();
-	ft_del_align_links(ptr->name);
+	ft_manage_way(ptr->name);
 	ft_thprint();
 	// ft_print(ft_find_data("start"));
 	// ft_del_useless_links("3");
