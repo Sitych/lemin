@@ -86,7 +86,7 @@ void		ft_print(t_room *tmp)
 	int i;
 
 	i = 0;
-	ft_printf("name = %s x = %d y = %d bfs_level = %d\n", tmp->name, tmp->x, tmp->y, tmp->bfs_level);
+	ft_printf("name = %s x = %d y = %d bfs_level = %d in = %d out = %d\n", tmp->name, tmp->x, tmp->y, tmp->bfs_level, tmp->in, tmp->out);
 	while (i < tmp->num_links)
 	{
 		if (tmp->links[i] != NULL)

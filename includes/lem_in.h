@@ -23,6 +23,8 @@ typedef struct			s_room
 	int					y;
 	int					num_links;
 	char				**links;
+	int					out;
+	int					in;
 }						t_room;
 
 typedef struct			s_htable
@@ -101,6 +103,7 @@ void		ft_print_bfs(void);
 
 void		ft_del_useless_links(char *data);
 int			ft_del_align_links(char *data);
-int			ft_deadend(char *data);
+int			ft_output_fork(char *data);
+int			ft_input_fork(char *data);
 
 #endif

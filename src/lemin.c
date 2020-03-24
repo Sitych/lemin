@@ -49,7 +49,7 @@ int		main(void)
 	// ft_putchar('\n');
 	// ft_thprint();
 	t_room *ptr = ft_find_start();
-	ft_print(ptr);
+	// ft_print(ptr);
 		// int i = 0;
 		// ptr->rooms->links[5] = NULL;
 		// while (ptr->rooms->links[i])
@@ -63,7 +63,7 @@ int		main(void)
 	// ft_print(ft_find_data("start"));
 	// ft_thprint();
 	ft_del_align_links(ptr->name);
-	// ft_thprint();
+	ft_thprint();
 	// ft_print(ft_find_data("start"));
 	// ft_del_useless_links("3");
 	// ft_print_bfs();
