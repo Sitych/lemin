@@ -20,13 +20,15 @@ void		ft_del_useless_links(char *data)
 	}
 }
 
-int			ft_del_deadend(char *data)
+int			ft_deadend(char *data)
 {
 	t_room	*room;
 	int		i;
 	int		count;
 
 	room = ft_find_data(data);
+	if (room->bfs_level == 0)
+		return(1);
 	i = 0;
 	count = 0;
 	while (i < room->num_links)
@@ -39,12 +41,13 @@ int			ft_del_deadend(char *data)
 	return (count);
 }
 
-void        ft_del_align_links(char *data)
+int        ft_del_align_links(char *data)
 {
 	if (!ft_strcmp(ft_find_end()->name, data))
-		return ;
+		return (INT_MAX);
 	t_room	*room;
 	int		i;
+	int		count;
 
 	i = 0;
 	room = ft_find_data(data);
@@ -54,24 +57,14 @@ void        ft_del_align_links(char *data)
 		if (room->links[i] != NULL)
 		{
 			if (ft_find_data(room->links[i])->bfs_level > room->bfs_level)
-				ft_del_align_links(room->links[i]);
-			if (ft_del_deadend(room->links[i]) == 0)
-				ft_strdel(&(room->links[i]));
+			{
+				count = ft_del_align_links(room->links[i]);
+				(count == 0) ? ft_strdel(&(room->links[i])) : 0;
+			}
 			// else
 			// 	ft_strdel(&(room->links[i]));
 		}
 		i++;
 	}
+	return (ft_deadend(data));
 }
-
-// void	ft_del_deadend(char *data)
-// {
-// 	if (!ft_strcmp(ft_find_end()->name, data))
-// 		return ;
-	
-// 	t_room	*room;
-// 	int		i;
-
-// 	i = 0;
-// 	room = ft_find_data(data);
-// }

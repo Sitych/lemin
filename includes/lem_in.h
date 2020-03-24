@@ -100,7 +100,7 @@ void		ft_print_bfs(void);
 */
 
 void		ft_del_useless_links(char *data);
-void        ft_del_align_links(char *data);
-int			ft_del_deadend(char *data);
+int			ft_del_align_links(char *data);
+int			ft_deadend(char *data);
 
 #endif

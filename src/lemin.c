@@ -60,10 +60,12 @@ int		main(void)
 	ft_putstr("check\n");
 	//ft_putnbr(ft_find_data("start")->rooms->bfs_level);
 	ft_bfs_level(q);
-	ft_print(ft_find_data("3"));
+	// ft_print(ft_find_data("start"));
+	// ft_thprint();
 	ft_del_align_links(ptr->name);
-	ft_print(ft_find_data("3"));
+	// ft_thprint();
+	// ft_print(ft_find_data("start"));
 	// ft_del_useless_links("3");
-	ft_print_bfs();
+	// ft_print_bfs();
 	exit (0);
 }
