@@ -35,51 +35,12 @@ void		ft_init_bfs_level(void)
 			}
 			i++;
 		}
-		ft_printf("queue\n");
-		ft_qprint(ptr);
 		ft_del_elem(&elem);
 	}
 }
 
-
-// void		ft_bfs_level(int q)
-// {
-// 	int		i;
-// 	int		j;
-// 	int		k;
-
-// 	i = 0;
-// 	while (i <= q)
-// 	{
-// 		// ft_printf("i = %d\n", i);
-// 		j = 0;
-// 		while (j < HTSIZE)
-// 		{
-// 			// ft_printf("j = %d\n", j);
-// 			k = 0;
-// 			if (g_htable[j] != NULL)
-// 			{
-// 				if (g_htable[j]->rooms->bfs_level == i)
-// 				{
-// 					while (g_htable[j]->rooms->links[k] != NULL)
-// 					{
-// 						// ft_printf("k = %d\n", k);
-// 						if (ft_find_data(g_htable[j]->rooms->links[k])->bfs_level == -1)
-// 							ft_find_data(g_htable[j]->rooms->links[k])->bfs_level = i + 1;
-// 						k++;
-// 					}
-// 				}
-// 			}
-// 			j++;
-// 		}
-// 		i++;
-// 	}
-// }
-
 void		ft_print_bfs(void)
 {
-				// if (g_htable[j] != NULL)
-				// ft_printf("BFS LEVEL = %d, ROOM = %s\n", i , g_htable[j]->rooms->name);
 	int i;
 	i = 0;
 
