@@ -61,6 +61,7 @@ int		main(void)
 	ft_init_bfs_level();
 	ft_manage_way(ptr->name);
 	ft_del_htable();
+	ft_path_forming();
 	// ft_print_bfs();
 	exit (0);
 }

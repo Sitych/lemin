@@ -119,7 +119,7 @@ void		ft_path_forming()
 
 t_path		*ft_create_path(char *data, int length)
 {
-	// t_path		*route;
+	t_path		*route;
 	t_path		*tmp;
 	int			i;
 	int			j;
@@ -133,7 +133,7 @@ t_path		*ft_create_path(char *data, int length)
 		j = 0;
 		while (j < ft_find_data(data)->num_links)
 		{
-			if ((ft_find_data(data)->links[i] != NULL) && (ft_find_data(ft_find_data(data)->links[i])->bfs_level) < bfs)
+			if ((ft_find_data(data)->links[i] != NULL) && ((ft_find_data(ft_find_data(data)->links[i])->bfs_level) < bfs))
 			{
 				bfs = ft_find_data(ft_find_data(data)->links[i])->bfs_level;
 				if ((tmp = (t_path*)malloc(sizeof(t_path))) == NULL)
@@ -142,7 +142,10 @@ t_path		*ft_create_path(char *data, int length)
 					ft_exit("ERROR: MALLOC ERROR");
 				tmp->ant_quantity = 0;
 				tmp->path_length = length;
-				tmp = tmp->next;
+				route->prev = tmp;
+				tmp = route;
+				route = route->prev;
+				route->next = tmp;
 			}
 			j++;
 		}

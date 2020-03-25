@@ -124,7 +124,8 @@ typedef struct			s_path
 	char				*room_name;
 	int					ant_quantity;
 	int					path_length;
-	struct s_path		*next;	
+	struct s_path		*next;
+	struct s_path		*prev;
 }						t_path;
 
 void		ft_del_useless_links(char *data);
