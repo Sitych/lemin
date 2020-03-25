@@ -6,7 +6,7 @@
 /*   By: rretta <rretta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 16:54:04 by erodd             #+#    #+#             */
-/*   Updated: 2020/03/21 21:43:59 by rretta           ###   ########.fr       */
+/*   Updated: 2020/03/25 22:02:31 by rretta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ int		main(void)
 	// ft_print(ft_find_data("start"));
 	// ft_del_useless_links("3");
 	ft_init_bfs_level();
-	ft_print_bfs();
+	// ft_print_bfs();
+	// ft_path_forming();
 	exit (0);
 }

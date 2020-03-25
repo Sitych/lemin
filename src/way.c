@@ -85,3 +85,69 @@ int			ft_manage_way(char *data)
 	room->out = ft_count_output(data);
 	return (room->out);
 }
+
+void		ft_path_forming()
+{
+	int		ways;
+	int		i;
+	int		j;
+	t_room	*room;
+	t_path	**routes;
+
+	ways = 0;
+	i = 0;
+	room = ft_find_end();
+	while (i < room->num_links)
+	{
+		if (room->links[i] != NULL)
+			ways++;
+		i++;
+	}
+	if ((routes = (t_path**)malloc(sizeof(t_path*) * ways)) == NULL)
+		ft_exit("ERROR: MALLOC ERROR");
+	i = 0;
+	j = 0;
+	while (j < ways)
+	{
+		if (room->links[i] == NULL)
+			i++;
+		routes[j] = ft_create_path(room->links[i], ft_find_data(room->links[i])->bfs_level);
+		j++;
+		i++;
+	}
+}
+
+t_path		*ft_create_path(char *data, int length)
+{
+	// t_path		*route;
+	t_path		*tmp;
+	int			i;
+	int			j;
+	int			bfs;
+
+	// route = tmp;
+	bfs = length;
+	i = 0;
+	while (i < length)
+	{
+		j = 0;
+		while (j < ft_find_data(data)->num_links)
+		{
+			if ((ft_find_data(data)->links[i] != NULL) && (ft_find_data(ft_find_data(data)->links[i])->bfs_level) < bfs)
+			{
+				bfs = ft_find_data(ft_find_data(data)->links[i])->bfs_level;
+				if ((tmp = (t_path*)malloc(sizeof(t_path))) == NULL)
+					ft_exit("ERROR: MALLOC ERROR");
+				if ((tmp->room_name = ft_strdup(ft_find_data(data)->name)) == NULL)
+					ft_exit("ERROR: MALLOC ERROR");
+				tmp->ant_quantity = 0;
+				tmp->path_length = length;
+				tmp = tmp->next;
+			}
+			j++;
+		}
+		i++;
+	}
+	tmp = NULL;
+	return (tmp);
+}

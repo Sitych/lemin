@@ -119,9 +119,19 @@ void		ft_print_bfs(void);
 ** FUNCS FOR SET WAYS
 */
 
+typedef struct			s_path
+{
+	char				*room_name;
+	int					ant_quantity;
+	int					path_length;
+	struct s_path		*next;	
+}						t_path;
+
 void		ft_del_useless_links(char *data);
 int			ft_manage_way(char *data);
 int			ft_count_output(char *data);
 int			ft_count_input(char *data);
+void		ft_path_forming(void);
+t_path		*ft_create_path(char *data, int length);
 
 #endif
