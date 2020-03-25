@@ -27,17 +27,6 @@ int			ft_hash(char *data)
 	return (key % HTSIZE);
 }
 
-void			ft_create_htable(int len)
-{
-	int i;
-
-	i = 0;
-	if ((g_htable = (t_htable**)malloc(sizeof(t_htable*) * len)) == NULL)
-		ft_exit("ERROR: MALLOC ERROR");
-	while (i < len)
-		g_htable[i++] = NULL;
-}
-
 void		ft_thprint(void)
 {
 	int i;
@@ -83,7 +72,6 @@ void		ft_del_htable(void)
 		}
 		i++;
 	}
-	free(g_htable);
 }
 
 t_room	*ft_find_start(void)

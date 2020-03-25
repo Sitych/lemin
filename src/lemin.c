@@ -6,7 +6,7 @@
 /*   By: rretta <rretta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 16:54:04 by erodd             #+#    #+#             */
-/*   Updated: 2020/03/25 22:02:31 by rretta           ###   ########.fr       */
+/*   Updated: 2020/03/25 22:05:15 by rretta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,27 +48,19 @@ int		main(void)
 	// ft_putnbr(ft_find_data("start")->rooms->num_links);
 	// ft_putchar('\n');
 	// ft_thprint();
-	// t_room *ptr = ft_find_start();
-	// ft_print(ptr);
-		// int i = 0;
-		// ptr->rooms->links[5] = NULL;
-		// while (ptr->rooms->links[i])
-		// {
-		// 	ft_printf("%s\n", ptr->rooms->links[i++]);
-		// }
-	// ft_del_htable();
+	t_room *ptr = ft_find_start();
 	ft_putstr("check\n");
 	//ft_putnbr(ft_find_data("start")->rooms->bfs_level);
 	// ft_bfs_level(q);
 	q++;
 	// ft_print(ft_find_data("start"));
 	// ft_thprint();
-	// ft_manage_way(ptr->name);
-	ft_thprint();
+	// ft_thprint();
 	// ft_print(ft_find_data("start"));
 	// ft_del_useless_links("3");
 	ft_init_bfs_level();
+	ft_manage_way(ptr->name);
+	ft_del_htable();
 	// ft_print_bfs();
-	// ft_path_forming();
 	exit (0);
 }

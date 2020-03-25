@@ -17,7 +17,9 @@ int		ft_file_checker(char **split, int all)
 	int		i;
 	char	***links;
 
-	ft_create_htable(HTSIZE);
+	// ft_create_htable(HTSIZE);
+	for (int j = 0; j < HTSIZE; j++)
+		g_htable[j] = NULL;
 	ft_val_ant(split[0]);
 	ft_putstr("start\n");
 	ft_val_bond(split);

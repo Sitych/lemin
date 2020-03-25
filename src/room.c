@@ -61,7 +61,7 @@ t_htable	*ft_insert_room(t_room *room)
 
 void		ft_del_room(t_room **ptr)
 {
-	size_t		i;
+	int		i;
 	t_room	*room;
 
 	i = 0;
@@ -69,16 +69,16 @@ void		ft_del_room(t_room **ptr)
 	if (room != NULL)
 	{
 		ft_strdel(&(room->name));
-		if (room->links)
+		while (i < room->num_links)
 		{
-			while (room->links[i])
-			{
+			if (room->links[i] != NULL)
 				ft_strdel(&(room->links[i]));
-				i++;
-			}
-			free(room->links);
+			i++;
 		}
+		free(room->links);
 	}
+	free(room);
+	room = NULL;
 }
 
 void		ft_print(t_room *tmp)

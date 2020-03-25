@@ -48,7 +48,7 @@ typedef struct			s_ant
 
 typedef	unsigned short int t_thindex;
 
-t_htable				**g_htable;
+t_htable				*g_htable[HTSIZE];
 // unsigned char 			g_rand8[256];
 
 
