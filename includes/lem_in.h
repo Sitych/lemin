@@ -111,8 +111,6 @@ void		ft_qprint(t_queue *head);
 ** FUNCS FOR BFS
 */
 
-void		ft_init_bfs_level(void);
-void		ft_bfs_level(int q);
 void		ft_print_bfs(void);
 
 /*
@@ -132,7 +130,9 @@ void		ft_del_useless_links(char *data);
 int			ft_manage_way(char *data);
 int			ft_count_output(char *data);
 int			ft_count_input(char *data);
-void		ft_path_forming(void);
-t_path		*ft_create_path(char *data, int length);
+void		ft_path_forming(int ants);
+t_path		*ft_create_path(t_room *room, int length, int ants);
+t_room		*ft_find_suitable_link(t_room *room);
+t_path		*ft_create_path_element(t_room *room, int ants, int length);
 
 #endif

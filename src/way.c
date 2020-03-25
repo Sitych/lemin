@@ -86,7 +86,7 @@ int			ft_manage_way(char *data)
 	return (room->out);
 }
 
-void		ft_path_forming()
+void		ft_path_forming(int ants)
 {
 	int		ways;
 	int		i;
@@ -111,46 +111,68 @@ void		ft_path_forming()
 	{
 		if (room->links[i] == NULL)
 			i++;
-		routes[j] = ft_create_path(room->links[i], ft_find_data(room->links[i])->bfs_level);
+		routes[j] = ft_create_path(ft_find_data(room->links[i]), ft_find_data(room->links[i])->bfs_level, ants);
+		t_path	*ptr;
+		ptr = routes[j];
+		while (ptr != NULL)
+		{
+			ft_printf("ROOM NAME %s: , ANTS IN ROOM: %d, LENGTH = %d\n", ptr->room_name, ptr->ant_quantity, ptr->path_length);
+			ptr = ptr->next;
+		}
 		j++;
 		i++;
 	}
 }
 
-t_path		*ft_create_path(char *data, int length)
+t_path		*ft_create_path(t_room *room, int length, int ants)
 {
 	t_path		*route;
 	t_path		*tmp;
-	int			i;
-	int			j;
-	int			bfs;
 
-	// route = tmp;
-	bfs = length;
-	i = 0;
-	while (i < length)
+	route = ft_create_path_element(ft_find_end(), 0, length);
+	route->next = NULL;
+	while (room->bfs_level != 0)
 	{
-		j = 0;
-		while (j < ft_find_data(data)->num_links)
-		{
-			if ((ft_find_data(data)->links[i] != NULL) && ((ft_find_data(ft_find_data(data)->links[i])->bfs_level) < bfs))
-			{
-				bfs = ft_find_data(ft_find_data(data)->links[i])->bfs_level;
-				if ((tmp = (t_path*)malloc(sizeof(t_path))) == NULL)
-					ft_exit("ERROR: MALLOC ERROR");
-				if ((tmp->room_name = ft_strdup(ft_find_data(data)->name)) == NULL)
-					ft_exit("ERROR: MALLOC ERROR");
-				tmp->ant_quantity = 0;
-				tmp->path_length = length;
-				route->prev = tmp;
-				tmp = route;
-				route = route->prev;
-				route->next = tmp;
-			}
-			j++;
-		}
+		tmp = ft_create_path_element(room, 0, length);
+		route->prev = tmp;
+		tmp = route;
+		route = route->prev;
+		route->next = tmp;
+		room = ft_find_suitable_link(room);
+	}
+	tmp = ft_create_path_element(room, ants, length);
+	route->prev = tmp;
+	tmp = route;
+	route = route->prev;
+	route->next = tmp;
+	tmp->prev = NULL;
+	return (route);
+}
+
+t_room		*ft_find_suitable_link(t_room *room)
+{
+	int			i;
+
+	i = 0;
+	while (i < room->num_links)
+	{
+		if (room->links[i] != NULL)
+			if (ft_find_data(room->links[i])->bfs_level < room->bfs_level)
+				return (ft_find_data(room->links[i]));
 		i++;
 	}
-	tmp = NULL;
-	return (tmp);
+	return (NULL);
+}
+
+t_path		*ft_create_path_element(t_room *room, int ants, int length)
+{
+	t_path	*element;
+
+	if ((element = (t_path*)malloc(sizeof(t_path))) == NULL)
+		ft_exit("ERROR: MALLOC ERROR");
+	if ((element->room_name = ft_strdup(room->name)) == NULL)
+		ft_exit("ERROR: MALLOC ERROR");
+	element->ant_quantity = ants;
+	element->path_length = length + 2;
+	return (element);
 }
