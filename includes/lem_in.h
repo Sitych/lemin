@@ -29,9 +29,15 @@ typedef struct			s_room
 
 typedef struct			s_htable
 {
-	t_room			*rooms;
+	t_room				*rooms;
 	struct s_htable		*next;
 }						t_htable;
+
+typedef struct			s_queue
+{
+	char				*name;
+	struct s_queue		*next;
+}						t_queue;
 
 typedef struct			s_ant
 {
@@ -88,6 +94,18 @@ void			ft_thprint(void);
 void			ft_del_htable(void);
 t_room			*ft_find_start(void);
 t_room			*ft_find_end(void);
+
+/*
+** FUNCS FOR QUEUE
+*/
+
+t_queue		*ft_creat_elem(char *data);
+t_queue		*ft_push(t_queue *head, char *data);
+t_queue		*ft_pop(t_queue **head);
+int			ft_queue_size(t_queue *head);
+int			ft_isempty(t_queue *head);
+void		ft_del_elem(t_queue **elem);
+void		ft_qprint(t_queue *head);
 
 /*
 ** FUNCS FOR BFS

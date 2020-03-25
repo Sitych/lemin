@@ -79,7 +79,7 @@ t_room		*ft_insert_link(char *room, char *link)
 	if (p->links == NULL)
 	{
 		if ((p->links = (char**)ft_memalloc(sizeof(char*) *\
-											(p->num_links + 1))) == NULL)
+											p->num_links)) == NULL)
 			ft_exit("ERROR: MALLOC ERROR");
 		while (i < p->num_links)
 			p->links[i++] = NULL;

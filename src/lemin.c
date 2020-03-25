@@ -48,7 +48,7 @@ int		main(void)
 	// ft_putnbr(ft_find_data("start")->rooms->num_links);
 	// ft_putchar('\n');
 	// ft_thprint();
-	t_room *ptr = ft_find_start();
+	// t_room *ptr = ft_find_start();
 	// ft_print(ptr);
 		// int i = 0;
 		// ptr->rooms->links[5] = NULL;
@@ -59,13 +59,15 @@ int		main(void)
 	// ft_del_htable();
 	ft_putstr("check\n");
 	//ft_putnbr(ft_find_data("start")->rooms->bfs_level);
-	ft_bfs_level(q);
+	// ft_bfs_level(q);
+	q++;
 	// ft_print(ft_find_data("start"));
 	// ft_thprint();
-	ft_manage_way(ptr->name);
+	// ft_manage_way(ptr->name);
 	ft_thprint();
 	// ft_print(ft_find_data("start"));
 	// ft_del_useless_links("3");
-	// ft_print_bfs();
+	ft_init_bfs_level();
+	ft_print_bfs();
 	exit (0);
 }

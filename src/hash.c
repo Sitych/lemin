@@ -96,8 +96,12 @@ t_room	*ft_find_start(void)
 	{
 		ptr = g_htable[i];
 		if (ptr != NULL)
-			if (ptr->rooms->bfs_level == 0)
-				return (ptr->rooms);
+			while (ptr != NULL)
+			{
+				if (ptr->rooms->bfs_level == 0)
+					return (ptr->rooms);
+				ptr = ptr->next;
+			}
 		i++;
 	}
 	return (NULL);
