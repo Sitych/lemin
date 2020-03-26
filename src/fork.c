@@ -60,7 +60,7 @@ int		ft_manage_output_fork(char *data)
 				while (find->bfs_level != INT_MAX)
 				{
 					// ft_printf("ROOM NAME: %s, OUT_LINKS = %d\n", find->name, find->out);
-					find = ft_find_suitable_link_for_output_fork(find);
+					find = ft_find_suitable_link_down(find);
 					way++;
 				}
 				find = room;
@@ -77,7 +77,7 @@ int		ft_manage_output_fork(char *data)
 	return (worst_link_id);
 }
 
-t_room		*ft_find_suitable_link_for_output_fork(t_room *room)
+t_room		*ft_find_suitable_link_down(t_room *room)
 {
 	int			i;
 
@@ -101,7 +101,7 @@ void		ft_delete_output_fork(t_room *room)
 	while (room->bfs_level != INT_MAX)
 	{
 		data = room->name;
-		room = ft_find_suitable_link_for_output_fork(room);
+		room = ft_find_suitable_link_down(room);
 	}
 	ft_printf("ROOM NAME: %s, TO DELETE LINK: %s\n", room->name, data);
 	i = 0;

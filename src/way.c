@@ -138,7 +138,7 @@ t_path		*ft_create_path(t_room *room, int length, int ants)
 		tmp = route;
 		route = route->prev;
 		route->next = tmp;
-		room = ft_find_suitable_link(room);
+		room = ft_find_suitable_link_up(room);
 	}
 	tmp = ft_create_path_element(room, ants, length);
 	route->prev = tmp;
@@ -149,7 +149,7 @@ t_path		*ft_create_path(t_room *room, int length, int ants)
 	return (route);
 }
 
-t_room		*ft_find_suitable_link(t_room *room)
+t_room		*ft_find_suitable_link_up(t_room *room)
 {
 	int			i;
 
