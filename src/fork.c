@@ -8,10 +8,9 @@ void	ft_output_fork(char *data)
 	int		i;
 	i = 0;
 
-	int q; //TO_DELETE
+	int bad_link; //TO_DELETE
 
 	room = ft_find_data(data);
-//	ft_printf("ROOM NAME: %s, OUT_LINKS = %d\n", room->name, room->out);
 	while (i < room->num_links)
 	{
 		if (room->links[i] != NULL)
@@ -21,9 +20,11 @@ void	ft_output_fork(char *data)
 				if (ft_find_data(room->links[i])->out > 1 && ft_find_data(room->links[i])->bfs_level != 0)
 				{
 					ft_printf("ROOM NAME: %s, OUT_LINKS = %d ", ft_find_data(room->links[i])->name, ft_find_data(room->links[i])->out);
-					q = ft_manage_output_fork(ft_find_data(room->links[i])->name);
-					ft_printf("BEST_OUT_LINK: %s\n", ft_find_data(room->links[i])->links[q]);
-					//ft_delete_output_fork()
+					bad_link = ft_manage_output_fork(ft_find_data(room->links[i])->name);
+					ft_printf("WORST_OUT_LINK: %s, link_id = %d\n", ft_find_data(room->links[i])->links[bad_link], bad_link);
+					//ft_strdel(&ft_find_data(room->links[i])->links[bad_link]);
+					ft_find_data(room->links[i])->out = 1;
+					ft_delete_output_fork(ft_find_data(ft_find_data(room->links[i])->links[bad_link]));
 				}
 				ft_output_fork(ft_find_data(room->links[i])->name);
 			}
@@ -39,10 +40,10 @@ int		ft_manage_output_fork(char *data)
 	int		min_way;
 	int		way;
 	int 	i;
-	int		best_link_id;
+	int		worst_link_id;
 
-	min_way = INT_MAX;
-	best_link_id = -1;
+	min_way = 0;
+	worst_link_id = -1;
 	i = 0;
 	room = ft_find_data(data);
 	ft_printf("ROOM NAME: %s\n", room->name);
@@ -54,28 +55,26 @@ int		ft_manage_output_fork(char *data)
 			if (ft_find_data(room->links[i])->bfs_level > room->bfs_level)
 			{
 				ft_printf("FORK NAME: %s\n", ft_find_data(room->links[i])->name);
-				way = 0;
+				way = 1;
+				find = ft_find_data(room->links[i]);
 				while (find->bfs_level != INT_MAX)
 				{
 					// ft_printf("ROOM NAME: %s, OUT_LINKS = %d\n", find->name, find->out);
-					if (way == 0)
-						find = ft_find_data(room->links[i]);
-					else
-						find = ft_find_suitable_link_for_output_fork(find);
+					find = ft_find_suitable_link_for_output_fork(find);
 					way++;
 				}
 				find = room;
 				ft_printf("PATH LENGTH = %d\n", way);
-				if (way < min_way)
+				if (way > min_way)
 				{
 					min_way = way;
-					best_link_id = i;
+					worst_link_id = i;
 				}
 			}
 		}
 		i++;
 	}
-	return (best_link_id);
+	return (worst_link_id);
 }
 
 t_room		*ft_find_suitable_link_for_output_fork(t_room *room)
@@ -91,4 +90,28 @@ t_room		*ft_find_suitable_link_for_output_fork(t_room *room)
 		i++;
 	}
 	return (NULL);
+}
+
+void		ft_delete_output_fork(t_room *room)
+{
+	char	*data;
+	int		i;
+
+	data = room->name;
+	while (room->bfs_level != INT_MAX)
+	{
+		data = room->name;
+		room = ft_find_suitable_link_for_output_fork(room);
+	}
+	ft_printf("ROOM NAME: %s, TO DELETE LINK: %s\n", room->name, data);
+	i = 0;
+	while (i < room->num_links)
+	{
+		if (room->links[i] != NULL)
+		{
+			if (ft_strcmp(ft_find_data(room->links[i])->name, data) == 0)
+				ft_strdel(&(room->links[i]));
+		}
+		i++;
+	}
 }

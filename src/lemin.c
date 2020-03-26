@@ -6,7 +6,7 @@
 /*   By: rretta <rretta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 16:54:04 by erodd             #+#    #+#             */
-/*   Updated: 2020/03/26 18:42:30 by rretta           ###   ########.fr       */
+/*   Updated: 2020/03/26 21:26:40 by rretta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,14 @@ int		main(void)
 	while (split[all])
 		all++;
 	ft_putstr("split\n");
-	/*int q = */ft_file_checker(split, all);
+	int q = ft_file_checker(split, all);
 	t_room *ptr = ft_find_start();
 	ft_putstr("check\n");
 	ft_init_bfs_level();
 	ft_manage_way(ptr->name);
 	ft_output_fork(ft_find_end()->name);
-//	ft_path_forming(q);
+	ft_manage_way(ptr->name); //x2 da pohui che b i ne vizvat'
+	ft_path_forming(q);
 	ft_del_htable();
 	exit (0);
 }
