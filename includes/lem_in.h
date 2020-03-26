@@ -130,6 +130,10 @@ void		ft_del_useless_links(char *data);
 int			ft_manage_way(char *data);
 int			ft_count_output(char *data);
 int			ft_count_input(char *data);
+void		ft_output_fork(char *data);
+int			ft_manage_output_fork(char *data);
+t_room		*ft_find_suitable_link_for_output_fork(t_room *room);
+
 void		ft_path_forming(int ants);
 t_path		*ft_create_path(t_room *room, int length, int ants);
 t_room		*ft_find_suitable_link(t_room *room);

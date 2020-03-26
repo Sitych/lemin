@@ -173,6 +173,6 @@ t_path		*ft_create_path_element(t_room *room, int ants, int length)
 	if ((element->room_name = ft_strdup(room->name)) == NULL)
 		ft_exit("ERROR: MALLOC ERROR");
 	element->ant_quantity = ants;
-	element->path_length = length + 2;
+	element->path_length = length + 1;
 	return (element);
 }
