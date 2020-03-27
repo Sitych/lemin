@@ -11,6 +11,7 @@ end 1 0
 5 5 5
 6 6 6
 x 7 7
+z 8 8
 start-0
 0-1
 1-2
@@ -23,4 +24,8 @@ start-3
 5-end
 start-6
 6-end
+1-z
+z-x
+z-2
 start-end
+z-end

@@ -140,4 +140,10 @@ void		ft_path_forming(int ants);
 t_path		*ft_create_path(t_room *room, int length, int ants);
 t_path		*ft_create_path_element(t_room *room, int ants, int length);
 
+/*
+** FUNCS FOR INPUT FORKS
+*/
+void    ft_input_fork(char *data);
+int ft_find_good_link(char *data);
+
 #endif

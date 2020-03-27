@@ -63,6 +63,7 @@ int		main(void)
 	ft_putstr("check\n");
 	ft_init_bfs_level();
 	ft_manage_way(ptr->name);
+	ft_input_fork(ft_find_end()->name);
 	ft_output_fork(ft_find_end()->name);
 	ft_manage_way(ptr->name); //x2 da pohui che b i ne vizvat'
 	ft_path_forming(q);
