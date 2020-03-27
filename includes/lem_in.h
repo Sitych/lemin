@@ -145,5 +145,6 @@ t_path		*ft_create_path_element(t_room *room, int ants, int length);
 */
 void    ft_input_fork(char *data);
 int ft_find_good_link(char *data);
+int		ft_count_way(char *data);
 
 #endif
