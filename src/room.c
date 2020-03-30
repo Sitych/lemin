@@ -61,21 +61,19 @@ t_htable	*ft_insert_room(t_room *room)
 
 void		ft_del_room(t_room **ptr)
 {
-	int		i;
 	t_room	*room;
+	t_edge	*edge;
 
-	i = 0;
 	room = *ptr;
 	if (room != NULL)
 	{
 		ft_strdel(&(room->name));
-		while (i < room->num_links)
+		while (room->links != NULL)
 		{
-			if (room->links[i] != NULL)
-				ft_strdel(&(room->links[i]));
-			i++;
+			edge = room->links;
+			room->links = room->links->next;
+			ft_del_edge(edge);
 		}
-		free(room->links);
 	}
 	free(room);
 	room = NULL;
@@ -83,14 +81,13 @@ void		ft_del_room(t_room **ptr)
 
 void		ft_print(t_room *tmp)
 {
-	int i;
+	t_edge	*ptr;
 
-	i = 0;
-	ft_printf("name = %s x = %d y = %d bfs_level = %d in = %d out = %d\n", tmp->name, tmp->x, tmp->y, tmp->bfs_level, tmp->in, tmp->out);
-	while (i < tmp->num_links)
+	ft_printf("name = %s bfs_level = %d in = %d out = %d\n", tmp->name, tmp->bfs_level, tmp->in, tmp->out);
+	ptr = tmp->links;
+	while (ptr != NULL)
 	{
-		if (tmp->links[i] != NULL)
-			ft_printf("%s\n", tmp->links[i]);
-		i++;
+		ft_printf("link name = %s len = %d\n", ptr->name, ptr->len);
+		ptr = ptr->next;
 	}
 }

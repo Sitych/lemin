@@ -23,7 +23,7 @@ void	ft_output_fork(char *data)
 					bad_link = ft_manage_output_fork(ft_find_data(room->links[i])->name);
 					ft_printf("WORST_OUT_LINK: %s, link_id = %d\n", ft_find_data(room->links[i])->links[bad_link], bad_link);
 					//ft_strdel(&ft_find_data(room->links[i])->links[bad_link]);
-					ft_find_data(room->links[i])->out = 1;
+					ft_find_data(room->links[i])->out--;
 					ft_delete_output_fork(ft_find_data(ft_find_data(room->links[i])->links[bad_link]));
 				}
 				ft_output_fork(ft_find_data(room->links[i])->name);

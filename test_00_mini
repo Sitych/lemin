@@ -12,10 +12,14 @@ end 1 0
 6 6 6
 x 7 7
 z 8 8
+y 10 10
+q 11 11
+m 12 12
 start-0
 0-1
 1-2
 2-end
+x-4
 0-x
 x-end
 start-3
@@ -27,5 +31,7 @@ start-6
 1-z
 z-x
 z-2
+z-y
+y-q
+q-m
 start-end
-z-end

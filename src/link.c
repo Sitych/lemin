@@ -72,21 +72,18 @@ void		ft_set_links(char ***links, int i, int all)
 t_room		*ft_insert_link(char *room, char *link)
 {
 	t_room	*p;
-	int		i;
+	t_edge	*links;
 
 	p = ft_find_data(room);
-	i = 0;
 	if (p->links == NULL)
 	{
-		if ((p->links = (char**)ft_memalloc(sizeof(char*) *\
-											p->num_links)) == NULL)
-			ft_exit("ERROR: MALLOC ERROR");
-		while (i < p->num_links)
-			p->links[i++] = NULL;
+		p->links = ft_creat_edge(link);
+		return (p);
 	}
-	i = 0;
-	while (p->links[i] != NULL)
-		i++;
-	p->links[i] = ft_strdup(link);
+	links = p->links;
+	while (links->next != NULL)
+		links = links->next;
+	links->next = ft_creat_edge(link);
+	(links->next)->prev = links;
 	return (p);
 }

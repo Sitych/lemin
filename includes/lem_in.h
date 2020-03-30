@@ -15,6 +15,14 @@
 # define P		(int)10
 # define HTSIZE (int)65536
 
+typedef struct			s_edge
+{
+	char				*name;
+	int					len;
+	struct s_edge		*prev;
+	struct s_edge		*next;
+}						t_edge;
+
 typedef struct			s_room
 {
 	char				*name;
@@ -22,10 +30,11 @@ typedef struct			s_room
 	int					x;
 	int					y;
 	int					num_links;
-	char				**links;
+	t_edge				*links;
 	int					out;
 	int					in;
 }						t_room;
+
 
 typedef struct			s_htable
 {
@@ -67,6 +76,8 @@ int				ft_check_room(char **split, int i);
 char			**ft_swap_links(char **str, char **link);
 int				ft_val_links2(char **split, int j, int i, char **links);
 void			ft_set_links(char ***links, int i, int all);
+t_edge			*ft_creat_edge(char *name);
+void			ft_del_edge(t_edge *ptr);
 
 /*
 **	FUNC FOR LINKED LIST
@@ -106,6 +117,7 @@ int			ft_queue_size(t_queue *head);
 int			ft_isempty(t_queue *head);
 void		ft_del_elem(t_queue **elem);
 void		ft_qprint(t_queue *head);
+t_queue		*ft_push_priority(t_queue *head, char *data);
 
 /*
 ** FUNCS FOR BFS
@@ -126,6 +138,7 @@ typedef struct			s_path
 	struct s_path		*prev;
 }						t_path;
 
+void			ft_del_from_links(t_edge **ptr);
 void		ft_del_useless_links(char *data);
 int			ft_manage_way(char *data);
 int			ft_count_output(char *data);
@@ -139,12 +152,5 @@ t_room		*ft_find_suitable_link_up(t_room *room);
 void		ft_path_forming(int ants);
 t_path		*ft_create_path(t_room *room, int length, int ants);
 t_path		*ft_create_path_element(t_room *room, int ants, int length);
-
-/*
-** FUNCS FOR INPUT FORKS
-*/
-void    ft_input_fork(char *data);
-int ft_find_good_link(char *data);
-int		ft_count_way(char *data);
 
 #endif
