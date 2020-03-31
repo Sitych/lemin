@@ -38,7 +38,7 @@ t_room	*ft_crtrm(char *str, int bfs_level)
 	ft_free((void**)lines, 3);
 	tmp->bfs_level = bfs_level;
 	tmp->links = NULL;
-	tmp->num_links = 0;
+	tmp->flag = 0;
 	return (tmp);
 }
 

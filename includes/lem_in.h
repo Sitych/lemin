@@ -29,7 +29,7 @@ typedef struct			s_room
 	int					bfs_level;
 	int					x;
 	int					y;
-	int					num_links;
+	int					flag;
 	t_edge				*links;
 	int					out;
 	int					in;
@@ -140,6 +140,7 @@ typedef struct			s_path
 
 void			ft_del_from_links(t_edge **ptr);
 void		ft_del_useless_links(char *data);
+// int			ft_manage_way(t_room *room);
 int			ft_manage_way(char *data);
 int			ft_count_output(char *data);
 int			ft_count_input(char *data);

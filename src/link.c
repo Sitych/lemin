@@ -16,11 +16,6 @@ int		ft_val_links2(char **split, int j, int i, char **links)
 		if (j != i)
 			if (ft_strcmp(split[j], split[i]) == 0)
 				ft_exit("ERROR: LINK IS REPEATED");
-		if (j == i)
-		{
-			ft_find_data(links[0])->num_links++;
-			ft_find_data(links[1])->num_links++;
-		}
 		j++;
 	}
 	return (0);
