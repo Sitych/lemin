@@ -58,16 +58,14 @@ int			ft_count_input(char *data)
 	return (count);
 }
 
-int			ft_manage_way(char *data)
+int			ft_manage_way(t_room *room)
 {
-	t_room	*room;
 	t_edge	*start;
 	int		count;
 
-	if (!ft_strcmp(ft_find_end()->name, data))
+	if (!ft_strcmp(ft_find_end()->name, room->name))
 		return (0);
-	room = ft_find_data(data);
-	ft_del_useless_links(data);
+	ft_del_useless_links(room->name);
 	start = room->links;
 	count = -1;
 	room->in = ft_count_input(room->name);
@@ -75,7 +73,7 @@ int			ft_manage_way(char *data)
 	{
 		if (ft_find_data(start->name)->bfs_level > room->bfs_level)
 		{
-			count = ft_manage_way(start->name);
+			count = ft_manage_way(ft_find_data(start->name));
 			start->len = count;
 			if (count == -1)
 				ft_del_from_links(&(start));
