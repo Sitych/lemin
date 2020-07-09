@@ -83,7 +83,7 @@ void		ft_print(t_room *tmp)
 {
 	t_edge	*ptr;
 
-	ft_printf("name = %s bfs_level = %d in = %d out = %d\n", tmp->name, tmp->bfs_level, tmp->in, tmp->out);
+	ft_printf("name = %s bfs_level = %d\n", tmp->name, tmp->bfs_level);
 	ptr = tmp->links;
 	while (ptr != NULL)
 	{

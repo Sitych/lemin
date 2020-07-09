@@ -134,11 +134,9 @@ char		***ft_val_links(char **links, int i, int all)
 		}
 		if (ft_word_counter(links[i], ' ') == 1 && ft_word_counter(links[i], '-') == 2)
 		{
-			//PASHA insert
 			if ((link[i - j] = ft_strsplit(links[i], '-')) == NULL)
 				ft_exit("ERROR: SPLIT ERROR");
 			link[i - j] = ft_swap_links(&links[i], link[i - j]);
-			// VANYA insert
 			ft_val_links2(links, j, i, link[i - j]);
 			links_num++;
 			i++;

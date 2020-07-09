@@ -5,7 +5,7 @@ HEADER = includes
 LIB =  ./libft
 LIB_H = $(LIB)/includes/
 FLAGS = -Wall -Wextra -Werror -I $(HEADER) -I $(LIB_H)
-SOURCES =	lemin.c parse.c hash.c room.c check.c bfs.c link.c way.c\
+SOURCES =	lemin.c parse.c hash.c room.c check.c bfs.c link.c \
 			queue.c edge.c
 DIR_S = src
 DIR_O = obj

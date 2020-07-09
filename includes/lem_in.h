@@ -31,8 +31,6 @@ typedef struct			s_room
 	int					y;
 	int					flag;
 	t_edge				*links;
-	int					out;
-	int					in;
 }						t_room;
 
 
@@ -48,18 +46,9 @@ typedef struct			s_queue
 	struct s_queue		*next;
 }						t_queue;
 
-typedef struct			s_ant
-{
-	int					id;
-	t_room			*room;
-	//ptr to link struct
-}						t_ant;
-
 typedef	unsigned short int t_thindex;
 
 t_htable				*g_htable[HTSIZE];
-// unsigned char 			g_rand8[256];
-
 
 //init functions
 char			**ft_file_parse(char **split);

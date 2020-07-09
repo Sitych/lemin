@@ -62,17 +62,11 @@ int		main(void)
 	q = 1 + q -1;
 	ft_init_bfs_level();
 	ft_thprint();
-	ft_putchar('\n');
-	// ft_print(ft_find_data("1"));
-	// ft_del_useless_links("1");
-	// ft_print(ft_find_data("1"));
+	ft_putchar('\n');   
 	ft_putstr("check\n");
 	t_room *ptr = ft_find_start();
 	ft_manage_way(ptr);
 	ft_thprint();
-	// ft_output_fork(ft_find_end()->name);
-	// ft_manage_way(ptr->name); //x2 da pohui che b i ne vizvat'
-	// ft_path_forming(q);
-	// ft_del_htable();
+	
 	exit (0);
 }

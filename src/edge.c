@@ -39,3 +39,4 @@ void			ft_del_from_links(t_edge **ptr)
 		*ptr = next;
 	ft_del_edge(tmp);
 }
+  
