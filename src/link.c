@@ -96,17 +96,15 @@ int			ft_manage_way(t_room *room)
 	{
 		if (ft_find_data(start->name)->bfs_level > room->bfs_level)
 		{
-			ft_printf("name = %s count = %d\n", start->name, count);
-			count = ft_manage_way(ft_find_data(start->name));
-			start->len = count;
-			if (count == 1)
-				ft_del_from_links(&(start));
+			if (ft_manage_way(ft_find_data(start->name)) == 1)
+			{
+				--count;
+			}
 		}
-		if (start->prev == NULL && count == 1)
-			room->links = start;
-		else
-			start = start->next;
+		start = start->next;
 		++count;
 	}
+	if (count == 1)
+		room->bfs_level = -1;
 	return (count);
 }

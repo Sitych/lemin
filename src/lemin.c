@@ -6,12 +6,13 @@
 /*   By: rretta <rretta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 16:54:04 by erodd             #+#    #+#             */
-/*   Updated: 2020/03/26 21:26:40 by rretta           ###   ########.fr       */
+/*   Updated: 2020/07/10 15:23:42 by rretta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "lem_in.h"
+
 
 static void		ft_init_bfs_level(void)
 {
@@ -63,10 +64,14 @@ int		main(void)
 	ft_init_bfs_level();
 	ft_thprint();
 	ft_putchar('\n');   
-	ft_putstr("check\n");
+	ft_putstr("check1111\n");
 	t_room *ptr = ft_find_start();
 	ft_manage_way(ptr);
 	ft_thprint();
+	//ft_putstr("check2222\n");
+	//ft_manage_way2(ft_find_end());
+	//ft_thprint();
+	//ft_find_shortest(ft_find_end());
 	
 	exit (0);
 }

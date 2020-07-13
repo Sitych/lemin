@@ -87,7 +87,8 @@ void		ft_print(t_room *tmp)
 	ptr = tmp->links;
 	while (ptr != NULL)
 	{
-		ft_printf("link name = %s len = %d\n", ptr->name, ptr->len);
+		ft_printf("link name = %s ", ptr->name);
 		ptr = ptr->next;
 	}
+	ft_putchar('\n');
 }

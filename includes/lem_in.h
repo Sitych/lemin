@@ -15,10 +15,24 @@
 # define P		(int)10
 # define HTSIZE (int)65536
 
+typedef struct			s_way_node
+{
+	char				*name;
+	struct s_way_node	*next;
+}						t_way_node;
+
+typedef struct			s_way
+{
+	int					way_length;
+	struct s_way_node	*start_node;
+	struct s_way		*next;
+	struct s_way		*last;
+}						t_way;
+
 typedef struct			s_edge
 {
 	char				*name;
-	int					len;
+	int					cost;
 	struct s_edge		*prev;
 	struct s_edge		*next;
 }						t_edge;
@@ -118,14 +132,6 @@ void		ft_print_bfs(void);
 ** FUNCS FOR SET WAYS
 */
 
-typedef struct			s_path
-{
-	char				*room_name;
-	int					ant_quantity;
-	int					path_length;
-	struct s_path		*next;
-	struct s_path		*prev;
-}						t_path;
 
 void			ft_del_from_links(t_edge **ptr);
 void		ft_del_useless_links(char *data);
@@ -140,7 +146,9 @@ t_room		*ft_find_suitable_link_down(t_room *room);
 
 t_room		*ft_find_suitable_link_up(t_room *room);
 void		ft_path_forming(int ants);
-t_path		*ft_create_path(t_room *room, int length, int ants);
-t_path		*ft_create_path_element(t_room *room, int ants, int length);
+t_way		*ft_create_path(t_room *room, int length, int ants);
+t_way		*ft_create_path_element(t_room *room, int ants, int length);
+
+int			ft_find_shortest(t_room *room);
 
 #endif
