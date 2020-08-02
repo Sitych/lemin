@@ -87,6 +87,7 @@ void		ft_insert_all_edges(char *u, char *v, int i, t_all_edges **edges)
 //should be called right after path forming, in order to call bellman_ford func
 //and recalculate bf level to form new ways
 void	bf_reset(void)
+//переписать !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 {
 	int i;
 	i = 0;

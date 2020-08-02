@@ -171,8 +171,6 @@ t_room		*ft_find_suitable_link_down(t_room *room);
 
 t_room		*ft_find_suitable_link_up(t_room *room);
 void		ft_path_forming(int ants);
-// t_path		*ft_create_path(t_room *room, int length, int ants);
-// t_path		*ft_create_path_element(t_room *room, int ants, int length);
 
 int			ft_find_shortest(t_room *room);
 int			ft_V_counter(void);
@@ -181,7 +179,7 @@ t_way_node	*ft_create_node(t_room *room_name);
 t_edge		*ft_find_min_bfs_link(t_edge *links);
 t_way		*ft_paste_first_node(t_way *way, t_way_node *node);
 t_way		*ft_paste_node(t_way *way, t_way_node *node);
-t_way		*ft_find_short_way(t_room *room);
+t_way		*ft_find_short_way(t_room *room, t_edge *(*func) (t_edge *link));
 t_way		*ft_find_all_short_ways(t_way	*ways);
 void		ft_print_way(t_way *way);
 int			ft_bellman_ford(t_graph *g, t_room *start);
@@ -191,5 +189,10 @@ void		bf_reset(void);
 void		ft_insert_all_edges(char *u, char *v, int i, t_all_edges **edges);
 void		ft_find_edge(t_room *from, t_room *to, int w);
 void		ft_null_ways(t_way *ways);
+t_way		*ft_find_solution(t_room *room);
+t_edge		*ft_find_minus_one_link(t_edge *links);
+t_way	*ft_find_solution(t_room *room);
+void	ft_null(void);
+t_way	*ft_bhandari(t_graph *g);
 
 #endif

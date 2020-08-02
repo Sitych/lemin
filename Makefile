@@ -5,7 +5,7 @@ LIB =  ./libft
 LIB_H = $(LIB)/includes/
 FLAGS = -Wall -Wextra -Werror -I $(HEADER) -I $(LIB_H)
 SOURCES =	lemin.c parse.c hash.c room.c check.c bfs.c link.c \
-			queue.c edge.c way.c bellman_ford.c suurbale.c
+			queue.c edge.c way.c bellman_ford.c bhandari.c
 DIR_S = src
 DIR_O = obj
 SRC = $(addprefix $(DIR_S)/,$(SOURCES))

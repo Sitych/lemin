@@ -67,21 +67,11 @@ int		main(void)
 	ft_init_bfs_level();
 	t_room *ptr = ft_find_start();
 	ft_manage_way(ptr);
-	ft_bellman_ford(g, ft_find_start());
-	ways = ft_find_short_way(ft_find_end());
-	ft_print(ways);
-	t_way_node *part = ways->start_node;
-	while (part->next)
+	ways = ft_bhandari(g);
+	while (ways)
 	{
-		ft_find_edge(part->name, part->next->name, -1);
-		ft_find_edge(part->next->name, part->name, -2);
-		part = part->next;
+		ft_print_way(ways);
+		ways = ways->next;
 	}
-	ft_bellman_ford(g, ft_find_start());
-	ft_print_bfs();
-	t_way	*tmp;
-	tmp = ft_find_short_way(ft_find_end()); //tmp
-	
-	ft_print(tmp);
 	exit (0);
 }

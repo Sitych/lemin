@@ -41,8 +41,6 @@ t_edge	*ft_find_min_bfs_link(t_edge *links)
 	}
 	if (minbfs == INT32_MAX)
 		return (NULL);
-	// if (ft_strcmp(minbfslink->name, ft_find_start()->name))
-	// 	ft_find_data(minbfslink->name)->flag = -1;
 	return (minbfslink);
 }
 
@@ -66,20 +64,20 @@ t_way	*ft_paste_node(t_way *way, t_way_node *node)
 	return (way);
 }
 
-t_way	*ft_find_short_way(t_room *room)
+t_way	*ft_find_short_way(t_room *room, t_edge *(*func) (t_edge *link))
 {
 	t_edge		*link;
 	t_way	*shortway;
 	
 	shortway = NULL;
 	shortway = ft_paste_node(shortway, ft_create_node(room));
-	if ((link = ft_find_min_bfs_link(room->links)) == NULL)
+	if ((link = func(room->links)) == NULL)
 		return (NULL);
 	room = ft_find_data(link->name);
 	shortway = ft_paste_node(shortway, ft_create_node(room));
 	while (ft_strcmp(room->name, ft_find_start()->name))
 	{
-		if ((link = ft_find_min_bfs_link(room->links)) == NULL)
+		if ((link = func(room->links)) == NULL)
 			return (NULL);
 		shortway = ft_paste_node(shortway, ft_create_node(ft_find_data(link->name)));
 		room = ft_find_data(link->name);
@@ -98,37 +96,5 @@ void	ft_print_way(t_way *way)
 	{
 		ft_printf("%s\n", node->name->name);
 		node = node->next;
-	}
-}
-
-t_way	*ft_find_all_short_ways(t_way	*ways)
-{
-	t_way		*way;
-
-	ways = ft_find_short_way(ft_find_end());
-	way = ways;
-	while (way != NULL)
-	{
-		way->next = ft_find_short_way(ft_find_end());
-		way = way->next;
-	}
-	return (ways);
-}
-
-void	ft_null_ways(t_way *ways)
-{
-	t_way_node	*node;
-	t_way		*way;
-
-	way = ways;
-	while (way != NULL)
-	{
-		node = way->start_node;
-		while (node != NULL)
-		{
-			node->name->flag = 1;
-			node = node->next;
-		}
-		way = way->next;
 	}
 }

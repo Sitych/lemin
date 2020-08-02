@@ -11,6 +11,8 @@ D 4 4
 E 5 5
 F 6 6
 G 7 7
+x 8 8
+y 9 9
 start-B
 B-C
 C-D
@@ -21,3 +23,6 @@ E-F
 F-D
 F-G
 G-H
+start-x
+x-y
+y-H
