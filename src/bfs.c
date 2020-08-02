@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bfs.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rretta <rretta@student.42.fr>              +#+  +:+       +#+        */
+/*   By: qjosmyn <qjosmyn@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/19 16:17:14 by rretta            #+#    #+#             */
-/*   Updated: 2020/03/26 00:45:38 by rretta           ###   ########.fr       */
+/*   Updated: 2020/07/31 21:59:07 by qjosmyn          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void		ft_print_bfs(void)
 	while (i < HTSIZE)
 	{
 		if (g_htable[i] != NULL)
-			ft_printf("BFS LEVEL = %d, ROOM = %s\n", g_htable[i]->rooms->bfs_level , g_htable[i]->rooms->name);
+			ft_printf("BF LEVEL = %d, ROOM = %s flag = %d\n", g_htable[i]->rooms->bf , g_htable[i]->rooms->name, g_htable[i]->rooms->flag);
 		i++;
 	}
 }

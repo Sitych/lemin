@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lst_func.c                                         :+:      :+:    :+:   */
+/*   room.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rretta <rretta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 21:27:41 by qjosmyn           #+#    #+#             */
-/*   Updated: 2020/03/20 21:59:44 by rretta           ###   ########.fr       */
+/*   Updated: 2020/07/17 21:30:33 by rretta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ t_room	*ft_crtrm(char *str, int bfs_level)
 	tmp->y = ft_atoi(lines[2]);
 	ft_free((void**)lines, 3);
 	tmp->bfs_level = bfs_level;
+	tmp->bf = INFINITY;
 	tmp->links = NULL;
 	tmp->flag = 0;
 	return (tmp);
@@ -87,7 +88,7 @@ void		ft_print(t_room *tmp)
 	ptr = tmp->links;
 	while (ptr != NULL)
 	{
-		ft_printf("link name = %s ", ptr->name);
+		ft_printf("link name = %s; ", ptr->name);
 		ptr = ptr->next;
 	}
 	ft_putchar('\n');

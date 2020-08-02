@@ -9,6 +9,7 @@ t_edge		*ft_creat_edge(char *name)
 	if ((ptr->name = ft_strdup(name)) == NULL)
 		ft_exit("ERROR: MALLOC ERROR");
 	ptr->cost = 0;
+	ptr->weight = 1;
 	ptr->next = NULL;
 	ptr->prev = NULL;
 	return (ptr);

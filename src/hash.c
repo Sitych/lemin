@@ -6,7 +6,7 @@
 /*   By: rretta <rretta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 18:20:09 by qjosmyn           #+#    #+#             */
-/*   Updated: 2020/03/19 16:46:19 by rretta           ###   ########.fr       */
+/*   Updated: 2020/07/16 21:30:46 by rretta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,21 @@ int			ft_hash(char *data)
 
 void		ft_thprint(void)
 {
+	t_htable	*ptr;
 	int i;
 
 	i = 0;
 	while (i < HTSIZE)
 	{
-		if (g_htable[i] != NULL)
-			ft_print(g_htable[i]->rooms);
+		ptr = g_htable[i];
+		if (ptr != NULL)
+		{
+			while (ptr != NULL)
+			{
+				ft_print(ptr->rooms);
+				ptr = ptr->next;
+			}
+		}
 		i++;
 	}
 }

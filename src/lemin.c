@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lemin.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rretta <rretta@student.42.fr>              +#+  +:+       +#+        */
+/*   By: qjosmyn <qjosmyn@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 16:54:04 by erodd             #+#    #+#             */
-/*   Updated: 2020/07/10 15:23:42 by rretta           ###   ########.fr       */
+/*   Updated: 2020/07/31 23:20:45 by qjosmyn          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,27 +51,37 @@ int		main(void)
 {
 	char		**split;
 	int			all;
+	t_graph		*g;
+	t_way		*ways = NULL;
+	// int c = 0;
 
-	
 	split = NULL;
+	g = (t_graph*)malloc(sizeof(t_graph));
 	split = ft_file_parse(split);
 	all = 0;
 	while (split[all])
 		all++;
 	ft_putstr("split\n");
-	int q = ft_file_checker(split, all);
-	q = 1 + q -1;
+	g = ft_file_checker(split, all, g);
+	// ft_thprint();
 	ft_init_bfs_level();
-	ft_thprint();
-	ft_putchar('\n');   
-	ft_putstr("check1111\n");
 	t_room *ptr = ft_find_start();
 	ft_manage_way(ptr);
-	ft_thprint();
-	//ft_putstr("check2222\n");
-	//ft_manage_way2(ft_find_end());
-	//ft_thprint();
-	//ft_find_shortest(ft_find_end());
+	ft_bellman_ford(g, ft_find_start());
+	ways = ft_find_short_way(ft_find_end());
+	ft_print(ways);
+	t_way_node *part = ways->start_node;
+	while (part->next)
+	{
+		ft_find_edge(part->name, part->next->name, -1);
+		ft_find_edge(part->next->name, part->name, -2);
+		part = part->next;
+	}
+	ft_bellman_ford(g, ft_find_start());
+	ft_print_bfs();
+	t_way	*tmp;
+	tmp = ft_find_short_way(ft_find_end()); //tmp
 	
+	ft_print(tmp);
 	exit (0);
 }

@@ -1,4 +1,16 @@
-﻿#ifndef LEM_IN_H
+﻿/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lem_in.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qjosmyn <qjosmyn@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/07/13 19:29:35 by qjosmyn           #+#    #+#             */
+/*   Updated: 2020/07/31 22:05:56 by qjosmyn          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef LEM_IN_H
 # define LEM_IN_H
 
 # include <stdint.h>
@@ -12,27 +24,15 @@
 **	define const value for hash func
 */
 
-# define P		(int)10
-# define HTSIZE (int)65536
-
-typedef struct			s_way_node
-{
-	char				*name;
-	struct s_way_node	*next;
-}						t_way_node;
-
-typedef struct			s_way
-{
-	int					way_length;
-	struct s_way_node	*start_node;
-	struct s_way		*next;
-	struct s_way		*last;
-}						t_way;
+# define P			(int)10
+# define HTSIZE 	(int)65536
+# define INFINITY	INT32_MAX
 
 typedef struct			s_edge
 {
 	char				*name;
 	int					cost;
+	int					weight;
 	struct s_edge		*prev;
 	struct s_edge		*next;
 }						t_edge;
@@ -45,8 +45,37 @@ typedef struct			s_room
 	int					y;
 	int					flag;
 	t_edge				*links;
+	int					bf;
 }						t_room;
 
+typedef struct			s_way_node
+{
+	t_room				*name;
+	struct s_way_node	*next;
+}						t_way_node;
+
+typedef struct			s_way
+{
+	int					way_length;
+	struct s_way_node	*start_node;
+	struct s_way		*next;
+	struct s_way		*last;
+}						t_way;
+
+typedef struct			s_all_edges 
+{
+  t_room  	*u;  //start vertex in the link
+  t_room  	*v;  //end vertex in the link
+  int     	*w;  //weight of the edge u->v
+}						t_all_edges;
+
+typedef struct			s_graph
+{
+  int     ants; //total number of ants
+  int 		V;	//total quantity of vertices 
+  int 		E;	//total number of edges
+  t_all_edges *edges;  //list of edges
+}						t_graph;
 
 typedef struct			s_htable
 {
@@ -66,19 +95,19 @@ t_htable				*g_htable[HTSIZE];
 
 //init functions
 char			**ft_file_parse(char **split);
-int				ft_file_checker(char **split,int all);
+t_graph			*ft_file_checker(char **split,int all, t_graph *g);
 int				ft_val_ant(char *split);
 int				ft_val_bond(char **split);
-int				ft_val_room(char **split);
+int				ft_val_room(char **split, t_graph **g);
 int				ft_val_coords(char **split, int i);
-char			***ft_val_links(char **split, int i, int all);
+char			***ft_val_links(char **split, int i, int all, t_graph **g);
 int				ft_word_counter(char const *s, char c);
 void			ft_exit(char *str);
 void			ft_prng(unsigned int seed);
 int				ft_check_room(char **split, int i);
 char			**ft_swap_links(char **str, char **link);
 int				ft_val_links2(char **split, int j, int i, char **links);
-void			ft_set_links(char ***links, int i, int all);
+void			ft_set_links(char ***links, int i, int all, t_graph **g);
 t_edge			*ft_creat_edge(char *name);
 void			ft_del_edge(t_edge *ptr);
 
@@ -131,10 +160,6 @@ void		ft_print_bfs(void);
 /*
 ** FUNCS FOR SET WAYS
 */
-
-
-void			ft_del_from_links(t_edge **ptr);
-void		ft_del_useless_links(char *data);
 int			ft_manage_way(t_room *room);
 // int			ft_manage_way(char *data);
 int			ft_count_output(char *data);
@@ -146,9 +171,25 @@ t_room		*ft_find_suitable_link_down(t_room *room);
 
 t_room		*ft_find_suitable_link_up(t_room *room);
 void		ft_path_forming(int ants);
-t_way		*ft_create_path(t_room *room, int length, int ants);
-t_way		*ft_create_path_element(t_room *room, int ants, int length);
+// t_path		*ft_create_path(t_room *room, int length, int ants);
+// t_path		*ft_create_path_element(t_room *room, int ants, int length);
 
 int			ft_find_shortest(t_room *room);
+int			ft_V_counter(void);
+int			ft_E_counter(int all, int i);
+t_way_node	*ft_create_node(t_room *room_name);
+t_edge		*ft_find_min_bfs_link(t_edge *links);
+t_way		*ft_paste_first_node(t_way *way, t_way_node *node);
+t_way		*ft_paste_node(t_way *way, t_way_node *node);
+t_way		*ft_find_short_way(t_room *room);
+t_way		*ft_find_all_short_ways(t_way	*ways);
+void		ft_print_way(t_way *way);
+int			ft_bellman_ford(t_graph *g, t_room *start);
+void		bf_reset(void);
+
+
+void		ft_insert_all_edges(char *u, char *v, int i, t_all_edges **edges);
+void		ft_find_edge(t_room *from, t_room *to, int w);
+void		ft_null_ways(t_way *ways);
 
 #endif

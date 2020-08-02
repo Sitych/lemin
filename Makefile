@@ -1,12 +1,11 @@
-﻿.PHONY: all clean fclean re
-CC = gcc
+﻿CC = gcc
 NAME = lem-in
 HEADER = includes
 LIB =  ./libft
 LIB_H = $(LIB)/includes/
 FLAGS = -Wall -Wextra -Werror -I $(HEADER) -I $(LIB_H)
 SOURCES =	lemin.c parse.c hash.c room.c check.c bfs.c link.c \
-			queue.c edge.c 1.c
+			queue.c edge.c way.c bellman_ford.c suurbale.c
 DIR_S = src
 DIR_O = obj
 SRC = $(addprefix $(DIR_S)/,$(SOURCES))
@@ -21,7 +20,7 @@ $(NAME): $(OBJ) $(HEADER)
 
 $(DIR_O)/%.o: $(DIR_S)/%.c
 	@mkdir -p $(DIR_O)
-	@$(CC) $(FLAGS) -I $(HEADER) -o $@ -c $<
+	@$(CC) $(FLAGS) -I $(HEADER) -o $@ -c $< -g
 
 clean:
 	make clean -C libft

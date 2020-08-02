@@ -41,25 +41,31 @@ char	**ft_swap_links(char **str, char **link)
 	return (link);
 }
 
-void		ft_set_links(char ***links, int i, int all)
+void		ft_set_links(char ***links, int i, int all, t_graph **g)
 {
 	char		**link;
 	int			j;
+	int			c;
 
 	j = 0;
+	c = 0;
 	while (j < all - i)
 	{
 		
-		if (links[j]== NULL)
+		if (links[j] == NULL)
 		{
 			j++;
 			continue ;
 		}
 		link = links[j];
+		// ft_printf("TYT");
 		ft_insert_link(link[0], link[1]);
 		ft_insert_link(link[1], link[0]);
+		ft_insert_all_edges(link[0], link[1], c, &((*g)->edges));
 		ft_free((void**)links[j], 2);
 		j++;
+		c = c + 2;
+		// ft_printf("%d \n", *((*g)->edges[c]->w));
 	}
 	free(links);
 }
@@ -104,7 +110,7 @@ int			ft_manage_way(t_room *room)
 		start = start->next;
 		++count;
 	}
-	if (count == 1)
+	if (count == 1 && ft_strcmp(room->name, ft_find_start()->name))
 		room->bfs_level = -1;
 	return (count);
 }

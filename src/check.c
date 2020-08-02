@@ -6,30 +6,29 @@
 /*   By: rretta <rretta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 21:25:03 by qjosmyn           #+#    #+#             */
-/*   Updated: 2020/03/26 00:39:17 by rretta           ###   ########.fr       */
+/*   Updated: 2020/07/16 22:21:20 by rretta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int		ft_file_checker(char **split, int all)
+t_graph		*ft_file_checker(char **split, int all, t_graph *g)
 {
 	int		i;
-	int		q;
 	char	***links;
 
-	// ft_create_htable(HTSIZE);
 	for (int j = 0; j < HTSIZE; j++)
 		g_htable[j] = NULL;
-	q = ft_val_ant(split[0]);
+	g->ants = ft_val_ant(split[0]);
 	ft_putstr("start\n");
 	ft_val_bond(split);
 	ft_putstr("bond\n");
-	i = ft_val_room(split);
+	i = ft_val_room(split, &g);
 	ft_putstr("val_room\n");
-	links = ft_val_links(split, i, all); //TO MOVE TO FT_FILE_CHECKER FUNC (MAYBE)
-	ft_set_links(links, i, all);
-	return (q);
+	links = ft_val_links(split, i, all, &g); //TO MOVE TO FT_FILE_CHECKER FUNC (MAYBE)
+	g->edges = (t_all_edges*)malloc((sizeof(t_all_edges)) * g->E);
+	ft_set_links(links, i, all, &g);
+	return (g);
 }
 
 int		ft_val_ant(char *split)
@@ -45,8 +44,6 @@ int		ft_val_ant(char *split)
 	ant_num = ft_atoi(split);
 	if (ant_num < 1 || ant_num > INT32_MAX)
 		ft_exit("ERROR: INCORRECT QUANTITY OF ANTS\n");
-	ft_putnbr(ant_num);
-	ft_putchar('\n');
 	return (ant_num);
 }
 
@@ -84,7 +81,7 @@ int		ft_check_room(char **split, int i)
 	return (flag);
 }
 
-int		ft_val_room(char **split)
+int		ft_val_room(char **split, t_graph **g)
 {
 	int			i;
 	int			room_num;
@@ -94,7 +91,6 @@ int		ft_val_room(char **split)
 
 	i = 1;
 	room_num = 0;
-	ft_putstr("init\n");
 	while ((ft_word_counter(split[i], ' ') != 1 && ft_word_counter(split[i], '-') != 2) || split[i][0] == '#') 
 	{
 		if ((bfs_level = ft_check_room(split, i)) == - 2)
@@ -112,10 +108,11 @@ int		ft_val_room(char **split)
 	}
 	if (room_num < 2)
 		ft_exit("ERROR: ROOM < 2");
+	(*g)->V = room_num;
 	return (i);
 }
 
-char		***ft_val_links(char **links, int i, int all)
+char		***ft_val_links(char **links, int i, int all, t_graph **g)
 {
 	int	links_num;
 	int		j;
@@ -146,6 +143,7 @@ char		***ft_val_links(char **links, int i, int all)
 	}
 	if (i - j < 1)
 		ft_exit("ERROR: LINKS < 1");
+	(*g)->E = links_num * 2;
 	ft_putnbr(links_num);
 	ft_putchar('\n');
 	return (link);

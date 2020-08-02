@@ -6,7 +6,7 @@
 /*   By: qjosmyn <qjosmyn@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 17:35:22 by erodd             #+#    #+#             */
-/*   Updated: 2020/03/15 23:40:33 by qjosmyn          ###   ########.fr       */
+/*   Updated: 2020/07/28 21:02:14 by qjosmyn          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ char	**ft_file_parse(char **split)
 
 	str = "";
 	str2 = "";
-	while ((len = read(STDIN_FILENO, tmp, 4096)) > 0)
+	int f = open("test2", O_RDONLY);
+	while ((len = read(f, tmp, 4096)) > 0)
 	{
 		tmp[len] = '\0';
 		if ((str2 = ft_strjoin(str, tmp)) == NULL)
