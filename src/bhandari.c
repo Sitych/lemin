@@ -69,6 +69,7 @@ void	ft_null(void)
 	}
 }
 
+// link end - start fix
 t_way	*ft_bhandari(t_graph *g)
 {
 	t_way	*tmp;
@@ -88,7 +89,7 @@ t_way	*ft_bhandari(t_graph *g)
 	//free tmp
 	way = ft_find_solution(ft_find_end());
 	ways = way;
-	while (way != NULL)
+	while (tmp != NULL)
 	{
 		ft_bellman_ford(g, ft_find_start());
 		tmp = ft_find_short_way(ft_find_end(), ft_find_min_bfs_link);
@@ -101,10 +102,11 @@ t_way	*ft_bhandari(t_graph *g)
 				ft_find_edge(part->next->name, part->name, -2);
 				part = part->next;
 			}
-			//free tmp
+			//free tmp; inf loop if tmp == NULL break
 			way->next = ft_find_solution(ft_find_end());
 		}
-		way = way->next;
+		while (way->next != NULL)
+			way = way->next;
 	}
 	return (ways);
 }

@@ -89,9 +89,14 @@ typedef struct			s_queue
 	struct s_queue		*next;
 }						t_queue;
 
-typedef	unsigned short int t_thindex;
+typedef struct			s_solution
+{
+	t_way				*solution1;
+	t_way				*solution2;
+}						t_solution;
 
 t_htable				*g_htable[HTSIZE];
+
 
 //init functions
 char			**ft_file_parse(char **split);
@@ -161,18 +166,6 @@ void		ft_print_bfs(void);
 ** FUNCS FOR SET WAYS
 */
 int			ft_manage_way(t_room *room);
-// int			ft_manage_way(char *data);
-int			ft_count_output(char *data);
-int			ft_count_input(char *data);
-void		ft_output_fork(char *data);
-int			ft_manage_output_fork(char *data);
-void		ft_delete_output_fork(t_room *room);
-t_room		*ft_find_suitable_link_down(t_room *room);
-
-t_room		*ft_find_suitable_link_up(t_room *room);
-void		ft_path_forming(int ants);
-
-int			ft_find_shortest(t_room *room);
 int			ft_V_counter(void);
 int			ft_E_counter(int all, int i);
 t_way_node	*ft_create_node(t_room *room_name);

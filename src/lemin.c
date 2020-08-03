@@ -61,7 +61,6 @@ int		main(void)
 	all = 0;
 	while (split[all])
 		all++;
-	ft_putstr("split\n");
 	g = ft_file_checker(split, all, g);
 	// ft_thprint();
 	ft_init_bfs_level();

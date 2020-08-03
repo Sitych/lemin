@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bellman_ford.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rretta <rretta@student.42.fr>              +#+  +:+       +#+        */
+/*   By: qjosmyn <qjosmyn@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/28 21:14:17 by qjosmyn           #+#    #+#             */
-/*   Updated: 2020/08/02 21:55:25 by rretta           ###   ########.fr       */
+/*   Updated: 2020/07/28 23:48:19 by qjosmyn          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ int   ft_bellman_ford(t_graph *g, t_room *start)
   start->bf = 0;
   //step 1: relax edges |V| - 1 times
   while (i < g->V - 1) {
-	  while (j < g->E) {
-		  u = g->edges[j].u;
-		  v = g->edges[j].v;
-		  w = *(g->edges[j].w);
+	while (j < g->E) {
+		u = g->edges[j].u;
+		v = g->edges[j].v;
+		w = *(g->edges[j].w);
     //   ft_printf("%s -> %s weight %d \n", u->name, v->name, w);
 		if (w == -2)
 		{
@@ -42,22 +42,20 @@ int   ft_bellman_ford(t_graph *g, t_room *start)
 	  }
 	  i++;
   }
-  //step 2: detect negative cycle
-  //if value changes then we have a negative cycle in the graph
-  //and we cannot find the shortest distances
-  i = 0;
-  while (i < g->E)
-  {
-	  u = g->edges[i].u;
-	  v = g->edges[i].v;
-	  w = *(g->edges[i].w);
-	  if (u->bf != INFINITY && v->bf > u->bf + w)
-	  {
-		//   ft_printf("Negative weight cycle detected!\n");
-		  return (0);
-	  }
-	  i++;
-  }
+//   //step 2: detect negative cycle
+//   //if value changes then we have a negative cycle in the graph
+//   //and we cannot find the shortest distances
+//   i = 0;
+//   while (i < g->E)
+//   {
+// 	u = g->edges[j].u;
+//     v = g->edges[j].v;
+//     w = *(g->edges[j].w);
+//     if (u->bf != INFINITY && v->bf > u->bf + w) {
+//       ft_printf("Negative weight cycle detected!\n");
+//       return (0);
+//     }
+//   }
   return (1);
 }
 
