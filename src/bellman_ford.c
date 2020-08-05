@@ -71,6 +71,7 @@ void		ft_insert_all_edges(char *u, char *v, int i, t_all_edges **edges)
 	// ft_printf("TYT2\n");
 	(*edges)[i].v = ft_find_data(v);
 	(*edges)[i].w = &(link->weight);
+	(*edges)[i].f = &(link->flag);
 
 	link = ft_find_data(v)->links;
 	while (ft_strcmp(link->name, u))
@@ -79,6 +80,7 @@ void		ft_insert_all_edges(char *u, char *v, int i, t_all_edges **edges)
 	(*edges)[i + 1].v = ft_find_data(u);
 	(*edges)[i + 1].u = ft_find_data(v);
 	(*edges)[i + 1].w = &(link->weight);
+	(*edges)[i + 1].f = &(link->flag);
 
 	// ft_printf("\n %s \n %s \n %s \n", i, edges[i]->u->name, edges[i + 1]->u->name);
 }

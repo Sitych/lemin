@@ -93,21 +93,24 @@ static t_way	*ft_bhandari(t_graph *g)
 	return (way);
 }
 
-static int	ft_best_way(void)
-{
-	return (1);
-}
+// static int	ft_best_way(void)
+// {
+// 	return (1);
+// }
 
-t_way	*ft_solution(t_graph *g)
+t_sol	*ft_solution(t_graph *g)
 {
 	t_way		*way1;
-	t_way		*way2;
+	t_sol		*sol;
+	t_sol		*head;
 
 	way1 = ft_bhandari(g);
-	while ((way2 = ft_bhandari(g)) != NULL)
+	sol = ft_creat_sol(way1);
+	head = sol;
+	while ((way1 = ft_bhandari(g)) != NULL)
 	{
-		if (ft_best_way())
-			way1 = way2;
+		sol->next = ft_creat_sol(way1);
+		sol = sol->next;
 	}
-	return (way1);
+	return (head);
 }

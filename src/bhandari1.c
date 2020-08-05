@@ -30,49 +30,39 @@ t_edge	*ft_find_minus_one_link(t_edge *links)
 			break ;
 		links = links->next;
 	}
-	if (links != NULL && ft_find_edge1(ft_find_end(), ft_find_data(links->name)))
+	if (links != NULL)
 		links->flag = -1;
 	return (links);
 }
 
-t_way	*ft_find_solution(t_room *room)
+t_way	*ft_find_solution(t_room *room, t_graph *g)
 {
 	t_way	*solution;
 	t_way	*head;
-	t_edge	*link;
+	t_way	*buf;
 
 	solution = ft_find_short_way(room, ft_find_minus_one_link);
 	head = solution;
+	solution->prev = NULL;
 	while (solution != NULL)
 	{
+		buf = solution;
 		solution->next = ft_find_short_way(room, ft_find_minus_one_link);
 		solution = solution->next;
+		if (solution)
+			solution->prev = buf;
 	}
-	link = ft_find_end()->links;
-	while (link != NULL)
-	{
-		link->flag = 0;
-		link = link->next;
-	}
+	ft_null(g);
 	return (head);
 }
 
-void	ft_null(void)
+void	ft_null(t_graph *g)
 {
-	int			i;
-	t_htable	*room;
+	int	i;
 
 	i = 0;
-	while (i < HTSIZE)
-	{
-		room = g_htable[i];
-		while (room != NULL)
-		{
-			room->rooms->flag = 0;
-			room = room->next;
-		}
-		i++;
-	}
+	while (i < g->E)
+		*(g->edges[i++].f)= 0;
 }
 
 static t_way	*ft_bhandari(t_graph *g)
@@ -94,28 +84,42 @@ static t_way	*ft_bhandari(t_graph *g)
 			part = part->next;
 		}
 		//free tmp
-		way = ft_find_solution(ft_find_end());
+		way = ft_find_solution(ft_find_end(), g);
 	}
 	return (way);
 }
 
-static int	ft_best_way(void)
+// static int	ft_best_way(void)
+// {
+// 	return (1);
+// }
+
+static t_sol	*ft_creat_sol(t_way *way)
 {
-	return (1);
+	t_sol	*sol;
+
+	if ((sol = (t_sol*)ft_memalloc(sizeof(t_way))) == NULL)
+		ft_exit("ERROR: MALLOC ERROR");
+	sol->way = way;
+	sol->next = NULL;
+	return (sol);
 }
 
-t_way	*ft_solution(t_graph *g)
+t_sol	*ft_solution(t_graph *g)
 {
 	t_way		*way1;
-	t_way		*way2;
+	t_sol		*sol;
+	t_sol		*head;
 
 	way1 = ft_bhandari(g);
-	while ((way2 = ft_bhandari(g)) != NULL)
+	sol = ft_creat_sol(way1);
+	head = sol;
+	while ((way1 = ft_bhandari(g)) != NULL)
 	{
-		if (ft_best_way())
-			way1 = way2;
+		sol->next = ft_creat_sol(way1);
+		sol = sol->next;
 	}
-	return (way1);
+	return (head);
 }
 
 // t_way	*ft_solution(t_graph *g)

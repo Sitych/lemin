@@ -52,7 +52,8 @@ int		main(void)
 	char		**split;
 	int			all;
 	t_graph		*g;
-	t_way		*ways = NULL;
+	t_sol		*sol = NULL;
+	t_way		*ways;
 	// int c = 0;
 
 	split = NULL;
@@ -68,11 +69,18 @@ int		main(void)
 	ft_init_bfs_level();
 	t_room *ptr = ft_find_start();
 	ft_manage_way(ptr);
-	ways = ft_solution(g);
-	while (ways)
+	sol = ft_solution(g);
+	ways = sol->way;
+	while (sol != NULL)
 	{
-		ft_print_way(ways);
-		ways = ways->next;
+		ways = sol->way;
+		while (ways)
+		{
+			ft_print_way(ways);
+			ways = ways->next;
+		}
+		sol = sol->next;
+		ft_printf("\n");
 	}
 	exit (0);
 }
