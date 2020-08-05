@@ -54,17 +54,17 @@ t_way	*ft_paste_node(t_way *way, t_way_node *node)
 		if ((way = (t_way*)malloc(sizeof(t_way))) == NULL)
 			ft_exit("MALLOC ERROR");
 		way->way_length = 0;
-		way->start_node = node;
 		way->end_node = node;
+		way->start_node = node;
 		way->next = NULL;
 		return (way);
 	}
 	tmp = way->start_node;
 	while (tmp->next)
 		tmp = tmp->next;
-	tmp->next = node;
+	way->start_node = node;
 	node->prev = tmp;
-	way->end_node = node;
+	tmp->next = node;
 	way->way_length++;
 	way->next = NULL;
 	return (way);
@@ -96,7 +96,7 @@ void	ft_print_way(t_way *way)
 {
 	t_way_node	*node;
 
-	node = way->start_node;
+	node = way->end_node;
 	ft_printf("len = %d\n", way->way_length);
 	while (node != NULL)
 	{

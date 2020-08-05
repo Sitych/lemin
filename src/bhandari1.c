@@ -71,7 +71,7 @@ static t_way	*ft_bhandari(t_graph *g)
 	way = NULL;
 	if (tmp != NULL)
 	{
-		part = tmp->start_node;
+		part = tmp->end_node;
 		while (part->next)
 		{
 			ft_find_edge(part->name, part->next->name, -1);
