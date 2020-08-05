@@ -39,18 +39,13 @@ t_way	*ft_find_solution(t_room *room, t_graph *g)
 {
 	t_way	*solution;
 	t_way	*head;
-	t_way	*buf;
 
 	solution = ft_find_short_way(room, ft_find_minus_one_link);
 	head = solution;
-	solution->prev = NULL;
 	while (solution != NULL)
 	{
-		buf = solution;
 		solution->next = ft_find_short_way(room, ft_find_minus_one_link);
 		solution = solution->next;
-		if (solution)
-			solution->prev = buf;
 	}
 	ft_null(g);
 	return (head);

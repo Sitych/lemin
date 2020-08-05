@@ -21,6 +21,7 @@ t_way_node	*ft_create_node(t_room *link_name)
 		ft_exit("ERROR: MALLOC ERROR");
 	tmp->name = link_name;
 	tmp->next = NULL;
+	tmp->prev = NULL;
 	return (tmp);
 }
 
@@ -46,7 +47,7 @@ t_edge	*ft_find_min_bfs_link(t_edge *links)
 
 t_way	*ft_paste_node(t_way *way, t_way_node *node)
 {
-	t_way_node	*buf;
+	t_way_node	*tmp;
 
 	if (way == NULL)
 	{
@@ -54,16 +55,17 @@ t_way	*ft_paste_node(t_way *way, t_way_node *node)
 			ft_exit("MALLOC ERROR");
 		way->way_length = 0;
 		way->start_node = node;
-		way->prev = NULL;
+		way->end_node = node;
 		way->next = NULL;
 		return (way);
 	}
-	buf = way->start_node;
-	while (buf->next)
-		buf = buf->next;
-	buf->next = node;
+	tmp = way->start_node;
+	while (tmp->next)
+		tmp = tmp->next;
+	tmp->next = node;
+	node->prev = tmp;
+	way->end_node = node;
 	way->way_length++;
-	way->prev = NULL;
 	way->next = NULL;
 	return (way);
 }
