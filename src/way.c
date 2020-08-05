@@ -59,12 +59,12 @@ t_way	*ft_paste_node(t_way *way, t_way_node *node)
 		way->next = NULL;
 		return (way);
 	}
-	tmp = way->start_node;
-	while (tmp->next)
-		tmp = tmp->next;
+	tmp = way->end_node;
+	while (tmp->prev)
+		tmp = tmp->prev;
+	tmp->prev = node;
+	node->next = tmp;
 	way->start_node = node;
-	node->prev = tmp;
-	tmp->next = node;
 	way->way_length++;
 	way->next = NULL;
 	return (way);
@@ -96,7 +96,7 @@ void	ft_print_way(t_way *way)
 {
 	t_way_node	*node;
 
-	node = way->end_node;
+	node = way->start_node;
 	ft_printf("len = %d\n", way->way_length);
 	while (node != NULL)
 	{
