@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bhandari.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rretta <rretta@student.42.fr>              +#+  +:+       +#+        */
+/*   By: qjosmyn <qjosmyn@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/15 16:04:29 by qjosmyn           #+#    #+#             */
-/*   Updated: 2020/08/05 06:21:45 by rretta           ###   ########.fr       */
+/*   Updated: 2020/08/05 04:45:07 by qjosmyn          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ t_edge	*ft_find_minus_one_link(t_edge *links)
 {
 	while (links != NULL)
 	{
-		if (links->weight == -1 && ft_find_data(links->name)->flag != -1)
+		if (links->weight == -1 && links->flag != -1)
 			break ;
 		links = links->next;
 	}
-	if (links != NULL && ft_strcmp(ft_find_start()->name, links->name))
-		ft_find_data(links->name)->flag = -1;
+	if (links != NULL && ft_find_edge1(ft_find_end(), ft_find_data(links->name)))
+		links->flag = -1;
 	return (links);
 }
 
@@ -39,6 +39,7 @@ t_way	*ft_find_solution(t_room *room)
 {
 	t_way	*solution;
 	t_way	*head;
+	t_edge	*link;
 
 	solution = ft_find_short_way(room, ft_find_minus_one_link);
 	head = solution;
@@ -47,7 +48,12 @@ t_way	*ft_find_solution(t_room *room)
 		solution->next = ft_find_short_way(room, ft_find_minus_one_link);
 		solution = solution->next;
 	}
-	ft_null();
+	link = ft_find_end()->links;
+	while (link != NULL)
+	{
+		link->flag = 0;
+		link = link->next;
+	}
 	return (head);
 }
 
@@ -111,3 +117,18 @@ t_way	*ft_solution(t_graph *g)
 	}
 	return (way1);
 }
+
+// t_way	*ft_solution(t_graph *g)
+// {
+// 	t_way		*way;
+// 	t_sol		*sol;
+// 	t_sol		*start;
+
+// 	way = ft_bhandari(g);
+// 	while ((way2 = ft_bhandari(g)) != NULL)
+// 	{
+// 		if (ft_best_way())
+// 			way1 = way2;
+// 	}
+// 	return (way1);
+// }

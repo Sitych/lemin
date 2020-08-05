@@ -6,7 +6,7 @@
 /*   By: qjosmyn <qjosmyn@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 16:54:04 by erodd             #+#    #+#             */
-/*   Updated: 2020/07/31 23:20:45 by qjosmyn          ###   ########.fr       */
+/*   Updated: 2020/08/05 05:58:03 by qjosmyn          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,14 @@ int		main(void)
 	all = 0;
 	while (split[all])
 		all++;
+	ft_putstr("split\n");
+	// если нет второй координаты то сега
 	g = ft_file_checker(split, all, g);
 	// ft_thprint();
 	ft_init_bfs_level();
 	t_room *ptr = ft_find_start();
 	ft_manage_way(ptr);
-	ways = ft_bhandari(g);
+	ways = ft_solution(g);
 	while (ways)
 	{
 		ft_print_way(ways);

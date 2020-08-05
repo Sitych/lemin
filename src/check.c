@@ -6,7 +6,7 @@
 /*   By: rretta <rretta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 21:25:03 by qjosmyn           #+#    #+#             */
-/*   Updated: 2020/07/16 22:21:20 by rretta           ###   ########.fr       */
+/*   Updated: 2020/08/05 06:16:39 by rretta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,11 @@ int		ft_val_room(char **split, t_graph **g)
 
 	i = 1;
 	room_num = 0;
+	ft_putstr("WORDCOUNTER\n");
 	while ((ft_word_counter(split[i], ' ') != 1 && ft_word_counter(split[i], '-') != 2) || split[i][0] == '#') 
 	{
+		ft_putstr("WORDCOUNTER\n");
+		ft_putnbr((ft_word_counter(split[i], ' ') != 1 && ft_word_counter(split[i], '-') != 2) || split[i][0] == '#');
 		if ((bfs_level = ft_check_room(split, i)) == - 2)
 		{
 			i++;
@@ -106,9 +109,11 @@ int		ft_val_room(char **split, t_graph **g)
 		ft_insert_room(room);
 		i++;
 	}
+	ft_putstr("WORDCOUNTER\n");
 	if (room_num < 2)
 		ft_exit("ERROR: ROOM < 2");
 	(*g)->V = room_num;
+	ft_putstr("WORDCOUNTER\n");
 	return (i);
 }
 
