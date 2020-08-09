@@ -3,43 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   room.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rretta <rretta@student.42.fr>              +#+  +:+       +#+        */
+/*   By: qjosmyn <qjosmyn@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 21:27:41 by qjosmyn           #+#    #+#             */
-/*   Updated: 2020/07/17 21:30:33 by rretta           ###   ########.fr       */
+/*   Updated: 2020/08/08 21:34:52 by qjosmyn          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-t_room	*ft_crtrm(char *str, int bfs_level)
+t_room		*ft_creat_room(char *name, int x, int y)
 {
 	t_room		*tmp;
-	char		**lines;
-	int			i;
 
-	tmp = NULL;
-	if ((lines = ft_strsplit(str, ' ')) == NULL)
-		ft_exit("ERROR: SPLIT ERROR");
 	if ((tmp = (t_room*)malloc(sizeof(t_room))) == NULL)
 		ft_exit("ERROR: MALLOC ERROR");
-	if ((tmp->name = ft_strdup(lines[0])) == NULL)
-		ft_exit("ERROR: MALLOC ERROR");
-	i = -1;
-	while (lines[1][++i])
-		if ((lines[1][i] < '0' || lines[1][i] > '9') && lines[1][i])
-			ft_exit("ERROR: NO DIGIT COORD");
-	tmp->x = ft_atoi(lines[1]);
-	i = -1;
-	while (lines[2][++i])
-		if ((lines[2][i] < '0' || lines[2][i] > '9') && lines[2][i])
-			ft_exit("ERROR: NO DIGIT COORD");
-	tmp->y = ft_atoi(lines[2]);
-	ft_free((void**)lines, 3);
-	tmp->bfs_level = bfs_level;
-	tmp->bf = INFINITY;
+	tmp->name = ft_strdup(name);
+	tmp->x = x;
+	tmp->y = y;
 	tmp->links = NULL;
 	tmp->flag = 0;
+	tmp->bf= INFINITY;
+	tmp->ants = 0;
+	tmp->ant_id = 0;
 	return (tmp);
 }
 
@@ -84,7 +70,7 @@ void		ft_print(t_room *tmp)
 {
 	t_edge	*ptr;
 
-	ft_printf("name = %s bfs_level = %d\n", tmp->name, tmp->bfs_level);
+	ft_printf("name = %s bfs_level = %d x = %d y = %d\n", tmp->name, tmp->bf, tmp->x, tmp->y);
 	ptr = tmp->links;
 	while (ptr != NULL)
 	{

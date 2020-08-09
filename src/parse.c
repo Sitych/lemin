@@ -6,7 +6,7 @@
 /*   By: qjosmyn <qjosmyn@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 17:35:22 by erodd             #+#    #+#             */
-/*   Updated: 2020/07/28 21:02:14 by qjosmyn          ###   ########.fr       */
+/*   Updated: 2020/08/09 20:59:44 by qjosmyn          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,9 @@ char	**ft_file_parse(char **split)
 
 	str = "";
 	str2 = "";
-	int f = open("test2", O_RDONLY);
-	while ((len = read(f, tmp, 4096)) > 0)
+	// abort if not valid file name
+	// int f = open("test_bhandari", O_RDONLY);
+	while ((len = read(0, tmp, 4096)) > 0)
 	{
 		tmp[len] = '\0';
 		if ((str2 = ft_strjoin(str, tmp)) == NULL)
@@ -31,10 +32,12 @@ char	**ft_file_parse(char **split)
 			free(str);
 		str = str2;
 	}
-	if (ft_strstr(str2, "\n\n") != 0)
-		ft_exit("ERROR: EMPTY LINE");
+	if (len < 0)
+		ft_exit("ERROR: INPUT FILE NAME");
 	if ((split = ft_strsplit(str2, '\n')) == NULL)
 		ft_exit("ERROR: SPLIT ERROR");
+	if (ft_strstr(str2, "\n\n") != 0)
+		ft_exit("ERROR: EMPTY LINE");
 	ft_strdel(&str2);
 	return (split);
 }
@@ -44,6 +47,8 @@ int	ft_word_counter(char const *s, char c)
 	int	q;
 
 	q = 0;
+	if (s == NULL)
+		return (0);
 	while (*s)
 	{
 		if (*s != c && (*(s + 1) == c || *(s + 1) == '\0'))

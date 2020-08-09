@@ -36,6 +36,7 @@ static int		first_step(t_way *ways, int ant_id, int ants)
 		{
 			ways->start_node->next->name->ant_id = ant_id;
 			ways->start_node->next->name->ants++;
+			ft_printf("L%d-%s ", ways->start_node->next->name->ant_id, ways->start_node->next->name->name);
 			ant_id++;
 		}
 		ways=ways->next;
@@ -51,7 +52,6 @@ static int		next_step(t_way *ways, t_graph *g)
 
 	step_sum = 0;
 	tmp = 0;
-	test = 0;
 	while (ways)
 	{
 		tmp = ways->end_node->prev;
@@ -69,17 +69,19 @@ static int		next_step(t_way *ways, t_graph *g)
 				tmp->name->ant_id = 0;
 				tmp->next->name->ants++;
 				tmp->name->ants--;
+				ft_printf("L%d-%s ", tmp->next->name->ant_id, tmp->next->name->name);
 			}
 			tmp = tmp->prev;
 		}
+		if (test == 1)
+			step_sum++;
 		ways = ways->next;
+		test = 0;
 	}
-	if (test == 1)
-		step_sum++;
 	return (step_sum);
 }
 
-int			ft_step_counter(t_way *ways, t_graph *g)
+int			ft_step_printer(t_way *ways, t_graph *g)
 {
 	int ant_id;
 	int step_sum;
@@ -90,11 +92,16 @@ int			ft_step_counter(t_way *ways, t_graph *g)
 	step_sum++;
 	while (ant_id <= g->ants)
 	{
+		ft_putchar('\n');
 		step_sum = step_sum + next_step(ways, g);
 		ant_id = first_step(ways, ant_id, g->ants);
 	}
 	while (g->end->ants != g->ants)
+	{
+		ft_putchar('\n');
 		step_sum = step_sum + next_step(ways, g);
+	}
+	ft_putchar('\n');
 	g->end->ants = 0;
 	return (step_sum);
 }

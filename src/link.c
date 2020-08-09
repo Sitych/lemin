@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   link.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rretta <rretta@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/08/07 23:58:05 by qjosmyn           #+#    #+#             */
+/*   Updated: 2020/08/08 20:52:08 by rretta           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "lem_in.h"
 
 int		ft_val_links2(char **split, int j, int i, char **links)
@@ -52,7 +64,7 @@ void		ft_set_links(char ***links, int i, int all, t_graph **g)
 	while (j < all - i)
 	{
 		
-		if (links[j] == NULL)
+		if (links[j][0][0] == '#')
 		{
 			j++;
 			continue ;
@@ -89,12 +101,12 @@ t_room		*ft_insert_link(char *room, char *link)
 	return (p);
 }
 
-int			ft_manage_way(t_room *room)
+int			ft_manage_way(t_graph *g, t_room *room)
 {
 	t_edge	*start;
 	int		count;
 
-	if (!ft_strcmp(ft_find_end()->name, room->name))
+	if (!ft_strcmp(g->end->name, room->name))
 		return (0);
 	start = room->links;
 	count = 0;
@@ -102,7 +114,7 @@ int			ft_manage_way(t_room *room)
 	{
 		if (ft_find_data(start->name)->bfs_level > room->bfs_level)
 		{
-			if (ft_manage_way(ft_find_data(start->name)) == 1)
+			if (ft_manage_way(g, ft_find_data(start->name)) == 1)
 			{
 				--count;
 			}
@@ -110,7 +122,7 @@ int			ft_manage_way(t_room *room)
 		start = start->next;
 		++count;
 	}
-	if (count == 1 && ft_strcmp(room->name, ft_find_start()->name))
+	if (count == 1 && ft_strcmp(room->name, g->start->name))
 		room->bfs_level = -1;
 	return (count);
 }
