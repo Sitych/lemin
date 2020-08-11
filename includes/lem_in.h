@@ -6,7 +6,7 @@
 /*   By: qjosmyn <qjosmyn@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 19:29:35 by qjosmyn           #+#    #+#             */
-/*   Updated: 2020/08/09 20:59:53 by qjosmyn          ###   ########.fr       */
+/*   Updated: 2020/08/10 16:48:33 by qjosmyn          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,10 +117,8 @@ int				ft_val_coords(char *x, char *y);
 char			***ft_val_links(char **split, int i, int all, t_graph **g);
 int				ft_word_counter(char const *s, char c);
 void			ft_exit(char *str);
-void			ft_check_room(char **line, char **prev_line, int i, t_graph **g);
+void			ft_check_room(char **line, char *prev_line, t_graph **g);
 void			ft_prng(unsigned int seed);
-char			**ft_swap_links(char **str, char **link);
-int				ft_val_links2(char **split, int j, int i, char **links);
 void			ft_set_links(char ***links, int i, int all, t_graph **g);
 t_edge			*ft_creat_edge(char *name);
 void			ft_del_edge(t_edge *ptr);
@@ -144,7 +142,6 @@ void		ft_del_room(t_room **ptr);
 
 int				ft_hash(char *data);
 t_htable		*ft_insert_room(t_room *room);
-t_room			*ft_insert_link(char *room, char *link);
 t_room			*ft_find_data(char *data);
 void			ft_create_htable(int len);
 void			ft_set_htable(char **split, int len);
@@ -180,7 +177,7 @@ t_way_node	*ft_create_node(t_room *room_name);
 t_edge		*ft_find_min_bfs_link(t_edge *links);
 t_way		*ft_paste_first_node(t_way *way, t_way_node *node);
 t_way		*ft_paste_node(t_way *way, t_way_node *node);
-t_way		*ft_find_short_way(t_graph *g, t_room *room, t_edge *(*func) (t_edge *link));
+t_way		*ft_find_way(t_graph *g, t_room *room, t_edge *(*func) (t_edge *link));
 t_way		*ft_find_all_short_ways(t_way	*ways);
 void		ft_print_way(t_way *way);
 int			ft_bellman_ford(t_graph *g, t_room *start);

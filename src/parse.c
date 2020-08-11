@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qjosmyn <qjosmyn@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rretta <rretta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 17:35:22 by erodd             #+#    #+#             */
-/*   Updated: 2020/08/09 20:59:44 by qjosmyn          ###   ########.fr       */
+/*   Updated: 2020/08/11 00:01:05 by rretta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ char	**ft_file_parse(char **split)
 
 	str = "";
 	str2 = "";
-	// abort if not valid file name
-	// int f = open("test_bhandari", O_RDONLY);
+	// int f = open("1", O_RDONLY);
 	while ((len = read(0, tmp, 4096)) > 0)
 	{
 		tmp[len] = '\0';

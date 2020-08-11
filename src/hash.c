@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hash.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rretta <rretta@student.42.fr>              +#+  +:+       +#+        */
+/*   By: qjosmyn <qjosmyn@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 18:20:09 by qjosmyn           #+#    #+#             */
-/*   Updated: 2020/07/16 21:30:46 by rretta           ###   ########.fr       */
+/*   Updated: 2020/08/10 16:37:54 by qjosmyn          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,27 +25,6 @@ int			ft_hash(char *data)
 		i++;
 	}
 	return (key % HTSIZE);
-}
-
-void		ft_thprint(void)
-{
-	t_htable	*ptr;
-	int i;
-
-	i = 0;
-	while (i < HTSIZE)
-	{
-		ptr = g_htable[i];
-		if (ptr != NULL)
-		{
-			while (ptr != NULL)
-			{
-				ft_print(ptr->rooms);
-				ptr = ptr->next;
-			}
-		}
-		i++;
-	}
 }
 
 t_room		*ft_find_data(char *data)

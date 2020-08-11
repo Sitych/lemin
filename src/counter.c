@@ -83,6 +83,7 @@ int			ft_step_counter(t_way *ways, t_graph *g)
 {
 	int ant_id;
 	int step_sum;
+	int tmp;
 
 	ant_id = 1;
 	step_sum = 0;
@@ -90,11 +91,18 @@ int			ft_step_counter(t_way *ways, t_graph *g)
 	step_sum++;
 	while (ant_id <= g->ants)
 	{
+		// ft_printf("%d - %d\n", ant_id, step_sum);
+		tmp = step_sum;
 		step_sum = step_sum + next_step(ways, g);
 		ant_id = first_step(ways, ant_id, g->ants);
+		if (tmp == step_sum)
+			step_sum++;
 	}
 	while (g->end->ants != g->ants)
+	{
 		step_sum = step_sum + next_step(ways, g);
+		// ft_printf("%d\n", g->end->ants);
+	}
 	g->end->ants = 0;
 	return (step_sum);
 }

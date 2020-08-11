@@ -6,7 +6,7 @@
 /*   By: qjosmyn <qjosmyn@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/11 21:27:41 by qjosmyn           #+#    #+#             */
-/*   Updated: 2020/08/08 21:34:52 by qjosmyn          ###   ########.fr       */
+/*   Updated: 2020/08/10 17:25:02 by qjosmyn          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_room		*ft_creat_room(char *name, int x, int y)
 {
 	t_room		*tmp;
 
-	if ((tmp = (t_room*)malloc(sizeof(t_room))) == NULL)
+	if ((tmp = (t_room*)ft_memalloc(sizeof(t_room))) == NULL)
 		ft_exit("ERROR: MALLOC ERROR");
 	tmp->name = ft_strdup(name);
 	tmp->x = x;
@@ -37,7 +37,7 @@ t_htable	*ft_insert_room(t_room *room)
 
 	// ft_print(room);
 	key = ft_hash(room->name);
-	if ((p = (t_htable*)malloc(sizeof(t_htable))) == NULL)
+	if ((p = (t_htable*)ft_memalloc(sizeof(t_htable))) == NULL)
 		ft_exit("ERROR: MALLOC ERROR");
 	p0 = g_htable[key];
 	g_htable[key] = p;
@@ -64,18 +64,4 @@ void		ft_del_room(t_room **ptr)
 	}
 	free(room);
 	room = NULL;
-}
-
-void		ft_print(t_room *tmp)
-{
-	t_edge	*ptr;
-
-	ft_printf("name = %s bfs_level = %d x = %d y = %d\n", tmp->name, tmp->bf, tmp->x, tmp->y);
-	ptr = tmp->links;
-	while (ptr != NULL)
-	{
-		ft_printf("link name = %s; ", ptr->name);
-		ptr = ptr->next;
-	}
-	ft_putchar('\n');
 }

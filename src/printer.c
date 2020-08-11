@@ -85,6 +85,7 @@ int			ft_step_printer(t_way *ways, t_graph *g)
 {
 	int ant_id;
 	int step_sum;
+	int	tmp;
 
 	ant_id = 1;
 	step_sum = 0;
@@ -92,9 +93,12 @@ int			ft_step_printer(t_way *ways, t_graph *g)
 	step_sum++;
 	while (ant_id <= g->ants)
 	{
+		tmp = step_sum;
 		ft_putchar('\n');
 		step_sum = step_sum + next_step(ways, g);
 		ant_id = first_step(ways, ant_id, g->ants);
+		if (tmp == step_sum)
+			step_sum++;
 	}
 	while (g->end->ants != g->ants)
 	{

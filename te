@@ -1,0 +1,13 @@
+1
+#Here is the number of lines required: 31
+##start
+Uo_0 3 3
+##end
+Ibc9 6 6
+Me_1 2 2
+Zac0 5 5
+Xu_6 4 4
+Uo_0-Me_1
+Me_1-Zac0
+Zac0-Xu_6
+Xu_6-Ibc9

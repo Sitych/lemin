@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   validation.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qjosmyn <qjosmyn@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/08/10 15:16:55 by qjosmyn           #+#    #+#             */
+/*   Updated: 2020/08/10 16:45:52 by qjosmyn          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "lem_in.h"
 
 int		ft_val_ant(char *line)
@@ -56,7 +68,7 @@ int		ft_val_room(char **lines, t_graph **g, int i)
 		if (split[3])
 			ft_exit("ERROR: NOT VALID INPUT");
 		ft_val_coords(split[1], split[2]);
-		ft_check_room(split, lines, i - 1, g);
+		ft_check_room(split, lines[i - 1], g);
 		(*g)->V++;
 		ft_del_mas(&split, 3);
 		i++;
@@ -64,32 +76,6 @@ int		ft_val_room(char **lines, t_graph **g, int i)
 	if ((*g)->V < 2)
 		ft_exit("ERROR: ROOM < 2");
 	return (i);
-}
-
-char		***ft_val_links(char **links, int i, int all, t_graph **g)
-{
-	int		j;
-	char	***link;
-
-	j = i;
-	if ((link = (char***)ft_memalloc((sizeof(char**)) * (all - (i--) + 1))) == NULL)
-		ft_exit("ERROR: MALLOC ERROR");
-	while (links[++i])
-	{
-		if (links[i][0] == '#')
-			continue ;
-		if (ft_word_counter(links[i], ' ') == 1 && ft_word_counter(links[i], '-') == 2)
-		{
-			if ((link[i - j] = ft_strsplit(links[i], '-')) == NULL)
-				ft_exit("ERROR: SPLIT ERROR");
-			link[i - j] = ft_swap_links(&links[i], link[i - j]);
-			ft_val_links2(links, j, i, link[i - j]);
-			(*g)->E += 2;
-		}
-		else
-			ft_exit("ERROR: SHITTY LINK INPUT");
-	}
-	return (link);
 }
 
 int		ft_val_coords(char *x, char *y)

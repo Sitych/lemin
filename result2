@@ -1,0 +1,19 @@
+name = Bwt6 bfs_level = 10 x = 8180 y = 8180
+link name = Zao4; link name = Wwh2; link name = Fla3; link name = Pys4; 
+name = Gmc1 bfs_level = 10 x = 7444 y = 7444
+link name = Wxe8; link name = Wwh2; 
+name = Fyc2 bfs_level = 10 x = 8230 y = 8230
+link name = W_t5; link name = Wwh2; 
+name = Wwh2 bfs_level = 9 x = 8232 y = 8232
+link name = Gmc1; link name = Xel5; link name = Bwt6; link name = Fyc2; 
+name = Xel5 bfs_level = 8 x = 2717 y = 2717
+link name = Xod4; link name = Wwh2; 
+
+name = Wwh2 bfs_level = 9 x = 8232 y = 8232
+link name = Gmc1; link name = Xel5; link name = Bwt6; link name = Fyc2; 
+name = Fla3 bfs_level = 11 x = 7996 y = 7996
+link name = Syz9; link name = Nen1; link name = Bwt6; link name = Zqt2; link name = Qrd7; 
+name = Zao4 bfs_level = 11 x = 7482 y = 7482
+link name = Bwt6; link name = Qf_0; 
+name = Pys4 bfs_level = 11 x = 8133 y = 8133
+link name = Bwt6; link name = Vbw8; 

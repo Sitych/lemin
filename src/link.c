@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   link.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rretta <rretta@student.42.fr>              +#+  +:+       +#+        */
+/*   By: qjosmyn <qjosmyn@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/07 23:58:05 by qjosmyn           #+#    #+#             */
-/*   Updated: 2020/08/08 20:52:08 by rretta           ###   ########.fr       */
+/*   Updated: 2020/08/10 16:47:55 by qjosmyn          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int		ft_val_links2(char **split, int j, int i, char **links)
+static int		ft_val_links2(char **split, int j, int i, char **links)
 {
 	while (j <= i)
 	{
@@ -21,7 +21,8 @@ int		ft_val_links2(char **split, int j, int i, char **links)
 			j++;
 			continue ;
 		}
-		if ((ft_find_data(links[0]) == NULL) || (ft_find_data(links[1]) == NULL))
+		if ((ft_find_data(links[0]) == NULL) || \
+											(ft_find_data(links[1]) == NULL))
 			ft_exit("ERROR: NO SUCH ROOM NAME IN THE LINK INPUT");
 		if (ft_strcmp(links[0], links[1]) == 0)
 			ft_exit("ERROR: LINK IS LINKED TO ITSELF");
@@ -33,7 +34,7 @@ int		ft_val_links2(char **split, int j, int i, char **links)
 	return (0);
 }
 
-char	**ft_swap_links(char **str, char **link)
+static char		**ft_swap_links(char **str, char **link)
 {
 	char	delimeter;
 	char	*buf;
@@ -53,36 +54,7 @@ char	**ft_swap_links(char **str, char **link)
 	return (link);
 }
 
-void		ft_set_links(char ***links, int i, int all, t_graph **g)
-{
-	char		**link;
-	int			j;
-	int			c;
-
-	j = 0;
-	c = 0;
-	while (j < all - i)
-	{
-		
-		if (links[j][0][0] == '#')
-		{
-			j++;
-			continue ;
-		}
-		link = links[j];
-		// ft_printf("TYT");
-		ft_insert_link(link[0], link[1]);
-		ft_insert_link(link[1], link[0]);
-		ft_insert_all_edges(link[0], link[1], c, &((*g)->edges));
-		ft_free((void**)links[j], 2);
-		j++;
-		c = c + 2;
-		// ft_printf("%d \n", *((*g)->edges[c]->w));
-	}
-	free(links);
-}
-
-t_room		*ft_insert_link(char *room, char *link)
+static t_room	*ft_insert_link(char *room, char *link)
 {
 	t_room	*p;
 	t_edge	*links;
@@ -101,28 +73,53 @@ t_room		*ft_insert_link(char *room, char *link)
 	return (p);
 }
 
-int			ft_manage_way(t_graph *g, t_room *room)
+void			ft_set_links(char ***links, int i, int all, t_graph **g)
 {
-	t_edge	*start;
-	int		count;
+	char		**link;
+	int			j;
+	int			c;
 
-	if (!ft_strcmp(g->end->name, room->name))
-		return (0);
-	start = room->links;
-	count = 0;
-	while (start != NULL)
+	j = 0;
+	c = 0;
+	i++;
+	all++;
+	while (links[j])
 	{
-		if (ft_find_data(start->name)->bfs_level > room->bfs_level)
-		{
-			if (ft_manage_way(g, ft_find_data(start->name)) == 1)
-			{
-				--count;
-			}
-		}
-		start = start->next;
-		++count;
+		link = links[j];
+		ft_insert_link(link[0], link[1]);
+		ft_insert_link(link[1], link[0]);
+		ft_insert_all_edges(link[0], link[1], c, &((*g)->edges));
+		ft_free((void**)links[j], 2);
+		j++;
+		c = c + 2;
 	}
-	if (count == 1 && ft_strcmp(room->name, g->start->name))
-		room->bfs_level = -1;
-	return (count);
+	free(links);
+}
+
+char			***ft_val_links(char **links, int i, int all, t_graph **g)
+{
+	int		j;
+	char	***link;
+
+	j = 0;
+	if ((link = (char***)ft_memalloc((sizeof(char**)) * \
+													(all - (i--) + 1))) == NULL)
+		ft_exit("ERROR: MALLOC ERROR");
+	while (links[++i])
+	{
+		if (links[i][0] == '#')
+			continue ;
+		if (ft_word_counter(links[i], '-') == 2)
+		{
+			if ((link[j] = ft_strsplit(links[i], '-')) == NULL)
+				ft_exit("ERROR: SPLIT ERROR");
+			link[j] = ft_swap_links(&links[i], link[j]);
+			ft_val_links2(links, j, i, link[j]);
+			j++;
+			(*g)->E += 2;
+		}
+		else
+			ft_exit("ERROR: SHITTY LINK INPUT");
+	}
+	return (link);
 }

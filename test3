@@ -1,6 +1,6 @@
-100
+3
 ##start
-start 0 1
+start 100 100
 ##end
 H 1 0
 0 0 0
@@ -15,17 +15,18 @@ x 10 10
 y 11 11
 z 12 12
 v 13 13
-start-B
-B-C
-C-D
-D-H
-start-E
-E-D
-E-F
-F-D
-F-G
+#start-D
+D-E
+E-G
 G-H
 H-x
 x-y
 y-z
 z-v
+v-A
+A-H
+start-B
+B-H
+#comment
+start-H
+#comment

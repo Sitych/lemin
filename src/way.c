@@ -6,7 +6,7 @@
 /*   By: rretta <rretta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/13 19:29:27 by qjosmyn           #+#    #+#             */
-/*   Updated: 2020/08/09 18:27:09 by rretta           ###   ########.fr       */
+/*   Updated: 2020/08/11 00:18:21 by rretta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 t_way_node	*ft_create_node(t_room *link_name)
 {
 	t_way_node	*tmp;
+
 	tmp = NULL;
-	
 	if ((tmp = (t_way_node*)malloc(sizeof(t_way_node))) == NULL)
 		ft_exit("ERROR: MALLOC ERROR");
 	tmp->name = link_name;
@@ -25,7 +25,7 @@ t_way_node	*ft_create_node(t_room *link_name)
 	return (tmp);
 }
 
-t_edge	*ft_find_min_bfs_link(t_edge *links)
+t_edge		*ft_find_min_bfs_link(t_edge *links)
 {
 	int		minbfs;
 	t_edge	*minbfslink;
@@ -33,7 +33,7 @@ t_edge	*ft_find_min_bfs_link(t_edge *links)
 	minbfs = INT32_MAX;
 	while (links != NULL)
 	{
-		if (minbfs > ft_find_data(links->name)->bf && links->weight != -1)
+		if (minbfs >= ft_find_data(links->name)->bf && links->weight != -1 && links->flag != -3)
 		{
 			minbfs = ft_find_data(links->name)->bf;
 			minbfslink = links;
@@ -42,10 +42,11 @@ t_edge	*ft_find_min_bfs_link(t_edge *links)
 	}
 	if (minbfs == INT32_MAX)
 		return (NULL);
+	minbfslink->flag = -3;
 	return (minbfslink);
 }
 
-t_way	*ft_paste_node(t_way *way, t_way_node *node)
+t_way		*ft_paste_node(t_way *way, t_way_node *node)
 {
 	t_way_node	*tmp;
 
@@ -70,116 +71,52 @@ t_way	*ft_paste_node(t_way *way, t_way_node *node)
 	return (way);
 }
 
-t_way	*ft_find_short_way(t_graph *g, t_room *room, t_edge *(*func) (t_edge *link))
+t_way		*ft_find_way(t_graph *g, t_room *room, t_edge *(*f) (t_edge *))
 {
 	t_edge		*link;
-	t_way	*shortway;
-	
+	t_way		*shortway;
+
 	shortway = NULL;
 	shortway = ft_paste_node(shortway, ft_create_node(room));
-	if ((link = func(room->links)) == NULL)
+	if ((link = f(room->links)) == NULL)
 		return (ft_del_way_return_null(&shortway));
 	room = ft_find_data(link->name);
 	shortway = ft_paste_node(shortway, ft_create_node(room));
 	while (ft_strcmp(room->name, g->start->name))
 	{
-		if ((link = func(room->links)) == NULL)
+		// ft_print(room);
+		// ft_printf("weight from %d, weight to %d", ft_find_edge(ft_find_data("Bwt6"), ft_find_data("Wwh2"))->weight, ft_find_edge(ft_find_data("Wwh2"), ft_find_data("Bwt6"))->weight);
+		if ((link = f(room->links)) == NULL)
 			return (ft_del_way_return_null(&shortway));
-		shortway = ft_paste_node(shortway, ft_create_node(ft_find_data(link->name)));
+		shortway = ft_paste_node(shortway, \
+									ft_create_node(ft_find_data(link->name)));
 		room = ft_find_data(link->name);
 	}
 	shortway->next = NULL;
 	return (shortway);
 }
 
-t_way	*ft_del_way_return_null(t_way **way)
+t_way		*ft_del_way_return_null(t_way **way)
 {
-	t_way_node *tmp;
-	t_way_node *ptr;
-	
-	tmp = (*way)->start_node;
-	while (tmp != NULL)
+	t_way_node	*tmp;
+	t_way_node	*ptr;
+	t_way		*tmp_way;
+
+	while (*way)
 	{
-		ptr = tmp;
-		tmp = tmp->next;
-		ptr->name = NULL;
-		free(ptr);
-	}
-	(*way)->end_node = NULL;
-	free(*way);
-	*way = NULL;
-	return (NULL);
-}
-
-void	ft_print_way(t_way *way)
-{
-	t_way_node	*node;
-
-	node = way->start_node;
-	while (node != NULL)
-	{
-		ft_printf("%s ", node->name->name);
-		node = node->next;
-	}
-	ft_printf("len = %d\n", way->way_length);
-}
-
-// t_way	*ft_sort_solution(t_way *way)
-// {
-// 	t_way	*left;
-// 	t_way	*right;
-// 	t_way	*tmp;
-
-// 	left = way;
-// 	right = way->next;
-// 	while (left->next != NULL)
-// 	{
-// 		while (right)
-// 		{
-// 			if (left->way_length < right->way_length)
-// 			{
-// 				tmp = left;
-// 				tmp->next = right->next;
-// 				left = right;
-// 				right->next = tmp;	
-// 			}
-// 			right = right->next;
-// 		}
-// 		left = left->next;
-// 		right = left;
-// 	}
-// 	return (way);
-// }
-
-void	ft_sort_solution(t_way *way)
-{
-	t_way	*left;
-	t_way	*right;
-	t_way	*tmp;
-
-	left = way;
-	right = way->next;
-	tmp = ft_memalloc(sizeof(t_way));
-	while (left->next != NULL)
-	{
-		while (right)
+		tmp_way = (*way)->next;
+		tmp = (*way)->start_node;
+		while (tmp != NULL)
 		{
-			if (left->way_length > right->way_length)
-			{
-				tmp->start_node = left->start_node;
-				tmp->end_node = left->end_node;
-				tmp->way_length = left->way_length;
-				left->start_node = right->start_node;
-				left->end_node = right->end_node;
-				left->way_length = right->way_length;
-				right->start_node = tmp->start_node;
-				right->end_node = tmp->end_node;
-				right->way_length = tmp->way_length;
-			}
-			right = right->next;
+			ptr = tmp;
+			tmp = tmp->next;
+			ptr->name = NULL;
+			free(ptr);
 		}
-		left = left->next;
-		right = left->next;
-	}
-	free(tmp);
+		(*way)->end_node = NULL;
+		free(*way);
+		*way = NULL;
+		*way = tmp_way;
+	} 
+	return (NULL);
 }
