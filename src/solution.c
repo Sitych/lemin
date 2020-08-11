@@ -6,7 +6,7 @@
 /*   By: rretta <rretta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/10 16:34:59 by qjosmyn           #+#    #+#             */
-/*   Updated: 2020/08/10 23:59:13 by rretta           ###   ########.fr       */
+/*   Updated: 2020/08/11 06:02:47 by rretta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,22 @@ static int	ft_best_way(t_way *way1, t_way *way2, t_graph *g)
 		return (0);
 	if (way2 == NULL && way1 != NULL)
 		return (1);
-	t_way *pr;
-	pr = way1;
-	while (pr)
-	{
-		ft_print_way(pr);
-		pr = pr->next;
-	}
-	pr = way2;
-	while (pr)
-	{
-		ft_print_way(pr);
-		pr = pr->next;
-	}
+	// t_way *pr;
+	// pr = way1;
+	// while (pr)
+	// {
+	// 	ft_print_way(pr);
+	// 	pr = pr->next;
+	// }
+	// pr = way2;
+	// while (pr)
+	// {
+	// 	ft_print_way(pr);
+	// 	pr = pr->next;
+	// }
 	way1_steps = ft_step_counter(way1, g);
 	way2_steps = ft_step_counter(way2, g);
-	ft_printf("way1 %d way2 %d", way1_steps, way2_steps);
+	// ft_printf("way1 %d way2 %d", way1_steps, way2_steps);
 	if (way1_steps <= way2_steps)
 		return (1);
 	return (0);

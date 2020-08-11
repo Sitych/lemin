@@ -98,9 +98,37 @@ int			ft_step_counter(t_way *ways, t_graph *g)
 		if (tmp == step_sum)
 			step_sum++;
 	}
+	t_way *test;
+	t_way_node *test2;
+	test = ways;
+	while (test)
+	{
+		test2 = test->start_node;
+		while (test2 != NULL)
+		{
+			ft_printf("Room %s ant %d ", test2->name->name, test2->name->ant_id);
+			test2 = test2->next;
+		}
+		ft_printf("\n");
+		test = test->next;
+	}
+	
 	while (g->end->ants != g->ants)
 	{
+		
 		step_sum = step_sum + next_step(ways, g);
+		test = ways;
+		while (test)
+		{
+			test2 = test->start_node;
+			while (test2 != NULL)
+			{
+				ft_printf("Room %s ant %d ", test2->name->name, test2->name->ant_id);
+				test2 = test2->next;
+			}
+			ft_printf("\n");
+			test = test->next;
+		}
 		// ft_printf("%d\n", g->end->ants);
 	}
 	g->end->ants = 0;
